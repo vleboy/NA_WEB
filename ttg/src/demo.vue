@@ -113,7 +113,8 @@ ul {
 }
 ul li {
   width: 1.875rem;
-  height: 1.875rem;
+  height: 0;
+  padding-bottom: 100%;
 }
 a {
   text-decoration: none;
