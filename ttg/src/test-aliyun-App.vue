@@ -151,11 +151,12 @@ html, body {
   height: 100%;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
-  display: flex;
+  /* display: flex; */
   overflow: hidden;
 }
 ul {
   list-style: none;
+  display: table-cell
 }
 ul li {
   width: 1.875rem;
@@ -190,7 +191,7 @@ img {
   background-size: cover
 }
 .lists {
-  display: flex;
+  /* display: flex; */
   box-sizing:border-box;
   width: 100%;
   padding-left: .20834rem;
