@@ -208,7 +208,7 @@
   // 退出需要的参数
   var parent = GetQueryString('parent');              // 父级ID
   var userName = GetQueryString('userName');          // 玩家帐号
-  var naToken = GetQueryString('naToken');            // NA玩家TOKEN
+  var naToken = GetQueryString('token');            // NA玩家TOKEN
 
   var iframe = document.getElementById('iframe');
   // 进入游戏链接
@@ -241,7 +241,7 @@
           var result = JSON.parse(ajax.responseText)
           if (result.code == 0) {
             // window.location.href = "uniwebview://www.baidu.com?key=value&anotherKey=anotherValue"
-            window.location.href = "http://web.risheng3d.com/sa.html?userName=" + userName + "&userId=" + userId + "&parent=" + parent + "&naToken=" + naToken
+            window.location.href = "http://web.risheng3d.com/sa.html?userName=" + userName + "&userId=" + userId + "&parent=" + parent + "&token=" + naToken
             loading.style.display = 'none'
           } else {
             loading.style.display = 'none'
