@@ -212,7 +212,7 @@ export default {
           tags: []
         },
         {
-          title: '全明咪牌',
+          title: '全民咪牌',
           imgUrl: '/static/people3.jpg',
           content: '为提高交互式体验，百家乐普通台全部玩家可进行咪牌操作！',
           tags: []
