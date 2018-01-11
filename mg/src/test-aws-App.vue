@@ -102,7 +102,7 @@ export default {
         })
 
         if (data.code === 0) {
-          window.location.href = `http://ext.na77.org.s3-website-ap-southeast-1.amazonaws.com/mg_detail.html?parent=${param.parent}&userId=${param.userId}&userName=${param.userName}&gameId=${param.sid}&gameurl=${encodeURIComponent(data.url)}&token=${param.token}`
+          window.location.href = `http://ext.na77.org.s3-website-ap-southeast-1.amazonaws.com/mg_detail.html?parent=${param.parent}&userId=${param.userId}&userName=${param.userName}&gameId=${param.sid}&gameurl=${encodeURIComponent(data.url)}&naToken=${param.token}`
           this.loading = false
         } else {
           this.loading = false
