@@ -47,7 +47,7 @@ export default {
         const { data } = await axios({
           method: 'post',
           url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
-          data: 
+          data: {
             gameType: '10300000',
             query: {
               gameStatus: 1
