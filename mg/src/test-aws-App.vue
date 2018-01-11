@@ -48,7 +48,7 @@ export default {
           method: 'post',
           url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
           data: {
-            gameType: '1010000',
+            gameType: '10300000',
             query: {
               gameStatus: 1
             }
