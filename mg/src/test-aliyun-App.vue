@@ -85,14 +85,12 @@ export default {
       try {
         this.loading = true
         const param = {
-          parent: this.GetQueryString('parent') || '77b12de3-b593-430d-95ff-4c1905d842cc',
-          userId: this.GetQueryString('userId') || '145537',
-          userName: this.GetQueryString('userName') || 'CT01_ROTTA29',
+          parent: this.GetQueryString('parent'),
+          userId: this.GetQueryString('userId'),
+          userName: this.GetQueryString('userName'),
           gameId: gameType,
           sid: sid,
-          token: this.GetQueryString('token') || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IkNUMDFfUk9' +
-          'UVEEyOSIsInN1ZmZpeCI6IkNUMDEiLCJ1c2VySWQiOjE0NTUzNywiaWF0IjoxNTE1NjYyNTk1fQ.oBmfN5YhaSha9V0WH_hAyTlJ' +
-          'H2hFW8znTn1UF8cZFAM'
+          token: this.GetQueryString('token')
         }
         const { data } = await axios({
           method: 'post',
@@ -104,7 +102,7 @@ export default {
         })
 
         if (data.code === 0) {
-          window.location.href = data.url
+          window.location.href = `http://web.risheng3d.com/mg_detail.html?parent=${param.parent}&userId=${param.userId}&userName=${param.userName}&token=${param.token}`
           this.loading = false
         } else {
           this.loading = false
