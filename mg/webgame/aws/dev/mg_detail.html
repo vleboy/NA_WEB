@@ -205,23 +205,17 @@
   }
   var gameId = GetQueryString('gameId');              // NA具体游戏ID
   var userId = GetQueryString('userId');              // NA玩家ID
-  var playerHandle = GetQueryString('playerHandle');  // TTG玩家TOKEN
-  var ttgGameName = GetQueryString('ttgGameName');    // TTG游戏ID
-  var ttgGameType = GetQueryString('ttgGameType');    // TTG游戏类型
-  var ttgGameId = GetQueryString('ttgGameId');        // TTG游戏ID
   // 退出需要的参数
   var parent = GetQueryString('parent');              // 父级ID
   var userName = GetQueryString('userName');          // 玩家帐号
   var msn = GetQueryString('msn');                    // 线路号
   var naToken = GetQueryString('naToken');            // NA玩家TOKEN
-
+  var gameurl = GetQueryString('gameurl');            // MG的具体游戏链接
+  // 打开MG具体游戏
   var iframe = document.getElementById('iframe');
-  // 进入游戏链接
-  var gameurl = "http://ams2-games.ttms.co/casino/default/game/game.html?playerHandle=" + playerHandle;
-  var gamedetail = "&account=CNY&gameName=" + ttgGameName + "&gameType=" + ttgGameType + "&gameId=" + ttgGameId + "&lang=zh-cn&lsdId=zero&deviceType=web&t=" + Date.now();
+  iframe.src = gameurl;
   // 退出游戏链接
-  var logouturl = "https://webgame.na77.org/webapi/ttglogout/" + gameId + '/' + userId + '/' + playerHandle;
-  iframe.src = gameurl + gamedetail;
+  var logouturl = 'http://ext.na77.org/mg/logout/' + userId + '/' + gameId;
 
   // 弹框
   var myAlert = document.getElementById('my-alert')
@@ -247,7 +241,7 @@
           var result = JSON.parse(ajax.responseText)
           if (result.code == 0) {
             // window.location.href = "uniwebview://www.baidu.com?key=value&anotherKey=anotherValue"
-            window.location.href = "http://webpage.na77.org/index.html?parent=" + parent + "&userId=" + userId + "&userName=" + userName + "&msn=" + msn + "&token=" + naToken
+            window.location.href = "http://ext.na77.org.s3-website-ap-southeast-1.amazonaws.com/mg.html?parent=" + parent + "&userId=" + userId + "&userName=" + userName + "&msn=" + msn + "&token=" + naToken
             loading.style.display = 'none'
           } else {
             loading.style.display = 'none'
