@@ -6,7 +6,7 @@
         <li v-for="item in items">
           <a href="javascript:;" @click="toLink(item.kindId, item.gameType)">
              <img v-lazy="getHtmlDocName(item.gameImg)" alt="">
-             <!--<img v-lazy="getHtmlDocName(item.gameImg) " alt="">-->
+             <!--<img v-lazy="getHtmlDocName(item.gameImg)" alt="">-->
           </a>
         </li>
       </ul>
