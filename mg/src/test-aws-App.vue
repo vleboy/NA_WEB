@@ -123,7 +123,7 @@ export default {
     getHtmlDocName (a) {
       let str = a
       str = str.substring(str.lastIndexOf('/') + 1)
-      return 'https://d38xgux2jezyfx.cloudfront.net/' + str
+      return 'https://s3-ap-southeast-1.amazonaws.com/image-na-dev/' + str
     }
   }
 }
