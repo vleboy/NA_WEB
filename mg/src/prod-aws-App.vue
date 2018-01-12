@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script type="text/ecmascript-6">
+<script>
 import axios from 'axios'
 export default {
   name: 'app',
@@ -46,9 +46,9 @@ export default {
       try {
         const { data } = await axios({
           method: 'post',
-          url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
+          url: 'https://52qkggfn4d.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
           data: {
-            gameType: '10300000',
+            gameType: '1010000',
             query: {
               gameStatus: 1
             }
@@ -84,25 +84,25 @@ export default {
     async beginGame (gameType, sid, ttgGameType, ttgGameId, ttgGameName) {
       try {
         this.loading = true
-        const param = {
+        const datas = {
           parent: this.GetQueryString('parent'),
           userId: this.GetQueryString('userId'),
           userName: this.GetQueryString('userName'),
           gameId: gameType,
           sid: sid,
-          token: this.GetQueryString('token')
+          token: this.GetQueryString('token'),
+          msn: this.GetQueryString('msn') || ''
         }
         const { data } = await axios({
           method: 'post',
-          url: 'http://webgame.na77.org/mg/gameurl',
-          data: `<?xml version="1.0"?><gameurlreq parent="${param.parent}" userId="${param.userId}" userName="${param.userName}" token="${param.token}" gameId="${param.gameId}" sid="${param.sid}" />`,
+          url: 'https://webgame.na77.org/webapi/ttgtoken',
+          data: datas,
           headers: {
-            'Content-type': 'application/xml'
+            'Content-type': 'application/json'
           }
         })
-
         if (data.code === 0) {
-          window.location.href = `http://webpage.na77.org/mg_detail.html?parent=${param.parent}&userId=${param.userId}&userName=${param.userName}&gameId=${param.sid}&gameurl=${encodeURIComponent(data.url)}&naToken=${param.token}`
+          window.location.href = `http://webpage.na77.org/ttg.html?playerHandle=${data.token}&userId=${datas.userId}&gameId=${datas.sid}&ttgGameType=${ttgGameType}&ttgGameId=${ttgGameId}&ttgGameName=${ttgGameName}&parent=${datas.parent}&userName=${datas.userName}&msn=${datas.msn}&naToken=${datas.token}`
           this.loading = false
         } else {
           this.loading = false
@@ -121,7 +121,7 @@ export default {
     getHtmlDocName (a) {
       let str = a
       str = str.substring(str.lastIndexOf('/') + 1)
-      return 'https://s3-ap-southeast-1.amazonaws.com/image-na-dev/' + str
+      return 'https://d38xgux2jezyfx.cloudfront.net/' + str
     }
   }
 }
