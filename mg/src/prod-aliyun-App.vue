@@ -121,7 +121,7 @@ export default {
     getHtmlDocName (a) {
       let str = a
       str = str.substring(str.lastIndexOf('/') + 1)
-      return 'http://app.risheng3d.com/game/ttggame/' + str
+      return 'http://app.risheng3d.com/game/mggame/' + str
     }
   }
 }
