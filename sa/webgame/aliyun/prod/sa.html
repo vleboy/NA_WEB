@@ -262,7 +262,7 @@
     '   position: fixed;' +
     '   width: 1.3125rem;' +
     '   height: 0.875rem;' +
-    '   background-color: rgba(0, 0, 0, 0.5);' +
+    '   background-color: rgba(234, 9, 9, 0.5);' +
     '   z-index: 10000;' +
     '   cursor: pointer;' +
     '   top: 300px;' +
@@ -283,7 +283,7 @@
     '  -o-transition: all 0.2s;' +
     ' }' +
     ' #drager:hover>div{' +
-    '   background-color: rgba(0, 0, 0, 0.8);' +
+    '   background-color: rgba(234, 9, 9, 0.8);' +
     ' } ';
   document.body.appendChild(new_element_N);
   new_element_N = document.createElement('div');
@@ -298,7 +298,7 @@
   var screenHeight = document.documentElement.clientHeight;
   var fdiv = document.getElementById("drager");
   fdiv.onmousedown = function (e) {
-    fdiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
+    fdiv.style.backgroundColor = "rgba(234, 9, 9, 0.2)"
     screenWidth = document.documentElement.clientWidth;
     screenHeight = document.documentElement.clientHeight;
     if (!e) { e = window.event; } //IE
@@ -343,7 +343,7 @@
         }
       }
     }
-    fdiv.style.backgroundColor = "rgba(0, 0, 0, 0.6)"
+    fdiv.style.backgroundColor = "rgba(234, 9, 9, 0.6)"
   }
   function mousemove(ev) {
     if (ev == null) { ev = window.event; }//IE
