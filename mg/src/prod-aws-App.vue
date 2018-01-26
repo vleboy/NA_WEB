@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
 import axios from 'axios'
 export default {
   name: 'app',
@@ -48,7 +48,7 @@ export default {
           method: 'post',
           url: 'https://52qkggfn4d.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
           data: {
-            gameType: '1010000',
+            gameType: '10300000',
             query: {
               gameStatus: 1
             }
@@ -84,25 +84,25 @@ export default {
     async beginGame (gameType, sid, ttgGameType, ttgGameId, ttgGameName) {
       try {
         this.loading = true
-        const datas = {
+        const param = {
           parent: this.GetQueryString('parent'),
           userId: this.GetQueryString('userId'),
           userName: this.GetQueryString('userName'),
           gameId: gameType,
           sid: sid,
-          token: this.GetQueryString('token'),
-          msn: this.GetQueryString('msn') || ''
+          token: this.GetQueryString('token')
         }
         const { data } = await axios({
           method: 'post',
-          url: 'https://webgame.na77.org/webapi/ttgtoken',
-          data: datas,
+          url: 'http://webgame.na77.org/mg/gameurl',
+          data: `<?xml version="1.0"?><gameurlreq parent="${param.parent}" userId="${param.userId}" userName="${param.userName}" token="${param.token}" gameId="${param.gameId}" sid="${param.sid}" />`,
           headers: {
-            'Content-type': 'application/json'
+            'Content-type': 'application/xml'
           }
         })
+
         if (data.code === 0) {
-          window.location.href = `http://webpage.na77.org/ttg.html?playerHandle=${data.token}&userId=${datas.userId}&gameId=${datas.sid}&ttgGameType=${ttgGameType}&ttgGameId=${ttgGameId}&ttgGameName=${ttgGameName}&parent=${datas.parent}&userName=${datas.userName}&msn=${datas.msn}&naToken=${datas.token}`
+          window.location.href = `http://webpage.na77.org.s3-website-ap-southeast-1.amazonaws.com/mg_detail.html?parent=${param.parent}&userId=${param.userId}&userName=${param.userName}&gameId=${param.sid}&gameurl=${encodeURIComponent(data.url)}&naToken=${param.token}`
           this.loading = false
         } else {
           this.loading = false
