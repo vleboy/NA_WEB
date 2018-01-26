@@ -1,5 +1,5 @@
 <!doctype html>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <html>
 
 <head>
@@ -9,6 +9,7 @@
 <style type="text/css">
   * {
     margin: 0;
+    padding: 0;
   }
 
   html {
@@ -177,7 +178,7 @@
 
 <body>
   <div>
-    <iframe id="iframe" frameborder="0" style="display:block;"></iframe>
+    <iframe id="iframe" scrolling="no" onload="changeFrameHeight()" frameborder="0" style="display:block;"></iframe>
     <div class="my-alert" id="my-alert">
       <i class="close-icon" id="close-icon"></i>
       <span class="alert-context">确认退出游戏?</span>
@@ -198,6 +199,16 @@
   </div>
 </body>
 <script type="text/javascript">
+  //iframe高度自适应
+  function changeFrameHeight(){
+    var ifm= document.getElementById("iframe"); 
+    ifm.height=document.documentElement.clientHeight;
+  }
+
+  window.onresize=function(){  
+    changeFrameHeight();  
+  } 
+
   function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
     var r = window.location.search.substr(1).match(reg);
