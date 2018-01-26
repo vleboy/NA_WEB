@@ -10,7 +10,7 @@ const useEntry = nameToUse => {
 module.exports = {
   entry,
   templateCompiler: true,
-  sourceMap: false,
+  sourceMap: true,
   html: [
     {
       filename: 'index.html',

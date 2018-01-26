@@ -9,7 +9,9 @@
         <li v-for="(item, index) in Solutions" :key="index">
           <a href="javascript:;" class="img">
             <!-- <div><img :src="item.imgUrl" alt=""></div> -->
-            <i :style="`background: url(${item.imgUrl}) 3px 0 no-repeat;background-size: cover;`"></i>
+            <i>
+              <img :src="item.imgUrl"/>
+            </i>
           </a>
           <h2>{{item.title}}</h2>
           <!-- <p>{{item.content}}</p> -->
@@ -24,10 +26,10 @@ export default {
   data () {
     return {
        Solutions: [
-         { title: '移动端解决方案', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p1.png'},
-         { title: 'WEB端解决方案', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p2.png'},
-         { title: 'PC端解决方案', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p3.png'},
-         { title: '直播系统解决方案', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p4.png'}
+         { title: '增加用户留存率', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p1.png'},
+         { title: '扩大市场消费群体', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p2.png'},
+         { title: '提供更安全的运营环境', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p3.png'},
+         { title: '提升商户竞争实力', content: '内容文字内容文字内容文字内容文字 保留两排超出给标点符号', imgUrl: '/static/p4.png'}
        ]
     }
   }
@@ -83,9 +85,9 @@ export default {
         background-size: cover;
         border-radius: 100%;
         margin-bottom: 20px;
-        &:hover i {
-          background-position: 3px -150px!important;
-        }
+        // &:hover i {
+        //   background-position: 3px -150px!important;
+        // }
         i {
           position: absolute;
           top: 50%;
@@ -95,6 +97,9 @@ export default {
           width: 150px;
           height: 0;
           padding-bottom: 150px;
+          img {
+            width: 100%
+          }
         }
         img {
           width: 30%;

@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="app">
     <indexHeader></indexHeader>
     <Hello></Hello>
     <Top></Top>
+    <videos></videos>
   </div>
 </template>
 
@@ -10,9 +11,10 @@
 import indexHeader from '../../components/indexHeader.vue'
 import Top from '../../components/top.vue'
 import Hello from '../../components/Hello'
+import videos from '../../components/video'
 export default {
   components: {
-    indexHeader, Top, Hello
+    indexHeader, Top, Hello, videos
   }
 }
 </script>

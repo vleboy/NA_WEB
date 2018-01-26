@@ -13,7 +13,8 @@
     "element-ui": "^1.4.4",
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
-    "poi": "^9.3.8"
+    "poi": "^9.3.8",
+    "vuex": "^3.0.1"
   },
   "dependencies": {
     "axios": "^0.17.1"
