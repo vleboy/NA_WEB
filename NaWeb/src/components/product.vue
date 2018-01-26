@@ -8,7 +8,7 @@
       <ul>
         <li v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">
           <i :style="`background:url(${item.tag}) no-repeat;background-size: 100%`"></i>
-          <!-- :href='`/about.html?type=${item.type}&title=${item.title}`' -->
+          <!-- :href='`/about.html?type=${item.type}&title=${item.title}`'  -->
           <!-- <div class="playIcon">
             <img src="/static/playIcon.png" />
           </div>  -->
