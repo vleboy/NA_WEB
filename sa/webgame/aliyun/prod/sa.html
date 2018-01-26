@@ -178,7 +178,7 @@
 
 <body>
   <div>
-    <iframe id="iframe" scrolling="no" onload="changeFrameHeight()" frameborder="0" style="display:block;"></iframe>
+    <iframe id="iframe" frameborder="0" scrolling="no" onload="iFrameHeight();" width="100%" style="display:block;"></iframe>
     <div class="my-alert" id="my-alert">
       <i class="close-icon" id="close-icon"></i>
       <span class="alert-context">确认退出游戏?</span>
@@ -200,14 +200,13 @@
 </body>
 <script type="text/javascript">
   //iframe高度自适应
-  function changeFrameHeight(){
-    var ifm= document.getElementById("iframe"); 
-    ifm.height=document.documentElement.clientHeight;
+  function iFrameHeight() {
+    var ifm = document.getElementById("iframe");
+    var subWeb = document.frames ? document.frames["iframe"].document : ifm.contentDocument;
+    if (ifm != null && subWeb != null) {
+         ifm.height = subWeb.body.scrollHeight;
+    }
   }
-
-  window.onresize=function(){  
-    changeFrameHeight();  
-  } 
 
   function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
