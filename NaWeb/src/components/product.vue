@@ -11,7 +11,7 @@
           <!-- :href='`/about.html?type=${item.type}&title=${item.title}`' -->
           <!-- <div class="playIcon">
             <img src="/static/playIcon.png" />
-          </div> -->
+          </div>  -->
           <a>
             <img :src="item.imgUrl" alt="">
           </a>
