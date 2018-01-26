@@ -9,9 +9,9 @@
         <li v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">
           <i :style="`background:url(${item.tag}) no-repeat;background-size: 100%`"></i>
           <!-- :href='`/about.html?type=${item.type}&title=${item.title}`'  -->
-          <!-- <div class="playIcon">
+          <div class="playIcon">
             <img src="/static/playIcon.png" />
-          </div>  -->
+          </div> 
           <a>
             <img :src="item.imgUrl" alt="">
           </a>
@@ -94,6 +94,7 @@ export default {
         position: absolute;
         top: 25%;
         width: 100%;
+        opacity: .9;
         img {
           width: 30%;
         }
