@@ -3,7 +3,7 @@
     <div class="product-content">
       <div class="title">
         <p>PRODUCTS</p>
-        <h1>我们的产品</h1>
+        <h1>我们的游戏</h1>
       </div>
       <ul>
         <li v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">

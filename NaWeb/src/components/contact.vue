@@ -3,23 +3,23 @@
     <div class="header-bg">
       <div class="bg-opacity"></div>
       <div>
-        <div class="color-white center-title">
+        <!-- <div class="color-white center-title">
           <div class="title-top">CLIENTS</div>
           <h1 class="title-down">合作伙伴</h1>
-        </div>
-        <div style="text-align: center">
+        </div> -->
+        <!-- <div style="text-align: center">
           <img class="header-img" src="../assets/contact/header-img.png">
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="center-bg">
       <div class="center-outer"></div>
       <div class="center-text">
         <el-col class="color-white center-title">
-          <div class="title-top">CONTACT US</div>
-          <h1 class="title-down">联系我们</h1>
+          <!-- <div class="title-top">CONTACT US</div>
+          <h1 class="title-down">联系我们</h1> -->
         </el-col>
-        <el-col :offset="2" :span="7"  class="mobile-width color-white">
+        <el-col :offset="2" :span="5"  class="mobile-width color-white">
           <input placeholder="NAME" class="footer-left-input"
                  @blur="getBlur(1)" @focus="getFocus(1)" :class="{'blur-input':isBlurInputName}">
           <input placeholder="EMAIL" class="footer-left-input"
@@ -30,7 +30,7 @@
             <img class="left-submit"  src="../assets/contact/submit.png" @click="submit">
           </div>
         </el-col>
-        <el-col :offset="1" :span="5" class="mobile-width color-white  contact-center" >
+        <el-col :offset="1" :span="4" class="mobile-width color-white  contact-center" >
           <h2 class="margin-bottom">CONTACT <span class="color-red">US</span></h2>
           <!-- <div class="-center-con">
             <img src="../assets/contact/tel.png" class="center-icon">+63 (2) 746 2177
@@ -42,7 +42,7 @@
             <img src="../assets/contact/message.png" class="center-icon">Newasia@na77.com
           </div>
         </el-col>
-        <el-col :offset="1" :span="6" class="mobile-width mobile-display color-white contact-right">
+        <el-col :offset="1" :span="5" class="mobile-width mobile-display color-white contact-right">
           <h2 class=" margin-bottom">NEWSLETTER <span class="color-red"> SUBCRIPTION</span></h2>
           <div class="right-contact">
             <input class="footer-left-input" placeholder="example@example.com" style="width:70%;"
@@ -52,14 +52,14 @@
           <!-- <h2 class="margin-bottom">SOCIAL <span class="color-red">NEWS</span></h2> -->
           <div><a href="https://www.facebook.com/NA-Gaming-491601904532399/" style="display:inline-block"><img src="../assets/contact/share.png" style="width: 100%"></a></div>
         </el-col>
-      </div>
-    </div>
-    <div class="footer-bg">
-      <div class="footer-outer">
-        <div class="text-center">
-          <img class="footer-logo" src="../assets/contact/logo.png">
-        </div>
-        <h4 class="color-white">© 2017, New Asia. All right reserved.</h4>
+        <el-col :offset="1" :span="4" class="mobile-width mobile-display color-white contact-right">
+          <div class="logo-main">
+            <div class="text-center">
+              <img class="footer-logo" src="../assets/contact/logo.png">
+            </div>
+            <h4 class="color-white">© {{ new Date().getFullYear() }}, New Asia. All right reserved.</h4>
+          </div>
+        </el-col>
       </div>
     </div>
   </div>
@@ -147,17 +147,17 @@
       }
     }
     .header-bg{
-      background: url('../assets/contact/header-bg.png') no-repeat;
+      background: url('../assets/contact/header-bg.jpg') no-repeat;
       background-size: cover;
       width: 100%;
-      height: 35%;
+      height: 60%;
       background-position: 40%;
       position: relative;
       .bg-opacity{
         height: 100%;
         width: 100%;
         position: absolute;
-        background-color: #c00000;
+        // background-color: #c00000;
         opacity: 0.6;
         top: 0;
       }
@@ -166,12 +166,7 @@
         position: relative;
       }
     }
-    .footer-bg{
-      background: url('../assets/contact/footer.png') no-repeat;
-      width: 100%;
-      height: 16%;
-      overflow: hidden;
-      padding: 20px 0;
+    .logo-main{
       position: relative;
       text-align: center;
       h4{
@@ -195,7 +190,7 @@
       /*background: url('../assets/contact/si.png') repeat;*/
       background-color: #000000;
       width: 100%;
-      height:51%;
+      height:40%;
       /*padding-bottom:20px;*/
       position: relative;
 
@@ -280,11 +275,11 @@
   @media screen and (max-width: 1366px) {
     .contact{
       .header-bg{
-        background: url('../assets/contact/header-bg.png') no-repeat;
+        background: url('../assets/contact/header-bg.jpg') no-repeat;
         background-position: 50%;
         background-size: cover;
         width: 100%;
-        height: 35%;
+        height: 60%;
         position: relative;
         .header-img{
           width:600px;
@@ -320,6 +315,7 @@
         }
         .footer-left-input{
           border-radius: 19px;
+          margin-bottom: 10px;
           height: 38px;
         }
         .left-textarea{

@@ -6,23 +6,23 @@
         <Slider2 v-show="!show"></Slider2>
       </div>
       <div class="section">
-        <About v-show="show"></About>
-        <About2 v-show="!show"></About2>
-      </div>
-      <div class="section">
-        <Download v-show="show"></Download>
-        <Download2 v-show="!show"></Download2>
-      </div>
-      <div class="section">
-        <Plan></Plan>
+        <N2 v-show="show"></N2>
+        <N22 v-show="!show"></N22>
       </div>
       <div class="section">
         <Product v-show="show"></Product>
         <Product2 v-show="!show"></Product2>
       </div>
       <div class="section">
-        <N2 v-show="show"></N2>
-        <N22 v-show="!show"></N22>
+        <Plan></Plan>
+      </div>
+      <div class="section">
+        <Download v-show="show"></Download>
+        <Download2 v-show="!show"></Download2>
+      </div>
+      <div class="section">
+        <About v-show="show"></About>
+        <About2 v-show="!show"></About2>
       </div>
       <div class="section">
         <Contact></Contact>

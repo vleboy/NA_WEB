@@ -8,7 +8,11 @@
       <div class="content">
         <div class="left">
           <i></i>
-          <p></p>
+          <div class="button">
+           <a href=""><img src="/static/button1.png" /></a>
+           <a href=""><img src="/static/button2.png" /></a>
+           <a href=""><img src="/static/button3.png" /></a>
+          </div>
           <h2><span>{{lefts.content}}</span></h2>
         </div>
         <div class="right">
@@ -38,7 +42,7 @@ export default {
         imgUrl: ''
       },
       rights: [
-        {title: '产品竞争能力弱', msg: '产品形态主要为PC网页版以及手机网页版，难以满足移动端市场的需求以及吸引年轻玩家', imgUrl: '/static/n1.JPG'},
+        {title: '产品竞争能力弱', msg: '产品形态主要为PC网页版以及手机网页版，难以满足移动端市场的需求以及吸引年轻玩家', imgUrl: '/static/n5.jpg'},
         {title: '运营环境不稳定 用户留存率低', msg: '由于网页运营环境不稳定、不安全、容易被浏览器拦截以及屏蔽，造成用户流失', imgUrl: '/static/n2.jpg'},
         {title: '移动端产品开发成本高', msg: '缺乏专业的技术团队与强大的技术储备支持', imgUrl: '/static/n3.jpg'},
         {title: '产品迭代缓慢', msg: '缺乏多元化及高品质的游戏产品', imgUrl: '/static/n4.jpg'}
@@ -101,6 +105,19 @@ export default {
         position: absolute;
         top: 35px;
         left: -10px;
+      }
+      .button {
+        position: absolute;
+        bottom: 20%;
+        width: 100%;
+        text-align: center;
+        a {
+          display: inline-block;
+          width: 25%;
+          img {
+            width: 100%;
+          } 
+        }
       }
       p {
         position: absolute;
