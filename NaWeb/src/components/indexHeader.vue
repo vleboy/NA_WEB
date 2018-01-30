@@ -4,8 +4,8 @@
       <div class="mid">
         <ul id="menu">
           <li data-menuanchor="page1" class="active"><a href="#page1">首页<i>·</i></a></li>
-          <li data-menuanchor="page2"><a href="#page2">N² 计划<i>·</i></a></a></li>
-          <li data-menuanchor="page3"><a href="#page3">公司产品<i>·</i></a></li>
+          <li data-menuanchor="page2"><a href='/admiral.html'>关于我们<i>·</i></a></a></li>
+          <li data-menuanchor="page3"><a href="#page3">立即下载<i>·</i></a></li>
           <li data-menuanchor="page4"><a href="#page4">行业解决方案<i>·</i></a></li>
           <li data-menuanchor="page5"><a href="#page5">立即下载<i>·</i></a></li>
           <li data-menuanchor="page7"><a href="#page7">联系我们</a></li>
@@ -90,11 +90,11 @@ export default {
   }
 }
 .logo-top {
-  position: absolute;
-  top: 35px;
-  left: 45px;
-  width: 160px;
-  height: 80px;
+  position: fixed;
+  top: 25px;
+  left: 15px;
+  width: 120px;
+  height: 60px;
   z-index: 99;
   img {
     width: 100%;

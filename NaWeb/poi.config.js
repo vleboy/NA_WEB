@@ -1,6 +1,7 @@
 const entry = {
   index: 'src/module/index/index.js',
-  about: 'src/module/about/about.js'
+  about: 'src/module/about/about.js',
+  admiral: 'src/module/admiral/admiral.js',
 }
 
 const useEntry = nameToUse => {
@@ -21,6 +22,11 @@ module.exports = {
       filename: 'about.html',
       template: 'src/module/about/about.html',
       excludeChunks: useEntry('about')
-    }
+    },
+    {
+      filename: 'admiral.html',
+      template: 'src/module/admiral/admiral.html',
+      excludeChunks: useEntry('admiral')
+    },
   ]
 }
