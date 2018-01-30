@@ -150,7 +150,7 @@
       background: url('../assets/contact/header-bg.jpg') no-repeat;
       background-size: cover;
       width: 100%;
-      height: 60%;
+      height: 63%;
       background-position: 40%;
       position: relative;
       .bg-opacity{
@@ -190,7 +190,7 @@
       /*background: url('../assets/contact/si.png') repeat;*/
       background-color: #000000;
       width: 100%;
-      height:40%;
+      height: 37%;
       /*padding-bottom:20px;*/
       position: relative;
 
@@ -279,7 +279,7 @@
         background-position: 50%;
         background-size: cover;
         width: 100%;
-        height: 60%;
+        height: 63%;
         position: relative;
         .header-img{
           width:600px;

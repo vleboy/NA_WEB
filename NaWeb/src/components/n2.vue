@@ -192,16 +192,16 @@ export default {
               text-align: center;
               justify-content: center
             }
-            .bg {
-              position: absolute;
-              bottom: 0px;
-              width: 100%;
-              height: 100%;
-              background-color: red;
-              opacity: 0;
-              -webkit-transition: opacity .5s;
-              transition: opacity .5s;
-            }
+            // .bg {
+            //   position: absolute;
+            //   bottom: 0px;
+            //   width: 100%;
+            //   height: 100%;
+            //   background-color: red;
+            //   opacity: 0;
+            //   -webkit-transition: opacity .5s;
+            //   transition: opacity .5s;
+            // }
             .title {
               font-size: 18px;
               width: 50%;
