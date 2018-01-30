@@ -15,10 +15,10 @@
     <div class="center-bg">
       <div class="center-outer"></div>
       <div class="center-text">
-        <el-col class="color-white center-title">
-          <!-- <div class="title-top">CONTACT US</div>
-          <h1 class="title-down">联系我们</h1> -->
-        </el-col>
+        <!-- <el-col class="color-white center-title">
+          <div class="title-top">CONTACT US</div>
+          <h1 class="title-down">联系我们</h1>
+        </el-col> -->
         <el-col :offset="2" :span="5"  class="mobile-width color-white">
           <input placeholder="NAME" class="footer-left-input"
                  @blur="getBlur(1)" @focus="getFocus(1)" :class="{'blur-input':isBlurInputName}">
@@ -150,8 +150,7 @@
       background: url('../assets/contact/header-bg.jpg') no-repeat;
       background-size: cover;
       width: 100%;
-      height: 63%;
-      background-position: 40%;
+      height: 70%;
       position: relative;
       .bg-opacity{
         height: 100%;
@@ -190,7 +189,7 @@
       /*background: url('../assets/contact/si.png') repeat;*/
       background-color: #000000;
       width: 100%;
-      height: 37%;
+      height: 30%;
       /*padding-bottom:20px;*/
       position: relative;
 
@@ -221,6 +220,7 @@
         top: 0;
         left: 0;
         right: 0;
+        padding: 15px 0
       }
       .footer-left-input{
         width: 80%;
@@ -236,7 +236,7 @@
         font-weight: bold;
       }
       .left-textarea{
-        height: 100px;
+        height: 60px;
         padding-top: 10px;
         resize : none;
         font-weight: bold;
@@ -276,10 +276,9 @@
     .contact{
       .header-bg{
         background: url('../assets/contact/header-bg.jpg') no-repeat;
-        background-position: 50%;
         background-size: cover;
         width: 100%;
-        height: 63%;
+        height: 70%;
         position: relative;
         .header-img{
           width:600px;
@@ -319,7 +318,7 @@
           height: 38px;
         }
         .left-textarea{
-          height: 70px;
+          height: 40px;
         }
         .left-submit{
           width:150px;

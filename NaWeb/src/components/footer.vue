@@ -4,7 +4,7 @@
       <a href="/">
         <img src="../assets/logo.png" alt="">
       </a>
-      <p>© 2017, New Asia. All right reserved.</p>
+      <p>© {{ new Date().getFullYear() }}, New Asia. All right reserved.</p>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
 <style lang="less" scoped>
 .footer {
   position: absolute;
-  // bottom: 0;
+  bottom: 0;
   width: 100%;
   height: 165px;
   background-color: #000;
