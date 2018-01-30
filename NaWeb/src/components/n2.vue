@@ -9,9 +9,9 @@
         <div class="left">
           <i></i>
           <div class="button">
-           <a href=""><img src="/static/button1.png" /></a>
-           <a href=""><img src="/static/button2.png" /></a>
-           <a href=""><img src="/static/button3.png" /></a>
+           <a href="/admiral.html?flag=pro"><img src="/static/button1.png" /></a>
+           <a href="/admiral.html?flag=base"><img src="/static/button2.png" /></a>
+           <a href="/admiral.html?flag=desc"><img src="/static/button3.png" /></a>
           </div>
           <h2><span>{{lefts.content}}</span></h2>
         </div>
