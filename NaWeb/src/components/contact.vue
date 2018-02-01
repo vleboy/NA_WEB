@@ -169,7 +169,7 @@
     .footer-bg{
       background: url('../assets/contact/footer.png') no-repeat;
       width: 100%;
-      height: 16%;
+      height: 10%;
       overflow: hidden;
       padding: 20px 0;
       position: relative;
@@ -195,7 +195,7 @@
       /*background: url('../assets/contact/si.png') repeat;*/
       background-color: #000000;
       width: 100%;
-      height: 39%;
+      height: 45%;
       /*padding-bottom:20px;*/
       position: relative;
 
@@ -284,12 +284,15 @@
         background-position: 50%;
         background-size: cover;
         width: 100%;
-        height: 38%;
+        height: 39%;
         position: relative;
         .header-img{
           width:600px;
           position: relative;
         }
+      }
+      .center-bg{
+        height: 51%;
       }
       .center-title{
         padding: 16px;
