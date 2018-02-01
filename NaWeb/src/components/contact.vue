@@ -59,7 +59,7 @@
         <div class="text-center">
           <img class="footer-logo" src="../assets/contact/logo.png">
         </div>
-        <h4 class="color-white">© 2017, New Asia. All right reserved.</h4>
+        <h4 class="color-white">© {{ new Date().getFullYear() }}, New Asia. All right reserved.</h4>
       </div>
     </div>
   </div>
