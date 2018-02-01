@@ -148,7 +148,7 @@
     }
     .header-bg{
       background: url('../assets/contact/header-bg.jpg') no-repeat;
-      background-size: cover;
+      background-size: 100%;
       width: 100%;
       height: 70%;
       position: relative;
@@ -276,7 +276,7 @@
     .contact{
       .header-bg{
         background: url('../assets/contact/header-bg.jpg') no-repeat;
-        background-size: cover;
+        background-size: 100%;
         width: 100%;
         height: 70%;
         position: relative;

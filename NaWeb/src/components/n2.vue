@@ -139,6 +139,8 @@ export default {
         font-size: 14px;
         display: flex;
         align-items: center;
+        text-align: left;
+        padding-left: 5px;
         justify-content: center
       }
     }
@@ -189,7 +191,8 @@ export default {
               font-size: 14px;
               display: flex;
               align-items: center;
-              text-align: center;
+              text-align: left;
+              padding-left: 5px;
               justify-content: center
             }
             // .bg {
