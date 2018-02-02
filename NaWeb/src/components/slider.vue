@@ -6,7 +6,7 @@
       <el-carousel height="100%" autoplay>
         <el-carousel-item v-for="(item,index) in banners" :key="index">
           <img :src="item.imgUrl">
-          <div class="imgCover" v-show="index === 0" @mousemove="move" @mouseout="out" ref="imgCover"></div>
+          <!-- <div class="imgCover" v-show="index === 0" @mousemove="move" @mouseout="out" ref="imgCover"></div> -->
         </el-carousel-item>
       </el-carousel>
       <div class="down" @click="moveDown()"></div>
