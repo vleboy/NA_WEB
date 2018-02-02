@@ -101,7 +101,7 @@ export default {
         width: 265px;
         height: 89px;
         background: url('../assets/tag.png') no-repeat;
-        background-size: cover;
+        background-size: 100%;
         position: absolute;
         top: 35px;
         left: -10px;
