@@ -161,7 +161,7 @@ export default {
             background-position: 3px -100px!important;
           }
           i {
-            width: 100px;
+            width: 75px;
             height: 0;
             padding-bottom: 100px;
           }
@@ -214,7 +214,7 @@ export default {
             background-position: 3px -100px!important;
           }
           i {
-            width: 100px;
+            width: 75px;
             height: 0;
             padding-bottom: 100px;
           }

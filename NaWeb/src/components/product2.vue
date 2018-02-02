@@ -5,12 +5,12 @@
         <p>PRODUCTS</p>
         <h1>我们的产品</h1>
       </div> -->
-      <div class="slide li"  v-for="(item, index) in Products" :key="index">
+      <div class="slide li"  v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">
         <div class="title">
           <p>PRODUCTS</p>
           <h1>我们的产品</h1>
         </div>
-        <a :href='`/about.html?type=${item.type}&title=${item.title}`' class="a">
+        <a class="a">
         <img :src="item.imgUrl" alt="">
         </a>
         <h2>{{item.title}}</h2>
@@ -34,11 +34,16 @@ export default {
   data () {
     return {
       Products: [
-        {title: '游戏平台', type: 'electron', content: 'NA游戏平台，是NA娱乐针对博彩行业开发的全新游戏平台。它整合了NA娱乐旗下所有游戏，打造一个拥有真人直播、电子游戏、棋牌游戏的综合性博彩游戏平台，为所有玩家提供全新的游戏体验。',imgUrl: '/static/g4.png'},
-        {title: '真人视讯', type: 'people', content: '我们集合了当下最流行的真人视讯游戏类型整合了全新的互联网直播技术通过更逼真的赌场还原以及更流畅的服务，为客户提供全新的体验。',imgUrl: '/static/g1.png'},
-        {title: '棋牌游戏', type: 'chess', content: '网络棋牌游戏正在被大家慢慢接受和喜欢我们把传统的棋牌游戏进行重新定义加上全新的呈现技术灵活的运营模式，推出了NA棋牌的产品序列。',imgUrl: '/static/g3.png'},
-        {title: '电子游戏', type: 'tiger', content: 'NA电子游戏融合了传统的经典电子游戏加入了更加多元化的题材以及更加具有娱乐性的玩法让更多的玩家有丰富的游戏体验。',imgUrl: '/static/g2.png'}
+        {title: '真人视讯', type: 'people', content: '稳定流畅真人直播，全民咪牌，语音聊天，刺激体验尽在NA视讯。',imgUrl: '/static/g1.png', tag: '/static/hotgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/zr.mp4'},
+        {title: '电子游戏', type: 'tiger', content: '传统的电子游戏融汇了更多元化的表现题材，及交互玩法。',imgUrl: '/static/g3.png', videoUrl: 'http://app.risheng3d.com/video/na77/lhj.mp4'},
+        {title: '街机游戏', type: 'chess', content: '结合当下热门街机游戏，3D创新体验，激情奉献。',imgUrl: '/static/g4.png',tag: '/static/newgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/jj.mp4'},
+        {title: '包房棋牌', type: 'electron', content: '包房棋牌，带动平台推广。NA将持续推出更多地方棋牌游戏。',imgUrl: '/static/g2.png', videoUrl: 'http://app.risheng3d.com/video/na77/qp.mp4'}
       ]
+    }
+  },
+  methods: {
+    clickShow:  function (videoUrl) {
+      this.$store.dispatch("showView",{ videoUrl })
     }
   }
 }
