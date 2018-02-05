@@ -149,7 +149,6 @@ body {
 }
 
 #app {
-  padding-left: 122px;
   width:  inherit;
   height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
@@ -240,7 +239,11 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        background: blue;
+        padding-left: 34px;
+        position: relative;
+        left: -34px;
+        width:  inherit;
+        height: inherit;
       }
     }
 </style>
