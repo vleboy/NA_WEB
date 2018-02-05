@@ -146,9 +146,9 @@ html, body {
 }
 
 #app {
-  position: relative;
+  /* position: relative;
   width: 100%;
-  height: 100%;
+  height: 100%; */
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
