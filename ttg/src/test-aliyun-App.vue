@@ -239,10 +239,10 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        padding-left: 88px;
-        width:  inherit;
-        position: relative;
-        left: -88px;
+        padding-left: 100%;
+        width:  0;
+        /* position: relative;
+        left: 88px; */
         height: inherit;
       }
     }
