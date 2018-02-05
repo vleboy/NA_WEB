@@ -152,7 +152,7 @@ html, body {
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
-  overflow: hidden;
+  overflow-y: hidden;
 }
 ul {
   list-style: none;
