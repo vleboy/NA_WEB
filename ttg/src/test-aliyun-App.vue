@@ -144,17 +144,13 @@ html,body {
 
 body {
   background-color: rgb(29, 0, 0);
-  position:fixed;
+  /* position:fixed; */
   overflow-y:hidden;
-  padding-top: constant(safe-area-inset-top);              
-  padding-left: constant(safe-area-inset-left);          
-  padding-right: constant(safe-area-inset-right);     
-  padding-bottom: constant(safe-area-inset-bottom);
 }
 
 #app {
-  width:  100%;
-  height: 100%;
+  width:  inherit;
+  height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
@@ -243,9 +239,7 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        width: 100vw;
-        padding-right: 200px;
-        background: red;
+        background: blue;
       }
     }
 </style>
