@@ -137,24 +137,24 @@ width: 0px;
 height: 1px;
 }
 
-html, body {
+html,body {
+  width:100%;
+  height: 100%;
+}
+
+body {
   background-color: rgb(29, 0, 0);
   position:fixed;
   overflow-y:hidden;
-  width: 100%;
-  height: 100%;
-  padding: 0;
 }
 
 #app {
-  position: relative;
   width: 100%;
   height: 100%;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
   overflow: hidden;
-  padding: 0;
 }
 ul {
   list-style: none;
