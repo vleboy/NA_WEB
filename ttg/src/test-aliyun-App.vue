@@ -244,7 +244,8 @@ img {
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
         width: 100vw;
-        background: blue;
+        padding-right: 200px;
+        background: red;
       }
     }
 </style>
