@@ -198,7 +198,7 @@ img {
   overflow-y: hidden;
   position: absolute;
   top: 50%;
-  /*background-color: red;*/
+  background-color: red;
 }
 /* .lists ul li {
   width: 360px;
