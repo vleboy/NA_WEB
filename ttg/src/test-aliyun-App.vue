@@ -149,7 +149,7 @@ body {
 }
 
 #app {
-  padding-left: 600px;
+  padding-left: 122px;
   width:  inherit;
   height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
