@@ -236,7 +236,7 @@ img {
         min-width: 110%;
         margin-right: 88px;
         padding-left: 88px;
-        position: relative;
+        position: fixed;
         left: -88px
       }
     }
