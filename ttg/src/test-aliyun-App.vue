@@ -233,4 +233,13 @@ img {
     100%{opacity:1;transform:translateX(0)translateY(-50%);
         -webkit-transform:translateX(0)translateY(-50%);}
 }
+
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+      #app {
+        width: 100%!important;
+      }
+    }
 </style>
