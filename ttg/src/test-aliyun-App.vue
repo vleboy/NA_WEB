@@ -69,7 +69,6 @@ export default {
           game = game[0]
           this.beginGame(game.gameType, game.kindId, 0, (+game.kindId) - (+game.gameType), game.gameName)
         }
-
         const result = Array.apply(null, {
           length: Math.ceil(data.payload.length / 2)
         }).map((x, i) => {
@@ -136,28 +135,26 @@ export default {
 width: 0px;
 height: 1px;
 }
-
-html, body {
-  background-color: rgb(29, 0, 0);
-  position:fixed;
-  overflow-y:hidden;
-  width: 100%;
+html,body {
+  width:100%;
   height: 100%;
+}
+body {
+  background-color: rgb(29, 0, 0);
+  /* position:fixed; */
+  overflow-y:hidden;
   padding-top: constant(safe-area-inset-top);           
   padding-left: constant(safe-area-inset-left);             
   padding-right: constant(safe-area-inset-right);           
   padding-bottom: constant(safe-area-inset-bottom)
-
 }
-
 #app {
-  /* position: relative; */
-  width: 100%;
-  height: 100%;
+  width:  inherit;
+  height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
-  /* display: flex; */
-  overflow-y: hidden;
+  /* display: flex;  */
+  overflow: hidden;
 }
 ul {
   list-style: none;
@@ -172,12 +169,10 @@ a {
   text-decoration: none;
   -webkit-tap-highlight-color:transparent
 }
-
 img {
   width: 100%;
   /* height: 100%; */
 }
-
 .top {
   position: absolute;
   top: 0;
@@ -186,7 +181,6 @@ img {
   background: url('http://app.risheng3d.com/game/ttggame/lobby_top.png') no-repeat;
   background-size: cover
 }
-
 .bottom {
   position: absolute;
   bottom: 0;
@@ -205,7 +199,6 @@ img {
   position: absolute;
   top: 50%;
 }
-
 /* .lists ul li {
   width: 360px;
   height: 360px;
@@ -227,7 +220,6 @@ img {
 .animations {
   animation: bounceRight 1s ease both
 }
-
 @keyframes bounceRight{
     0%{opacity:0;transform:translateX(50%)translateY(-50%);
         -webkit-transform:translateX(50%)translateY(-50%);}
