@@ -138,7 +138,8 @@ height: 1px;
 }
 
 html, body {
-  background-color: rgb(29, 0, 0);
+  background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
+  background-size: 100%;
   position:fixed;
   overflow-y:hidden;
   width: 100%;
@@ -150,9 +151,9 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: red;
+  /* background: red; */
   /* background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat; */
-  background-size: 100%;
+  /* background-size: 100%; */
   /* display: flex; */
   overflow: hidden;
   padding: 0;
