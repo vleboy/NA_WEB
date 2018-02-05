@@ -141,7 +141,7 @@ html,body {
 }
 body {
   background-color: rgb(29, 0, 0);
-  position: fixed;
+  /* position: absolute; */
   overflow-y: hidden;
   padding-top: constant(safe-area-inset-top);           
   padding-left: constant(safe-area-inset-left);             
@@ -236,7 +236,7 @@ img {
         min-width: 110%;
         margin-right: 88px;
         padding-left: 88px;
-        position: fixed;
+        position: relative;
         left: -88px
       }
     }
