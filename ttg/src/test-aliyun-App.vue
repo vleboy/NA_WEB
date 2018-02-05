@@ -239,7 +239,7 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        padding-left: 34px;
+        padding-left: 88px;
         width:  inherit;
         height: inherit;
       }
