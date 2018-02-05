@@ -15,10 +15,10 @@
     <div class="center-bg">
       <div class="center-outer"></div>
       <div class="center-text">
-        <el-col class="color-white center-title">
+        <!-- <el-col class="color-white center-title">
           <div class="title-top">CONTACT US</div>
           <h1 class="title-down">联系我们</h1>
-        </el-col>
+        </el-col> -->
         <el-col :offset="2" :span="7"  class="mobile-width color-white">
           <input placeholder="NAME" class="footer-left-input"
                  @blur="getBlur(1)" @focus="getFocus(1)" :class="{'blur-input':isBlurInputName}">
@@ -226,6 +226,7 @@
         top: 0;
         left: 0;
         right: 0;
+        padding: 10px 0;
       }
       .footer-left-input{
         width: 80%;
@@ -344,7 +345,9 @@
   @media screen and (max-width: 750px){
       .contact{
           .header-bg{
-              height:28%;
+              background: url('../assets/contact/mobile-header-bg.jpg') no-repeat;
+              background-size: 100%;
+              height:50%;
               .header-img{
                 width:280px;
                 position: relative;
@@ -363,7 +366,7 @@
           }
 
           .center-bg {
-            height:56%;
+            height:40%;
             .mobile-width{
               width: 40%;
             }
@@ -387,6 +390,7 @@
               width:150px;
             }
             .footer-left-input{
+              margin-bottom: 10px;
               border-radius: 19px;
               height: 38px;
               font-size: 12px;
