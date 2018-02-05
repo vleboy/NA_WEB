@@ -239,7 +239,8 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        width: calc(100% + 122px);
+        width: 2436px;
+        background: red;
       }
     }
 </style>
