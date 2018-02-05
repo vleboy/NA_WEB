@@ -242,5 +242,12 @@ img {
     and (device-width : 375px) 
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
+      #app {
+        min-width: 110%;
+        margin-right: 88px;
+        padding-left: 88px;
+        position: relative;
+        left: -88px
+      }
     }
 </style>
