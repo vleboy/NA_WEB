@@ -149,7 +149,7 @@ body {
   padding-top: constant(safe-area-inset-top);           
   padding-left: constant(safe-area-inset-left);             
   padding-right: constant(safe-area-inset-right);           
-  padding-bottom: constant(safe-area-inset-bottom)
+  padding-bottom: constant(safe-area-inset-bottom);
 }
 
 #app {
@@ -158,7 +158,7 @@ body {
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex;  */
-  overflow: hidden;
+  overflow-y: hidden;
 }
 ul {
   list-style: none;
