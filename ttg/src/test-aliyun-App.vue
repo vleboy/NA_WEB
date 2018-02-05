@@ -141,8 +141,12 @@ html, body {
   background-color: rgb(29, 0, 0);
   position:fixed;
   overflow-y:hidden;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
+  padding-top: constant(safe-area-inset-top);           
+  padding-left: constant(safe-area-inset-left);           
+  padding-right: constant(safe-area-inset-right);             
+  padding-bottom: constant(safe-area-inset-bottom);
 }
 
 #app {
