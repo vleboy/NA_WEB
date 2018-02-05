@@ -149,7 +149,7 @@ body {
 }
 
 #app {
-  width: 100%;
+  width:  100%;
   height: 100%;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
@@ -239,7 +239,7 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        width: 100%!important;
+        width: calc(100% + 122px);
       }
     }
 </style>
