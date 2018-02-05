@@ -154,6 +154,7 @@ html, body {
   background-size: cover;
   /* display: flex; */
   overflow: hidden;
+  padding: 0;
 }
 ul {
   list-style: none;
