@@ -150,8 +150,9 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
-  background-size: cover;
+  background: red;
+  /* background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat; */
+  background-size: 100%;
   /* display: flex; */
   overflow: hidden;
   padding: 0;
