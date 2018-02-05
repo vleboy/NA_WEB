@@ -241,6 +241,8 @@ img {
       #app {
         padding-left: 88px;
         width:  inherit;
+        position: relative;
+        left: -88px;
         height: inherit;
       }
     }
