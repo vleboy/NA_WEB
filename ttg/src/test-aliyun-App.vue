@@ -146,6 +146,10 @@ body {
   background-color: rgb(29, 0, 0);
   position:fixed;
   overflow-y:hidden;
+  padding-top: constant(safe-area-inset-top);              
+  padding-left: constant(safe-area-inset-left);          
+  padding-right: constant(safe-area-inset-right);     
+  padding-bottom: constant(safe-area-inset-bottom);
 }
 
 #app {
@@ -239,8 +243,8 @@ img {
     and (device-height : 812px) 
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
-        width: 2436px;
-        background: red;
+        width: 100vw;
+        background: blue;
       }
     }
 </style>
