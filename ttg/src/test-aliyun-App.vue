@@ -148,14 +148,14 @@ body {
   overflow-y:hidden;
 }
 
-#app {
+/* #app {
   width:  inherit;
   height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
-  /* display: flex; */
+  display: flex; 
   overflow: hidden;
-}
+} */
 ul {
   list-style: none;
   display: table-cell
