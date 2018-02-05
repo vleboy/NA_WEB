@@ -141,7 +141,7 @@ html,body {
 }
 body {
   background-color: rgb(29, 0, 0);
-  position: absolute;
+  position: fixed;
   overflow-y: hidden;
   padding-top: constant(safe-area-inset-top);           
   padding-left: constant(safe-area-inset-left);             
