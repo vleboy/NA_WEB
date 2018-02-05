@@ -143,20 +143,19 @@ html,body {
 }
 
 body {
-  background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
-  background-size: cover;
+  background-color: rgb(29, 0, 0);
   /* position:fixed; */
   overflow-y:hidden;
 }
 
-/* #app {
+#app {
   width:  inherit;
   height: inherit;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
-  display: flex; 
+  /* display: flex;  */
   overflow: hidden;
-} */
+}
 ul {
   list-style: none;
   display: table-cell
@@ -234,4 +233,17 @@ img {
     100%{opacity:1;transform:translateX(0)translateY(-50%);
         -webkit-transform:translateX(0)translateY(-50%);}
 }
+
+@media only screen 
+    and (device-width : 375px) 
+    and (device-height : 812px) 
+    and (-webkit-device-pixel-ratio : 3) { 
+      #app {
+        padding-left: 88px;
+        min-width: 100%;
+        position: relative;
+        left: -88px;
+        height: inherit;
+      }
+    }
 </style>
