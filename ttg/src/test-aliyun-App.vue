@@ -143,6 +143,7 @@ html, body {
   overflow-y:hidden;
   width: 100%;
   height: 100%;
+  padding: 0;
 }
 
 #app {
