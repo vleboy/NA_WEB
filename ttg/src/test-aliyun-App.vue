@@ -240,9 +240,6 @@ img {
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
         padding-left: 88px;
-        min-width: 100%;
-        position: relative;
-        left: -88px;
         height: inherit;
       }
     }
