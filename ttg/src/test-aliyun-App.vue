@@ -240,8 +240,6 @@ img {
     and (-webkit-device-pixel-ratio : 3) { 
       #app {
         padding-left: 34px;
-        position: relative;
-        left: -34px;
         width:  inherit;
         height: inherit;
       }
