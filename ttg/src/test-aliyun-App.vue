@@ -141,18 +141,14 @@ html, body {
   background-color: rgb(29, 0, 0);
   position:fixed;
   overflow-y:hidden;
-  width: 100vw;
-  height: 100vh;
-  padding-top: constant(safe-area-inset-top);           
-  padding-left: constant(safe-area-inset-left);           
-  padding-right: constant(safe-area-inset-right);             
-  padding-bottom: constant(safe-area-inset-bottom);
+  width: 100%;
+  height: 100%;
 }
 
 #app {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
