@@ -1,5 +1,11 @@
 <template lang="html">
-  <div class="n2"></div>
+  <div class="n2">
+    <div class="-n2-btn">
+      <a class="-n2-btn-item" href="/admiral.html?flag=pro"><img src="/static/button1.png" /></a>
+      <a class="-n2-btn-item" href="/admiral.html?flag=base"><img src="/static/button2.png" /></a>
+      <a class="-n2-btn-item" href="/admiral.html?flag=desc"><img src="/static/button3.png" /></a>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -26,12 +32,39 @@ export default {
   width: 100%;
   height: 100%;
   background: url('../assets/n2-mobile-bg.jpg') no-repeat;
-  background-size: cover
+  background-size: cover;
+  .-n2-btn{
+    position: relative;
+    top: 40%;
+    left: 18%;
+  }
+  .-n2-btn-item{
+    display: inline-block;
+    width: 20%;
+
+    img{
+      width: 100%;
+    }
+  }
 }
 @media screen and (orientation: landscape) {
   .n2 {
-    background: url('../assets/mobile/mobs_2.jpg') no-repeat;
+    background: url('../assets/n2-mobile-bg-hengban.jpg') no-repeat;
     background-size: cover;
+
+  .-n2-btn{
+    position: relative;
+    top: 73%;
+    left: 2%;
+  }
+  .-n2-btn-item{
+    display: inline-block;
+    width: 15%;
+
+    img{
+      width: 100%;
+    }
+  }
   }
 }
 </style>

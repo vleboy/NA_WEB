@@ -464,6 +464,11 @@
 
 @media screen and (max-width: 750px) and (orientation: landscape) {
   .contact {
+    .header-bg{
+        background: url('../assets/contact/mobile-header-bg-hengpin.jpg') no-repeat;
+        background-size: 100%;
+        height:50%;
+    }
     .center-title{
       padding: 5px;
       .title-top {
@@ -475,12 +480,26 @@
         width: 200px;
       }
     }
-    .center-bg .footer-left-input {
-      height: 25px;
-      margin-bottom: 10px;
+
+    .center-bg {
+      height:50%;
+
+      .footer-left-input {
+        height: 25px;
+        margin-bottom: 10px;
+      }
+
+      .left-textarea{
+        padding-top: 5px;
+      }
+      .left-submit {
+        width: 100px;
+        /*margin-left: 15px;*/
+      }
     }
-    .center-bg .left-submit {
-      width: 100px;
+
+    .footer-bg{
+      display: none;
     }
   }
 }

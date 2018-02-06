@@ -10,7 +10,7 @@
         <li><a href="index.html#page1">首页<i>·</i></a></li>
         <li><a href="index.html#page2">N² 计划<i>·</i></a></li>
         <li><a href="index.html#page3">公司产品<i>·</i></a></li>
-        <li><a href="index.html#page4">行业解决方案<i>·</i></a></li>
+        <li><a href="index.html#page4">我们的产品优势<i>·</i></a></li>
         <li class="active"><a href="index.html#page5">立即下载<i>·</i></a></li>
         <li><a href="index.html#page7">联系我们</a></li>
       </ul>
@@ -154,7 +154,7 @@ export default {
     height: 50px;
     line-height: 50px;
     h1 {
-      margin-left: 10px; 
+      margin-left: 10px;
       a {
         width: 80px;
         height: 40px;
@@ -186,7 +186,7 @@ export default {
         }
       }
     }
-  } 
+  }
 }
 @media screen and (orientation: landscape) {
 

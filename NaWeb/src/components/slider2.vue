@@ -24,15 +24,15 @@ export default {
     return {
       banners: [
         {imgUrl: '/static/mobile/2.jpg'},
-        {imgUrl: '/static/mobile/1.jpg'},
         {imgUrl: '/static/mobile/3.jpg'},
+        {imgUrl: '/static/mobile/1.jpg'},
         {imgUrl: '/static/mobile/4.jpg'}
       ],
       banners2: [
-        {imgUrl: '/static/mobile/mob3_h.jpg'},
-        {imgUrl: '/static/mobile/mob4_h.jpg'},
-        {imgUrl: '/static/mobile/mob2_h.jpg'},
-        {imgUrl: '/static/mobile/mob1_h.jpg'}
+        {imgUrl: '/static/banner2.jpg'},
+        {imgUrl: '/static/banner1.jpg'},
+        {imgUrl: '/static/banner3.jpg'},
+        {imgUrl: '/static/banner4.jpg'}
       ]
     }
   },
@@ -134,7 +134,7 @@ export default {
      }
      .down {
        bottom: -1%;
-     } 
+     }
    }
-}  
+}
 </style>
