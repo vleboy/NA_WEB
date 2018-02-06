@@ -35,7 +35,7 @@ export default {
   background-size: 100%;
   .-n2-btn{
     position: relative;
-    top: 24%;
+    top: 26%;
     left: 18%;
   }
   .-n2-btn-item{
