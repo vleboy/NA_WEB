@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="about">
     <!-- <div class="left">
-      <span>关于我们</span>
+      <span> 关于我们</span>
     </div> -->
     <div class="right">
       <div class="logo">
