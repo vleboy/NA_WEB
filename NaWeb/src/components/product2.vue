@@ -82,7 +82,7 @@ export default {
       text-align: center;
       .playIcon {
         position: relative;
-        top: 27%;
+        top: 29%;
         left: 0;
         opacity: .9;
         img {
