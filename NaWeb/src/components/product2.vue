@@ -11,6 +11,9 @@
           <h1>我们的产品</h1>
         </div>
         <a class="a">
+          <div class="playIcon">
+            <img style="width: 30%" :src="item.imgIcon" />
+          </div>
         <img :src="item.imgUrl" alt="">
         </a>
         <h2>{{item.title}}</h2>
@@ -34,10 +37,10 @@ export default {
   data () {
     return {
       Products: [
-        {title: '真人视讯', type: 'people', content: '稳定流畅真人直播，全民咪牌，语音聊天，刺激体验尽在NA视讯。',imgUrl: '/static/g1.png', tag: '/static/hotgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/zr.mp4'},
-        {title: '电子游戏', type: 'tiger', content: '传统的电子游戏融汇了更多元化的表现题材，及交互玩法。',imgUrl: '/static/g3.png', videoUrl: 'http://app.risheng3d.com/video/na77/lhj.mp4'},
-        {title: '街机游戏', type: 'chess', content: '结合当下热门街机游戏，3D创新体验，激情奉献。',imgUrl: '/static/g4.png',tag: '/static/newgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/jj.mp4'},
-        {title: '包房棋牌', type: 'electron', content: '包房棋牌，带动平台推广。NA将持续推出更多地方棋牌游戏。',imgUrl: '/static/g2.png', videoUrl: 'http://app.risheng3d.com/video/na77/qp.mp4'}
+        {title: '真人视讯', type: 'people', content: '稳定流畅真人直播，全民咪牌，语音聊天，刺激体验尽在NA视讯。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g1.png', tag: '/static/hotgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/zr.mp4'},
+        {title: '电子游戏', type: 'tiger', content: '传统的电子游戏融汇了更多元化的表现题材，及交互玩法。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g3.png', videoUrl: 'http://app.risheng3d.com/video/na77/lhj.mp4'},
+        {title: '街机游戏', type: 'chess', content: '结合当下热门街机游戏，3D创新体验，激情奉献。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g4.png',tag: '/static/newgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/jj.mp4'},
+        {title: '包房棋牌', type: 'electron', content: '包房棋牌，带动平台推广。NA将持续推出更多地方棋牌游戏。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g2.png', videoUrl: 'http://app.risheng3d.com/video/na77/qp.mp4'}
       ]
     }
   },
@@ -77,6 +80,15 @@ export default {
       .li {
       width: 25%;
       text-align: center;
+      .playIcon {
+        position: relative;
+        top: 29%;
+        left: 0;
+        opacity: .9;
+        img {
+          width: 30%;
+        }
+      }
       .a {
         display: inline-block;
         width: 60%;

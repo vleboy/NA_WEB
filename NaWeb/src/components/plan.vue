@@ -221,14 +221,16 @@ export default {
     }
     ul {
       position: relative;
-      top:-3%;
+      top:-4%;
 
       li {
         width: 50%;
         float: left;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         .img {
-          margin-bottom: 13px;
+          width: 80%;
+          padding-bottom: 80%;
+          margin-bottom: 7px;
           &:hover i {
             background-position: 3px -100px!important;
           }
@@ -243,7 +245,7 @@ export default {
         }
         h2 {
           font-size: 12px;
-          margin-bottom: 15px
+          margin-bottom: 10px
         }
         p {
           width: 129px;
