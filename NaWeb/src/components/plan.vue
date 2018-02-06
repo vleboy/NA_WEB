@@ -228,6 +228,8 @@ export default {
         float: left;
         margin-bottom: 10px;
         .img {
+          width: 80%;
+          padding-bottom: 80%;
           margin-bottom: 7px;
           &:hover i {
             background-position: 3px -100px!important;
