@@ -196,6 +196,7 @@ export default {
     }
   }
 }
+
 @media screen and (max-width: 750px) and (orientation: portrait){
   .plan {
 
