@@ -32,10 +32,10 @@ export default {
   width: 100%;
   height: 100%;
   background: url('../assets/n2-mobile-bg.jpg') no-repeat;
-  background-size: cover;
+  background-size: 100%;
   .-n2-btn{
     position: relative;
-    top: 40%;
+    top: 24%;
     left: 18%;
   }
   .-n2-btn-item{
