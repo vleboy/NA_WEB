@@ -24,6 +24,7 @@ export default {
     return {
       banners: [
         {imgUrl: '/static/mobile/3.jpg'},
+        {imgUrl: '/static/mobile/2.jpg'},
         {imgUrl: '/static/mobile/1.jpg'},
         {imgUrl: '/static/mobile/4.jpg'}
       ],

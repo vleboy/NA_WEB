@@ -50,7 +50,10 @@
             <img class="right-submit" src="../assets/contact/submit.png" @click="submit">
           </div>
           <!-- <h2 class="margin-bottom">SOCIAL <span class="color-red">NEWS</span></h2> -->
-          <div><a href="https://www.facebook.com/NA-Gaming-491601904532399/" style="display:inline-block"><img src="../assets/contact/share.png" style="width: 100%"></a></div>
+          <div>
+            <a href="https://www.facebook.com/NA-Gaming-491601904532399/" style="display:inline-block"><img src="../assets/contact/share.png" style="width: 100%"></a>
+            <a href="skype:XinAsia@outlook.com" style="display:inline-block"><img src="../assets/contact/skype.png" style="width: 100%"></a>
+          </div>
         </el-col>
       </div>
     </div>
