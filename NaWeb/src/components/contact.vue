@@ -228,7 +228,7 @@
         top: 0;
         left: 0;
         right: 0;
-        padding: 10px 0;
+        padding: 30px 0;
       }
       .footer-left-input{
         width: 80%;
