@@ -98,11 +98,11 @@ export default {
         border: 4px solid transparent;
         -webkit-transition: border .5s;
         transition: border .5s;
-        &:hover {
-          border: 4px solid red;
-          -webkit-transition: border .5s;
-          transition: border .5s;
-        }
+        /*&:hover {*/
+          /*border: 4px solid red;*/
+          /*-webkit-transition: border .5s;*/
+          /*transition: border .5s;*/
+        /*}*/
         img {
           width: 100%;
           // height: 100%;
