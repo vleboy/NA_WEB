@@ -5,14 +5,14 @@
         <p>PRODUCTS</p>
         <h1>我们的产品</h1>
       </div> -->
-      <div class="slide li"  v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">
+      <div class="slide li"  v-for="(item, index) in Products" :key="index">
         <div class="title">
           <p>PRODUCTS</p>
           <h1>我们的产品</h1>
         </div>
         <a class="a">
           <div class="playIcon">
-            <img style="width: 30%" :src="item.imgIcon" />
+            <img  @click="clickShow(item.videoUrl)" style="width: 30%" :src="item.imgIcon" />
           </div>
         <img :src="item.imgUrl" alt="">
         </a>
@@ -98,11 +98,11 @@ export default {
         border: 4px solid transparent;
         -webkit-transition: border .5s;
         transition: border .5s;
-        &:hover {
-          border: 4px solid red;
-          -webkit-transition: border .5s;
-          transition: border .5s;
-        }
+        /*&:hover {*/
+          /*border: 4px solid red;*/
+          /*-webkit-transition: border .5s;*/
+          /*transition: border .5s;*/
+        /*}*/
         img {
           width: 100%;
           // height: 100%;
