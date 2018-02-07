@@ -36,7 +36,7 @@
             <img src="../assets/contact/tel.png" class="center-icon">+63 (2) 746 2177
           </div> -->
           <div class="-center-con">
-            <img src="../assets/contact/attr.png" class="center-icon">Live:xinasia_2
+            <img src="../assets/contact/attr.png" class="center-icon">Skype:XinAsia@outlook.com
           </div>
           <div class="-center-con">
             <img src="../assets/contact/message.png" class="center-icon">Newasia@na77.com
@@ -52,7 +52,6 @@
           <!-- <h2 class="margin-bottom">SOCIAL <span class="color-red">NEWS</span></h2> -->
           <div>
             <a href="https://www.facebook.com/NA-Gaming-491601904532399/" style="display:inline-block"><img src="../assets/contact/share.png" style="width: 100%"></a>
-            <a href="skype:XinAsia@outlook.com" style="display:inline-block"><img src="../assets/contact/skype.png" style="width: 100%"></a>
           </div>
         </el-col>
       </div>
