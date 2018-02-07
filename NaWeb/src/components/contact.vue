@@ -262,7 +262,7 @@
       .-center-con{
         /*font-style: italic;*/
         margin-bottom: 20px;
-        font-size: 14px;
+        font-size: 12px;
         color: #7b7b7b;
       }
     }
