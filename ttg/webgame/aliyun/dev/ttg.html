@@ -47,8 +47,8 @@
 
   html,
   body {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
   }
 
@@ -386,7 +386,7 @@
   fdiv.addEventListener('touchmove', function (event) {
     // 如果这个元素的位置内只有一个手指的话
     if (event.targetTouches.length == 1) {
-      event.preventDefault();// 阻止浏览器默认事件，重要 
+      event.preventDefault();// 阻止浏览器默认事件，重要
       var touch = event.targetTouches[0];
       if ((touch.pageY) <= 0) {//超过顶部
         fdiv.style.top = "0px";
@@ -405,7 +405,7 @@
       }
     }
   }, false);
-  fdiv.addEventListener('touchend', document.onmouseup, false);    
+  fdiv.addEventListener('touchend', document.onmouseup, false);
 </script>
 
 </html>
