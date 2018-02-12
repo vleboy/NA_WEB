@@ -6,7 +6,7 @@
         <h1>我们的游戏</h1>
       </div>
       <ul>
-        <li v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl)">
+        <li v-for="(item, index) in Products" :key="index" @click="clickShow(item.videoUrl, item.videoUrl2)">
           <i :style="`background:url(${item.tag}) no-repeat;background-size: 100%`"></i>
           <!-- :href='`/about.html?type=${item.type}&title=${item.title}`'  -->
           <div class="playIcon">
@@ -24,20 +24,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
       Products: [
-        {title: '真人视讯', type: 'people', content: '稳定流畅真人直播，全民咪牌，语音聊天，刺激体验尽在NA视讯。',imgUrl: '/static/g1.png', tag: '/static/hotgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/zr.mp4'},
-        {title: '电子游戏', type: 'tiger', content: '传统的电子游戏融汇了更多元化的表现题材，及交互玩法。',imgUrl: '/static/g3.png', videoUrl: 'http://app.risheng3d.com/video/na77/lhj.mp4'},
-        {title: '街机游戏', type: 'chess', content: '结合当下热门街机游戏，3D创新体验，激情奉献。',imgUrl: '/static/g4.png',tag: '/static/newgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/jj.mp4'},
-        {title: '包房棋牌', type: 'electron', content: '包房棋牌，带动平台推广。NA将持续推出更多地方棋牌游戏。',imgUrl: '/static/g2.png', videoUrl: 'http://app.risheng3d.com/video/na77/qp.mp4'}
+        {title: '真人视讯', type: 'people', content: '稳定流畅真人直播，全民咪牌，语音聊天，刺激体验尽在NA视讯。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g1.png', tag: '/static/hotgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/zr.mp4', videoUrl2: 'http://d38xgux2jezyfx.cloudfront.net/zhenren.mp4'},
+        {title: '电子游戏', type: 'tiger', content: '传统的电子游戏融汇了更多元化的表现题材，及交互玩法。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g3.png', videoUrl: 'http://app.risheng3d.com/video/na77/lhj.mp4', videoUrl2: 'http://d38xgux2jezyfx.cloudfront.net/laohuji.mp4'},
+        {title: '街机游戏', type: 'chess', content: '结合当下热门街机游戏，3D创新体验，激情奉献。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g4.png',tag: '/static/newgame.png', videoUrl: 'http://app.risheng3d.com/video/na77/jj.mp4', videoUrl2: 'http://d38xgux2jezyfx.cloudfront.net/jieji.mp4'},
+        {title: '包房棋牌', type: 'electron', content: '包房棋牌，带动平台推广。NA将持续推出更多地方棋牌游戏。',imgIcon:'/static/playIcon.png',imgUrl: '/static/g2.png', videoUrl: 'http://app.risheng3d.com/video/na77/qp.mp4', videoUrl2: 'http://d38xgux2jezyfx.cloudfront.net/qipai.mp4'}
       ]
     }
   },
   methods: {
-    clickShow:  function (videoUrl) {
-      this.$store.dispatch("showView",{ videoUrl })
+    async clickShow (isChina, noChina) {
+      try {
+        const { data } = await axios.get('https://844sz7nr7l.execute-api.ap-southeast-1.amazonaws.com/dev/ipquery')
+        if (data.payload.data.country === '中国') {
+          let videoUrl = isChina
+          this.$store.dispatch("showView",{ videoUrl })
+        } else {
+          let videoUrl = noChina
+          this.$store.dispatch("showView",{ videoUrl })
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
