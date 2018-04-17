@@ -8,10 +8,19 @@
             <div class="activeimg">
               <!--<img v-for="item in banners" :src="{{item.imgUrl}}">-->
               <!--<img :src={{banners[0].imgUrl}}>-->
-              <img :src="banners[0]">
-              <img :src="banners[1]">
-              <img :src="banners[2]">
-              <img :src="banners[3]">
+              <div class="-banner">
+                <img :src="banners[0]">
+                <!--<img class="-play-btn" src="/static/play-btn.png">-->
+              </div>
+              <div>
+                <img :src="banners[1]">
+              </div>
+              <div>
+                <img :src="banners[2]">
+              </div>
+              <div>
+                <img :src="banners[3]">
+              </div>
             </div>
           </div>
           <!-- 存放缩略图的容器-->
@@ -130,6 +139,12 @@
     }
     .activeimg{
       overflow: hidden;height: 430px;position: relative;
+    }
+    .-banner {
+      position: relative;
+    }
+    .-banner.-play-btn{
+      position: absolute;
     }
     .top-img .activeimg img{
       width: 900px;height: 430px;

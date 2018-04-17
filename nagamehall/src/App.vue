@@ -12,6 +12,7 @@ export default {
 
 <style>
   @import "../src/css/normalize.css";
+  @import 'swiper/dist/css/swiper.css';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -62,7 +62,7 @@
 
 <script>
   import Product from '../components/product'
-  import ProductDetail from '../components/product-detail2'
+  import ProductDetail from '../components/product-detail'
   export default {
     name: 'home',
     data () {
@@ -210,7 +210,7 @@
     },
     mounted () {
       $('.section').css('height',`${$(document).height()}`)
-      $('#particles').css('height',`${$(document).height()}`)
+      $('.detail-bg').css('height',`${$(document).height()}`)
     },
     methods: {
       showChild (bool,data) {
@@ -252,6 +252,7 @@
       height: 100%;
 
       .-left-side{
+        z-index: 3;
         position: relative;
         height: 94px;
 
@@ -350,9 +351,12 @@
       }
 
       .detail-bg{
-        background: url('../../static/new/detail_bg.png') no-repeat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: url('../assets/xm-bg.jpg') no-repeat;
         background-size: cover;
-        height:100%;
+        /*background-position: 100%;*/
       }
     }
   }
