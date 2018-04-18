@@ -1,7 +1,7 @@
 <template>
   <div class="p-gameHall">
     <div class="-hall-left">
-      <div class="-left-div -img">
+      <div class="-left-div -img" @click="isShowDetail = false">
         <img src="../../static/new/logo.png">
       </div>
       <div class="-left-div">
@@ -232,7 +232,7 @@
         }
       },
       showDetail () {
-        this.isShowDetail = !this.isShowDetail
+        this.isShowDetail = true
       }
     },
     components: {Product, ProductDetail}
@@ -286,6 +286,7 @@
 
       .-img{
         padding-top: 20px;
+        cursor: pointer;
       }
 
       .-left-child {
