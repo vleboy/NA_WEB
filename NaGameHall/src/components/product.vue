@@ -1,126 +1,154 @@
 <template lang="html">
-  <div>
-    <div class="product">
-      <div class="product-content">
-        <div class="c-text">游戏推荐</div>
-        <el-row class="c-wrap">
-          <el-row class="c-cell" v-for="data in allGameList">
-            <el-col :span='8' v-for="item1 in data[0]">
-              <div class="c-cell-div"
-                   :style="{'background-image': 'url(' + item1.img + ')'}"
-                   @click="getDetail()">
-                <span class="c-cell-text">{{item1.text}}</span>
-              </div>
-            </el-col>
+  <div class="product">
+    <div class="product-content">
+      <div class="c-text">游戏推荐</div>
+      <el-row class="c-wrap">
+        <el-row class="c-cell" v-for="(data,index) in allGameList" :key="index">
+          <el-col :span='8' v-for="item1 in data[0]">
+            <div class="c-cell-div"
+                 :style="{'background-image': 'url(' + item1.recommendImg + ')'}"
+                 @click="getDetail(item1)">
+              <span class="c-cell-text">{{item1.text}}</span>
+            </div>
+          </el-col>
 
-            <el-col :span="4" v-for="item2 in data[1]">
-              <div class="c-cell-div"  :style="{'background-image': 'url(' + item2.img + ')'}" @click="getDetail()">
-                <span class="c-cell-text">{{item2.text}}</span>
-              </div>
-            </el-col>
-          </el-row>
-
-          <el-row class="c-cell" v-for="data in otherGameList">
-            <el-col :span="4" v-for="item1 in data[0]">
-              <div class="c-cell-div"  :style="{'background-image': 'url(' + item1.img + ')'}" @click="getDetail()">
-                <span class="c-cell-text">{{item1.text}}</span>
-              </div>
-            </el-col>
-
-            <el-col :span='8' v-for="item2 in data[1]">
-              <div class="c-cell-div"
-                   :style="{'background-image': 'url(' + item2.img + ')'}"
-                   @click="getDetail()">
-                <span class="c-cell-text">{{item2.text}}</span>
-              </div>
-            </el-col>
-          </el-row>
+          <el-col :span="4" v-for="item2 in data[1]">
+            <div class="c-cell-div"  :style="{'background-image': 'url(' + item2.recommendImg + ')'}" @click="getDetail(item2)">
+              <span class="c-cell-text">{{item2.text}}</span>
+            </div>
+          </el-col>
         </el-row>
-      </div>
-  </div>
 
+        <el-row class="c-cell" v-for="data in otherGameList">
+          <el-col :span="4" v-for="item1 in data[0]">
+            <div class="c-cell-div"  :style="{'background-image': 'url(' + item1.recommendImg + ')'}" @click="getDetail(item1)">
+              <span class="c-cell-text">{{item1.text}}</span>
+            </div>
+          </el-col>
+
+          <el-col :span='8' v-for="item2 in data[1]">
+            <div class="c-cell-div"
+                 :style="{'background-image': 'url(' + item2.recommendImg + ')'}"
+                 @click="getDetail(item2)">
+              <span class="c-cell-text">{{item2.text}}</span>
+            </div>
+          </el-col>
+        </el-row>
+      </el-row>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['recommendInfo'],
   data () {
     return {
-      allGameList:[
-        [
+    }
+  },
+  computed: {
+    recommendList () {
+      return this.recommendInfo
+    },
+    allGameList () {
+      let array
+      if(this.recommendList.length) {
+        array = [
+          [[this.recommendList[0],this.recommendList[1]],[this.recommendList[2],this.recommendList[3]]],
+          [[this.recommendList[4],this.recommendList[5]],[this.recommendList[6],this.recommendList[7]]]
+        ]
+      } else {
+        array = [
           [
-            {
-              text:'小厨娘',
-              img:'../../static/new/child_index/index_img_1.jpg'
-            },
-            {
-              text:'塔罗之谜',
-              img:'../../static/new/child_index/index_img_2.jpg'
-            }
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ],
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ]
           ],
           [
-            {
-              text:'福运亨通',
-              img:'../../static/new/child_index/index_img_3.jpg'
-            },
-            {
-              text:'祥龙献瑞',
-              img:'../../static/new/child_index/index_img_4.jpg'
-            }
-          ]
-        ],
-        [
-          [
-            {
-              text:'急速时刻',
-              img:'../../static/new/child_index/index_img_5.jpg'
-            },
-            {
-              text:'熊猫传奇',
-              img:'../../static/new/child_index/index_img_6.jpg'
-            }
-          ],
-          [
-            {
-              text:'宝石魔法',
-              img:'../../static/new/child_index/index_img_7.jpg'
-            },
-            {
-              text:'疯狂水果',
-              img:'../../static/new/child_index/index_img_8.jpg'
-            }
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ],
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ]
           ]
         ]
-      ],
-      otherGameList: [
-        [
+      }
+      return array
+    },
+    otherGameList () {
+      let array2 = []
+      if(this.recommendList.length) {
+        array2 = [
+          [[this.recommendList[8],this.recommendList[9]],[this.recommendList[10],this.recommendList[11]]]
+        ]
+      } else {
+        array2 = [
           [
-            {
-              text:'财神进宝',
-              img:'../../static/new/child_index/index_img_9.jpg'
-            },
-            {
-              text:'四方神兽',
-              img:'../../static/new/child_index/index_img_10.jpg'
-            }
-          ],
-          [
-            {
-              text:'森林小妖',
-              img:'../../static/new/child_index/index_img_11.jpg'
-            },
-            {
-              text:'真人视频',
-              img:'../../static/new/child_index/index_img_12.jpg'
-            }
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ],
+            [
+              {
+                text:'敬请期待',
+                recommendImg:''
+              },
+              {
+                text:'敬请期待',
+                recommendImg:''
+              }
+            ]
           ]
         ]
-      ]
+      }
+      return array2
     }
   },
   methods: {
-    getDetail () {
-      this.$emit('changeStatus')
+    getDetail (item) {
+      if(item.isJump) {
+        this.$emit('changeStatus',item)
+      } else {
+        alert('敬请期待')
+      }
     }
   }
 }
@@ -161,12 +189,13 @@ export default {
 
         .c-cell-div {
           background-repeat: no-repeat!important;
-          background-size: 100%!important;
+          background-size: cover;
           overflow: hidden;
           margin: 10px 10px 10px 0;
           height: 140px;
           cursor: pointer;
           position: relative;
+          background-color: rgba(0,0,0,0.3);
         }
         .c-cell-text{
           color: #fff;
