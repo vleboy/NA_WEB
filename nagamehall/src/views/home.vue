@@ -139,7 +139,7 @@
         try {
           const { data } = await axios({
             method: 'post',
-            url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
+            url: 'https://lo33h259l3.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
             data: {
               code: 'lobbyconfig'
             },
