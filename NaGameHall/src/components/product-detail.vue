@@ -96,6 +96,10 @@
         return this.detailInfo.url
       }
     },
+    mounted () {
+      this.$refs.topSwiper.swiper.slideTo(0, 1000, false)
+//      this.$refs.topSwiper.swiper.autoplay.start();
+    },
     methods: {
       changeTopSwiper (item,index) {
         this.nowIndex = index
@@ -251,5 +255,56 @@
     }
   }
 
+  @media (max-width: 768px) {
+    .-swiper-banner {
+      top:-20px;
+      width: 260px;
+
+      .-swiper-top {
+        height: 150px;
+      }
+      .-video{
+        .-v-play{
+          width: 265px;
+          height: 150px;
+        }
+        .-v-close{
+          right: -12px;
+          top: -17px;
+          width: 8%;
+        }
+      }
+      .-img-down {
+        width: 100%;
+        height: 34px
+      }
+
+      .-img-back {
+        background: rgba(0, 0, 0, 0.7);
+        width: 38px;
+        height: 36px;
+        position: absolute;
+      }
+
+      .-swiper-down {
+        width: 100%;
+        padding: 10px 40px;
+
+      .swiper-button-prev{
+          top: 20px;
+          width: 24px!important;
+          height: 38px!important;
+          background-size: 44%
+        }
+
+        .swiper-button-next{
+          top: 20px;
+          width: 24px!important;
+          height: 38px!important;
+          background-size: 44%;
+        }
+      }
+    }
+  }
 </style>
 

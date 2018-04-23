@@ -2,7 +2,7 @@
   <div class="product">
     <div class="product-content">
       <div class="c-text">游戏推荐</div>
-      <el-row class="c-wrap">
+      <el-row class="c-wrap product-pc" >
         <el-row class="c-cell" v-for="(data,index) in allGameList" :key="index">
           <el-col :span='8' v-for="item1 in data[0]">
             <div class="c-cell-div"
@@ -30,6 +30,23 @@
             <div class="c-cell-div"
                  :style="{'background-image': 'url(' + item2.recommendImg + ')'}"
                  @click="getDetail(item2)">
+              <span class="c-cell-text">{{item2.text}}</span>
+            </div>
+          </el-col>
+        </el-row>
+      </el-row>
+      <el-row class="product-mobile">
+        <el-row class="c-cell" v-for="(data,index) in allGameList" :key="index">
+          <el-col :span='24' v-for="item1 in data[0]">
+            <div class="c-cell-div"
+                 :style="{'background-image': 'url(' + item1.recommendImg + ')'}"
+                 @click="getDetail(item1)">
+              <span class="c-cell-text">{{item1.text}}</span>
+            </div>
+          </el-col>
+
+          <el-col :span="12" v-for="item2 in data[1]">
+            <div class="c-cell-div"  :style="{'background-image': 'url(' + item2.recommendImg + ')'}" @click="getDetail(item2)">
               <span class="c-cell-text">{{item2.text}}</span>
             </div>
           </el-col>
@@ -167,7 +184,9 @@ export default {
    justify-content: center;
    align-items: center;
 
-
+   .product-mobile{
+    display: none;
+   }
    .product-content {
        width: 900px;
 
@@ -206,6 +225,31 @@ export default {
         }
       }
    }
+ }
+
+ @media (max-width: 768px) {
+   .product {
+
+   .product-content {
+     overflow-y: scroll;
+     height: 530px;
+
+   .product-pc {
+     display: none;
+   }
+
+   .product-mobile {
+     display: block;
+   }
+
+   .c-cell {
+     overflow: inherit !important;
+     padding-left: 10px;
+     height:0!important;
+   }
+ }
+
+ }
  }
 </style>
 

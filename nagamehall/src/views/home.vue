@@ -1,10 +1,10 @@
 <template>
   <div class="p-gameHall">
     <div class="-hall-left">
-      <div class="-left-div -img" @click="isShowDetail = false">
+      <div class="-left-div -img" @click="goBack">
         <img src="../../static/new/logo.png">
       </div>
-      <div class="-left-div">
+      <div class="-left-div -pc">
         <div v-for="(data, indexItem) of sidebarList" :key="indexItem" class="-left-side"
              @mouseover="showChild(0,data)" @mouseout="showChild(1,data)">
           <a class="-left-icon" >
@@ -13,7 +13,33 @@
           </a>
           <div class="-left-child" :id="data.id">
             <div class="mid">
-              <ul class="child-ul" id="menu">
+              <ul class="child-ul">
+                <li class="child-menu" v-for="(item, index) of data.childList" :key="index" >
+                  <div class="child-menu-img"
+                       @click="showDetail(item)"
+                       :style="{'background-image': 'url(' + item.img + ')','background-position':'50%','background-size': 'cover'}" >
+                  </div>
+                  <div class="child-menu-text" @click="showDetail(item)">{{item.text}}</div>
+                  <div class="child-menu-state" v-if="item.state!=0">
+                    <img v-if="item.state == 1" src="../../static/new/new.png">
+                    <img v-else src="../../static/new/hot.png">
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="-left-div -mobile">
+        <div v-for="(data, indexItem) of sidebarList" :key="indexItem" class="-left-side"
+             @click="showMobileChild(data)">
+          <a class="-left-icon" >
+            <img :src="data.typeImg">
+            <span class="-icon-no" v-if="!data.childList.length">敬请期待</span>
+          </a>
+          <div class="-left-child" v-if="data.id == gameTypeInfo.id ">
+            <div class="mid">
+              <ul class="child-ul">
                 <li class="child-menu" v-for="(item, index) of data.childList" :key="index" >
                   <div class="child-menu-img"
                        @click="showDetail(item)"
@@ -54,7 +80,7 @@
           <Product :recommendInfo="recommendList" @changeStatus="fromRecommend"></Product>
         </div>
         <div class="detail-bg" v-show="isShowDetail" :style="{'background-image': 'url(' + gameInfo.bgImg + ')','background-size': 'cover'}">
-          <ProductDetail :detailInfo="gameInfo"></ProductDetail>
+          <ProductDetail :detailInfo="gameInfo" ref="childClick"></ProductDetail>
         </div>
       </div>
     </div>
@@ -105,7 +131,8 @@
           }
         ],
         recommendList: [],
-        gameInfo: ''
+        gameInfo: '',
+        gameTypeInfo: ''
       }
     },
     mounted () {
@@ -131,21 +158,34 @@
           }
         }
       },
+      showMobileChild (data) {
+        if (data.id == this.gameTypeInfo.id) {
+          this.gameTypeInfo = ''
+        } else {
+          this.gameTypeInfo = data
+        }
+      },
       showDetail (item) {
         this.gameInfo = item
         this.isShowDetail = true
+        this.gameTypeInfo = ''
+      },
+      goBack () {
+        this.isShowDetail = false;
+        this.gameTypeInfo = ''
+        this.$refs.childClick.videoPlay()
       },
       async getGameHall () {
         try {
           const { data } = await axios({
             method: 'post',
-            url: 'https://52qkggfn4d.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
+            url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
             data: {
               code: 'lobbyconfig'
             },
             headers: {
               'Content-type': 'application/json',
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMmVjYWY4Ny03YjlmLTRkZDAtODgwMi0xM2E0MjhhZTVlMTQiLCJyb2xlIjoiMSIsInN1ZmZpeCI6IlBsYXRmb3JtIiwidXNlcm5hbWUiOiJQbGF0Zm9ybV9Cb3NzRkYiLCJwYXJlbnQiOiIwMCIsInBhcmVudE5hbWUiOiJTdXBlckFkbWluIiwicGFyZW50Um9sZSI6IjAwIiwiZGlzcGxheU5hbWUiOiLlubPlj7DnrqHnkIblkZgiLCJsZXZlbCI6MCwic3ViUm9sZSI6IuW5s-WPsOeuoeeQhuWRmCIsInN1YlJvbGVQZXJtaXNzaW9uIjpbIueci-advyIsIuS4quS6uuS4reW_gyIsIuWxgue6p-WFs-ezuyIsIk5B55S15a2Q5ri45oiP5oql6KGoIiwiTkHooZfmnLrmuLjmiI_miqXooagiLCJOQeecn-S6uua4uOaIjyIsIlRUR-eUteWtkOa4uOaIj-aKpeihqCIsIlNB55yf5Lq65ri45oiP5oql6KGoIiwiTUfnlLXlrZDmuLjmiI_miqXooagiLCJBR-ecn-S6uua4uOaIj-aKpeihqCIsIue6v-i3r-WVhuWIl-ihqCIsIuWIm-W7uue6v-i3r-WVhiIsIuWVhuaIt-WIl-ihqCIsIuWIm-W7uuWVhuaItyIsIuaOpeWFpeWVhueCueaVsOWRiuitpuWIl-ihqCIsIueOqeWutuWIl-ihqCIsIua4uOaIj-WIl-ihqCIsIua4uOaIj-WFrOWRiuWIl-ihqCIsIui3kemprOeBr-WIl-ihqCIsIua4uOaIj-mCruS7tuWIl-ihqCIsIuWxleS9jeWIl-ihqCIsIuWVhuaIt-i_kOiQpeiusOW9lSIsIumBk-WFt-WumuS7tyIsIue6v-i3r-WVhueZu-W9leaXpeW_lyIsIuWVhuaIt-eZu-W9leaXpeW_lyIsIueuoeeQhuWRmOaTjeS9nOaXpeW_lyIsIueuoeeQhuWRmOWIl-ihqCIsIua3u-WKoOeuoeeQhuWRmCIsIueuoeeQhuWRmOinkuiJsuWIl-ihqCIsIuaWsOWinueuoeeQhuWRmOinkuiJsiIsIue6v-i3r-WPt-WIl-ihqCIsIkRlYnVn5pON5L2c5pel5b-XIiwi5YWs5Y-46L6T6LWi5oC75oql6KGoIiwiTkHmuLjmiI_mgLvmiqXooagiLCJOQeaji-eJjOa4uOaIj-aKpeihqCIsIlNB5ri45oiP5oC75oql6KGoIiwiU0HmjZXpsbzmuLjmiI_miqXooagiLCJVR-S9k-iCsua4uOaIj-aKpeihqCJdLCJleHAiOjE1MjQzNzczMDAsImlhdCI6MTUyNDExODA3MH0.uwCTRVuwn-gbfcX5a-DfIGvWCAcVFFK8wIVEVIjY87w'
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyNDJiNWRhYy01YjYwLTQ5YmYtYjFmYS1jM2YxYzE2MDA2YWQiLCJyb2xlIjoiMSIsInN1ZmZpeCI6IlBsYXRmb3JtIiwidXNlcm5hbWUiOiJQbGF0Zm9ybV9OQXRlc3QiLCJwYXJlbnQiOiIwMCIsInBhcmVudE5hbWUiOiJTdXBlckFkbWluIiwicGFyZW50Um9sZSI6IjAwIiwiZGlzcGxheU5hbWUiOiLlubPlj7DnrqHnkIblkZgiLCJsZXZlbCI6MCwic3ViUm9sZSI6Iui2hee6p-euoeeQhuWRmCIsInN1YlJvbGVQZXJtaXNzaW9uIjpbIueci-advyIsIuS4quS6uuS4reW_gyIsIuWxgue6p-WFs-ezuyIsIuWFrOWPuOi-k-i1ouaAu-aKpeihqCIsIk5B5ri45oiP5oC75oql6KGoIiwiTkHnlLXlrZDmuLjmiI_miqXooagiLCJOQeihl-acuua4uOaIj-aKpeihqCIsIk5B5qOL54mM5ri45oiP5oql6KGoIiwiTkHnnJ_kurrmuLjmiI8iLCJUVEfnlLXlrZDmuLjmiI_miqXooagiLCJTQeecn-S6uua4uOaIj-aKpeihqCIsIlNB5o2V6bG85ri45oiP5oql6KGoIiwiTUfnlLXlrZDmuLjmiI_miqXooagiLCJBR-ecn-S6uua4uOaIj-aKpeihqCIsIlVH5L2T6IKy5ri45oiP5oql6KGoIiwi57q_6Lev5ZWG5YiX6KGoIiwi5Yib5bu657q_6Lev5ZWGIiwi5ZWG5oi35YiX6KGoIiwi5Yib5bu65ZWG5oi3Iiwi5o6l5YWl5ZWG54K55pWw5ZGK6K2m5YiX6KGoIiwi546p5a625YiX6KGoIiwi5ri45oiP5YiX6KGoIiwi5ri45oiP5YWs5ZGK5YiX6KGoIiwi6LeR6ams54Gv5YiX6KGoIiwi5ri45oiP6YKu5Lu25YiX6KGoIiwi5bGV5L2N5YiX6KGoIiwi5ZWG5oi36L-Q6JCl6K6w5b2VIiwi6YGT5YW35a6a5Lu3Iiwi57q_6Lev5ZWG55m75b2V5pel5b-XIiwi5ZWG5oi355m75b2V5pel5b-XIiwi566h55CG5ZGY5pON5L2c5pel5b-XIiwi566h55CG5ZGY5YiX6KGoIiwi5re75Yqg566h55CG5ZGYIiwi566h55CG5ZGY6KeS6Imy5YiX6KGoIiwi5paw5aKe566h55CG5ZGY6KeS6ImyIiwi57q_6Lev5Y-35YiX6KGoIiwiRGVidWfmk43kvZzml6Xlv5ciLCJTQea4uOaIj-aAu-aKpeihqCJdLCJleHAiOjE1MjQ3MzU4MzQsImlhdCI6MTUyNDQ3NjYwNH0.cYsj82KA0goXjyXEUoxeXU3BiweLhk2ThW09aAEsJ_g'
             }
           })
 
@@ -192,6 +232,7 @@
       },
       fromRecommend (item) {
         this.showDetail(item)
+        this.gameTypeInfo = ''
       }
     },
     components: {Product, ProductDetail}
@@ -209,6 +250,11 @@
     .-hall-left{
       flex: 0 0 auto;
       height: 100%;
+
+
+      .-mobile {
+        display: none;
+      }
 
       .-left-side{
         z-index: 3;
@@ -315,6 +361,28 @@
         justify-content: center;
         align-items: center;
         /*background-position: 100%;*/
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .p-gameHall{
+
+      .-mobile {
+        display: block!important;
+      }
+      .-pc {
+        display: none;
+      }
+
+      .-left-child{
+        display: block!important;
+        opacity: 1!important;
+        width: 100%!important;
+
+        .mid{
+          border: none!important;
+        }
       }
     }
   }
