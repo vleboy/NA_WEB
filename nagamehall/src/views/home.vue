@@ -98,6 +98,7 @@
         show: true,
         isShowChild: false,
         isShowDetail: false,
+        loginInfo: '',
         sidebarList: [
           {
             id: 1,
@@ -138,7 +139,8 @@
     mounted () {
       $('.section').css('height',`${$(document).height()}`)
       $('.detail-bg').css('height',`${$(document).height()}`)
-      this.getGameHall()
+
+      this.getIP()
     },
     methods: {
       showChild (bool,data) {
@@ -175,42 +177,54 @@
         this.gameTypeInfo = ''
         this.$refs.childClick.videoPlay()
       },
+      async getIP () {
+        try {
+          const { data } = await axios.get('http://ext.na77.org/webapi/ipquery')
+          this.loginInfo = data.payload.data.country
+          this.getGameHall()
+        } catch (err) {
+          alert('获取IP错误，请重新刷新')
+        }
+      },
       async getGameHall () {
         try {
           const { data } = await axios({
             method: 'post',
-            url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
+            url: 'https://52qkggfn4d.execute-api.ap-southeast-1.amazonaws.com/dev/configMultList',
             data: {
               code: 'lobbyconfig'
             },
             headers: {
               'Content-type': 'application/json',
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyNDJiNWRhYy01YjYwLTQ5YmYtYjFmYS1jM2YxYzE2MDA2YWQiLCJyb2xlIjoiMSIsInN1ZmZpeCI6IlBsYXRmb3JtIiwidXNlcm5hbWUiOiJQbGF0Zm9ybV9OQXRlc3QiLCJwYXJlbnQiOiIwMCIsInBhcmVudE5hbWUiOiJTdXBlckFkbWluIiwicGFyZW50Um9sZSI6IjAwIiwiZGlzcGxheU5hbWUiOiLlubPlj7DnrqHnkIblkZgiLCJsZXZlbCI6MCwic3ViUm9sZSI6Iui2hee6p-euoeeQhuWRmCIsInN1YlJvbGVQZXJtaXNzaW9uIjpbIueci-advyIsIuS4quS6uuS4reW_gyIsIuWxgue6p-WFs-ezuyIsIuWFrOWPuOi-k-i1ouaAu-aKpeihqCIsIk5B5ri45oiP5oC75oql6KGoIiwiTkHnlLXlrZDmuLjmiI_miqXooagiLCJOQeihl-acuua4uOaIj-aKpeihqCIsIk5B5qOL54mM5ri45oiP5oql6KGoIiwiTkHnnJ_kurrmuLjmiI8iLCJUVEfnlLXlrZDmuLjmiI_miqXooagiLCJTQeecn-S6uua4uOaIj-aKpeihqCIsIlNB5o2V6bG85ri45oiP5oql6KGoIiwiTUfnlLXlrZDmuLjmiI_miqXooagiLCJBR-ecn-S6uua4uOaIj-aKpeihqCIsIlVH5L2T6IKy5ri45oiP5oql6KGoIiwi57q_6Lev5ZWG5YiX6KGoIiwi5Yib5bu657q_6Lev5ZWGIiwi5ZWG5oi35YiX6KGoIiwi5Yib5bu65ZWG5oi3Iiwi5o6l5YWl5ZWG54K55pWw5ZGK6K2m5YiX6KGoIiwi546p5a625YiX6KGoIiwi5ri45oiP5YiX6KGoIiwi5ri45oiP5YWs5ZGK5YiX6KGoIiwi6LeR6ams54Gv5YiX6KGoIiwi5ri45oiP6YKu5Lu25YiX6KGoIiwi5bGV5L2N5YiX6KGoIiwi5ZWG5oi36L-Q6JCl6K6w5b2VIiwi6YGT5YW35a6a5Lu3Iiwi57q_6Lev5ZWG55m75b2V5pel5b-XIiwi5ZWG5oi355m75b2V5pel5b-XIiwi566h55CG5ZGY5pON5L2c5pel5b-XIiwi566h55CG5ZGY5YiX6KGoIiwi5re75Yqg566h55CG5ZGYIiwi566h55CG5ZGY6KeS6Imy5YiX6KGoIiwi5paw5aKe566h55CG5ZGY6KeS6ImyIiwi57q_6Lev5Y-35YiX6KGoIiwiRGVidWfmk43kvZzml6Xlv5ciLCJTQea4uOaIj-aAu-aKpeihqCJdLCJleHAiOjE1MjQ3MzU4MzQsImlhdCI6MTUyNDQ3NjYwNH0.cYsj82KA0goXjyXEUoxeXU3BiweLhk2ThW09aAEsJ_g'
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIyMmVjYWY4Ny03YjlmLTRkZDAtODgwMi0xM2E0MjhhZTVlMTQiLCJyb2xlIjoiMSIsInN1ZmZpeCI6IlBsYXRmb3JtIiwidXNlcm5hbWUiOiJQbGF0Zm9ybV9Cb3NzRkYiLCJwYXJlbnQiOiIwMCIsInBhcmVudE5hbWUiOiJTdXBlckFkbWluIiwicGFyZW50Um9sZSI6IjAwIiwiZGlzcGxheU5hbWUiOiLlubPlj7DnrqHnkIblkZgiLCJsZXZlbCI6MCwic3ViUm9sZSI6IuW5s-WPsOeuoeeQhuWRmCIsInN1YlJvbGVQZXJtaXNzaW9uIjpbIueci-advyIsIuS4quS6uuS4reW_gyIsIuWxgue6p-WFs-ezuyIsIk5B55S15a2Q5ri45oiP5oql6KGoIiwiTkHooZfmnLrmuLjmiI_miqXooagiLCJOQeecn-S6uua4uOaIjyIsIlRUR-eUteWtkOa4uOaIj-aKpeihqCIsIlNB55yf5Lq65ri45oiP5oql6KGoIiwiTUfnlLXlrZDmuLjmiI_miqXooagiLCJBR-ecn-S6uua4uOaIj-aKpeihqCIsIue6v-i3r-WVhuWIl-ihqCIsIuWIm-W7uue6v-i3r-WVhiIsIuWVhuaIt-WIl-ihqCIsIuWIm-W7uuWVhuaItyIsIuaOpeWFpeWVhueCueaVsOWRiuitpuWIl-ihqCIsIueOqeWutuWIl-ihqCIsIua4uOaIj-WIl-ihqCIsIua4uOaIj-WFrOWRiuWIl-ihqCIsIui3kemprOeBr-WIl-ihqCIsIua4uOaIj-mCruS7tuWIl-ihqCIsIuWxleS9jeWIl-ihqCIsIuWVhuaIt-i_kOiQpeiusOW9lSIsIumBk-WFt-WumuS7tyIsIue6v-i3r-WVhueZu-W9leaXpeW_lyIsIuWVhuaIt-eZu-W9leaXpeW_lyIsIueuoeeQhuWRmOaTjeS9nOaXpeW_lyIsIueuoeeQhuWRmOWIl-ihqCIsIua3u-WKoOeuoeeQhuWRmCIsIueuoeeQhuWRmOinkuiJsuWIl-ihqCIsIuaWsOWinueuoeeQhuWRmOinkuiJsiIsIue6v-i3r-WPt-WIl-ihqCIsIkRlYnVn5pON5L2c5pel5b-XIiwi5YWs5Y-46L6T6LWi5oC75oql6KGoIiwiTkHmuLjmiI_mgLvmiqXooagiLCJOQeaji-eJjOa4uOaIj-aKpeihqCIsIlNB5ri45oiP5oC75oql6KGoIiwiU0HmjZXpsbzmuLjmiI_miqXooagiLCJVR-S9k-iCsua4uOaIj-aKpeihqCJdLCJleHAiOjE1MjQ3OTk2MDMsImlhdCI6MTUyNDU0MDM3M30.TFMjeo0QEhWQvHUbcprZlrfcS9_CbuR3_VoNTt6kQnw'
             }
           })
+
+          let isChina = this.loginInfo == '中国'
 
           for (let item of data.payload) {
             for (let data of this.sidebarList) {
               if(item.gameType == data.gameType) {
                 data.childList.push({
                   img: item.gameImg, // 头像
-                  bgImg: item.bgImg == null ? '../../static/new/detail_bg.png' : item.bgImg, // 背景图
-                  carouselImg: item.carouselImg, // 轮播图
+                  bgImg: item.bgImg == null ? '../../static/new/detail_bg.png' :  isChina ? item.bgImgAli : item.bgImg, // 背景图
+                  carouselImg: isChina ? item.carouselImgAli : item.carouselImg, // 轮播图
                   text: item.gameName,
-                  url: item.url, // 视频链接
+                  url: isChina ? item.urlAli : item.url, // 视频链接
                   state: item.state // 状态
                 })
               }
             }
 
+            // 推荐列表
             if(item.isRecommend) {
               this.recommendList.push({
                 img: item.gameImg, // 头像
-                recommendImg: item.recommendImg, // 推荐图
-                bgImg: item.bgImg == null ? '../../static/new/detail_bg.png' : item.bgImg, // 背景图
-                carouselImg: item.carouselImg, // 轮播图
+                recommendImg: isChina ? item.recommendImgAli : item.recommendImg, // 推荐图
+                bgImg: item.bgImg == null ? '../../static/new/detail_bg.png' : isChina ? item.bgImgAli : item.bgImg, // 背景图
+                carouselImg: isChina ? item.carouselImgAli : item.carouselImg, // 轮播图
                 text: item.gameName,
-                url: item.url, // 视频链接
+                url: isChina ? item.urlAli : item.url, // 视频链接
                 state: item.state, // 状态
                 isJump: true // 是否能够跳转
               })

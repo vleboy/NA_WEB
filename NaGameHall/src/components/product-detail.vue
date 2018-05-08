@@ -1,27 +1,41 @@
 <template>
   <div class="-swiper-banner">
-    <swiper :options="swiperOption" ref="topSwiper" class="-swiper-top">
-      <swiper-slide v-for="(item,index) in banners" :key="index">
-        <img class="-img-top" :src="item.url" alt="" >
-        <img class="-img-play" v-if="index==0" src="/static/play-btn.png" @click="videoPlay">
-      </swiper-slide>
-      <!--<div class="swiper-pagination" slot="pagination"></div>-->
-    </swiper>
-    <swiper :options="swiperOption2" class="-swiper-down" ref="downSwiper">
-      <swiper-slide v-for="(item,index) in banners" :key="index">
-        <img class="-img-down" :src="item.url" alt="" @click="changeTopSwiper(item,index)">
-        <img class="-img-play" v-if="index==0" src="/static/play-btn.png">
-        <div class="-img-back" v-if="index==nowIndex"></div>
-      </swiper-slide>
-      <div class="swiper-button-prev swiper-button-white"></div>
-      <div class="swiper-button-next swiper-button-white"></div>
-    </swiper>
-
-    <div class="-video" v-if="showVideo">
-      <img class="-v-close" src="/static/del.png" @click="videoPlay">
-      <video  class="-v-play" :src="videoUrl" autoplay controls ></video>
+    <div class="-p-pc">
+      <swiper :options="swiperOption" ref="topSwiper" class="-swiper-top">
+        <swiper-slide v-for="(item,index) in banners" :key="index">
+          <img class="-img-top" :src="item.url" alt="" >
+          <img class="-img-play" v-if="index==0" src="/static/play-btn.png" @click="videoPlayPc(true)">
+        </swiper-slide>
+        <!--<div class="swiper-pagination" slot="pagination"></div>-->
+      </swiper>
+      <swiper :options="swiperOption2" class="-swiper-down" ref="downSwiper">
+        <swiper-slide v-for="(item,index) in banners" :key="index">
+          <img class="-img-down" :src="item.url" alt="" @click="changeTopSwiper(item,index)">
+          <img class="-img-play" v-if="index==0" src="/static/play-btn.png">
+          <div class="-img-back" v-if="index==nowIndex"></div>
+        </swiper-slide>
+        <div class="swiper-button-prev swiper-button-white"></div>
+        <div class="swiper-button-next swiper-button-white"></div>
+      </swiper>
+      <div class="-video" v-if="showVideoPc">
+        <img class="-v-close" src="/static/del.png" @click="videoPlayPc(true)">
+        <video  class="-v-play" :src="videoUrl" autoplay controls ></video>
+      </div>
     </div>
-
+    <div class="-p-mobile">
+      <div class="-m-text">{{detailInfo.text}}</div>
+      <div v-for="(item,index) in banners" class="-m-wrap" @click="showMobile(item,index)">
+        <img :src="item.url" class="-m-img">
+        <img class="-img-play" v-if="index==0" src="/static/play-btn.png" >
+      </div>
+    </div>
+    <div class="-video" v-if="showVideo">
+      <div class="-v-close" @click="closeMobile">X</div>
+      <div v-if="detail.index == 0" class="-v-wrap">
+        <video   class="-v-play" :src="videoUrl" autoplay controls ></video>
+      </div>
+      <img class="-m-popup" v-else :src="detail.url">
+    </div>
   </div>
 </template>
 
@@ -33,7 +47,9 @@
     data () {
       return {
         nowIndex: 0,
-        showVideo: false
+        showVideoPc: false,
+        showVideo: false,
+        detail: ''
       }
     },
     computed: {
@@ -89,7 +105,7 @@
         return optionDown
       },
       banners () {
-        this.showVideo = false
+        this.showVideoPc = false
         return this.detailInfo.carouselImg
       },
       videoUrl () {
@@ -105,13 +121,27 @@
         this.nowIndex = index
         this.$refs.topSwiper.swiper.slideTo(index, 1000, false)
       },
-      videoPlay () {
-        this.showVideo =!this.showVideo
-        if (this.showVideo) {
+      videoPlay (bool) {
+        if(!bool) {
+          this.showVideoPc = false
+        }
+        if (this.showVideoPc) {
           this.$refs.topSwiper.swiper.autoplay.stop();
         } else {
           this.$refs.topSwiper.swiper.autoplay.start();
         }
+      },
+      videoPlayPc (bool) {
+        this.showVideoPc =!this.showVideoPc
+        this.videoPlay (bool)
+      },
+      showMobile (item,index) {
+        this.detail = item
+        this.detail.index = index
+        this.showVideo =!this.showVideo
+      },
+      closeMobile () {
+        this.showVideo =!this.showVideo
       }
     },
     components: {
@@ -126,6 +156,14 @@
     position: relative;
     width:900px;
     top:60px;
+
+      .-p-mobile{
+        display: none;
+      }
+
+      .-p-pc{
+        display: block;
+      }
 
       .swiper-container {
         width: 100%;
@@ -257,52 +295,75 @@
 
   @media (max-width: 768px) {
     .-swiper-banner {
-      top:-20px;
-      width: 260px;
-
-      .-swiper-top {
-        height: 150px;
+      width: 100%;
+      top: 0;
+      .-m-text{
+        color: #fff;
+        font-size: 20px;
+        margin:10px;
       }
+
+      .-m-img {
+        width: 100%;
+      }
+      .-p-mobile{
+        display: block;
+
+      }
+
+      .-p-pc{
+        display: none;
+      }
+      .-m-wrap {
+        position: relative;
+       padding: 0 10px 10px 10px;
+      }
+
+      .-img-play{
+        position: absolute;
+        width: 10%;
+        top: 41%;
+        left: 45%;
+      }
+
       .-video{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0,0,0,0.8);
+        z-index: 10;
+
         .-v-play{
-          width: 265px;
-          height: 150px;
+          width: 100vw;
+          height: 32vh;
         }
         .-v-close{
-          right: -12px;
-          top: -17px;
-          width: 8%;
+          right: 20px;
+          top: 30px;
+          width: 30px;
+          z-index: 999;
+          font-size: 18px;
+          color: #fff;
         }
-      }
-      .-img-down {
-        width: 100%;
-        height: 34px
-      }
 
+        .-m-popup{
+          width: 100%;
+          position: relative;
+          top: 30%;
+        }
+        .-v-wrap{
+          position: relative;
+          top: 35%;
+        }
+
+      }
       .-img-back {
         background: rgba(0, 0, 0, 0.7);
         width: 38px;
         height: 36px;
         position: absolute;
-      }
-
-      .-swiper-down {
-        width: 100%;
-        padding: 10px 40px;
-
-      .swiper-button-prev{
-          top: 20px;
-          width: 24px!important;
-          height: 38px!important;
-          background-size: 44%
-        }
-
-        .swiper-button-next{
-          top: 20px;
-          width: 24px!important;
-          height: 38px!important;
-          background-size: 44%;
-        }
       }
     }
   }
