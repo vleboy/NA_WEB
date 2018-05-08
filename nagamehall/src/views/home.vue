@@ -139,7 +139,7 @@
     mounted () {
       $('.section').css('height',`${$(document).height()}`)
       $('.detail-bg').css('height',`${$(document).height()}`)
-
+      this.getGameHall()
       this.getIP()
     },
     methods: {
@@ -181,7 +181,6 @@
         try {
           const { data } = await axios.get('http://ext.na77.org/webapi/ipquery')
           this.loginInfo = data.payload.data.country
-          this.getGameHall()
         } catch (err) {
           alert('获取IP错误，请重新刷新')
         }
