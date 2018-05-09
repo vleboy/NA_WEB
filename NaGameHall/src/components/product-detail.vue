@@ -151,7 +151,7 @@
   }
 </script>
 
-<style lang="less" scoped>
+<style lang="less" scoped type="text/less">
   .-swiper-banner {
     position: relative;
     width:900px;
