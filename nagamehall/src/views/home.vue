@@ -10,6 +10,7 @@
           <a class="-left-icon" >
             <img :src="data.typeImg">
             <span class="-icon-no" v-if="!data.childList.length">敬请期待</span>
+            <span class="-icon-no -hover" v-if="oneInfo.id == data.id">{{data.text}}</span>
           </a>
           <div class="-left-child" :id="data.id">
             <div class="mid">
@@ -79,10 +80,12 @@
           ></vue-particles>
           <Product :recommendInfo="recommendList" @changeStatus="fromRecommend"></Product>
         </div>
-        <div class="detail-bg" v-show="isShowDetail" :style="{'background-image': 'url(' + gameInfo.bgImg + ')','background-size': 'cover'}">
+        <div class="detail-bg" v-show="isShowDetail"
+             :style="{'background-image': 'url(' + gameInfo.bgImg + ')','background-size': 'cover'}">
           <ProductDetail :detailInfo="gameInfo" ref="childClick"></ProductDetail>
         </div>
       </div>
+      <a class="right-icon" target="_blank" href="http://na77.com"><img src="/static/back.png"></a>
     </div>
   </div>
 </template>
@@ -104,25 +107,29 @@
             id: 1,
             typeImg: '../../static/new/dz/dz.png',
             gameType: '40000',
-            childList: []
+            childList: [],
+            text: '电子游戏'
           },
           {
             id: 2,
             typeImg: '../../static/new/jj/jj.png',
             gameType: '50000',
-            childList: []
+            childList: [],
+            text: '街机游戏'
           },
           {
             id: 3,
             typeImg: '../../static/new/qp/qp.png',
             gameType: '10000',
-            childList: []
+            childList: [],
+            text: '棋牌游戏'
           },
           {
             id: 4,
             typeImg: '../../static/new/zr/zr.png',
             gameType: '30000',
-            childList: []
+            childList: [],
+            text: '真人视讯'
           },
           {
             id: 5,
@@ -133,7 +140,8 @@
         ],
         recommendList: [],
         gameInfo: '',
-        gameTypeInfo: ''
+        gameTypeInfo: '',
+        oneInfo: ''
       }
     },
     mounted () {
@@ -144,6 +152,8 @@
     },
     methods: {
       showChild (bool,data) {
+        this.oneInfo = !bool ? data : ''
+
         if(!bool) {
           for (let item of this.sidebarList) {
             if (item.id == data.id) {
@@ -362,6 +372,12 @@
 
       .right-wrap{
         height: 100%;
+      }
+
+      .right-icon{
+        position: absolute;
+        right: 26px;
+        top: 26px;
       }
 
       .section{
