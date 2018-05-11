@@ -85,7 +85,7 @@
           <ProductDetail :detailInfo="gameInfo" ref="childClick"></ProductDetail>
         </div>
       </div>
-      <a class="right-icon" target="_blank" href="http://na77.com"><img src="/static/back.png"></a>
+      <a v-if="!isShowDetail" class="right-icon" target="_blank" href="http://na77.com"><img src="/static/back.png"></a>
     </div>
   </div>
 </template>
@@ -402,6 +402,13 @@
       }
       .-pc {
         display: none;
+      }
+
+      .right-icon{
+        right: -14px!important;
+        img{
+          width: 50%;
+        }
       }
 
       .-left-child{
