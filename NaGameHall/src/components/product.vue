@@ -191,7 +191,7 @@ export default {
        width: 900px;
 
       .c-text{
-        font-size: 2.3em;
+        font-size: 2em;
         font-weight: bold;
         color: #fff;
         font-family: serif;
