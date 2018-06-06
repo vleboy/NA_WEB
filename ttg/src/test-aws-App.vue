@@ -46,7 +46,7 @@ export default {
       try {
         const { data } = await axios({
           method: 'post',
-          url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
+          url: 'https://dgjmusja39cm2.cloudfront.net/gameList',
           data: {
             gameType: '1010000',
             query: {
@@ -54,8 +54,7 @@ export default {
             }
           },
           headers: {
-            'Content-type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik5BX05BMDEiLCJzdWZmaXgiOiJOQSIsInVzZXJJZCI6ODA5NjM3LCJpYXQiOjE1MTM3NTY5NzJ9.k32MLX0Fy-2TPuv48tNCvze2r1Cfy6XlX7ztucpuddA'
+            'Content-type': 'application/json'
           }
         })
         // 断线重连
@@ -121,7 +120,7 @@ export default {
     getHtmlDocName (a) {
       let str = a
       str = str.substring(str.lastIndexOf('/') + 1)
-      return 'https://d38xgux2jezyfx.cloudfront.net/' + str
+      return 'http://img.na77.com/' + str
     }
   }
 }
@@ -149,7 +148,7 @@ html, body {
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('http://d38xgux2jezyfx.cloudfront.net/lobby_bg.jpg') no-repeat;
+  background: url('http://img.na77.com/lobby_bg.jpg') no-repeat;
   background-size: cover;
   /* display: flex; */
   overflow: hidden;
@@ -178,7 +177,7 @@ img {
   top: 0;
   width: 100%;
   height: .568rem;
-  background: url('http://d38xgux2jezyfx.cloudfront.net/lobby_top.png') no-repeat;
+  background: url('http://img.na77.com/lobby_top.png') no-repeat;
   background-size: cover
 }
 
@@ -187,7 +186,7 @@ img {
   bottom: 0;
   width: 100%;
   height: .678rem;
-  background: url('http://d38xgux2jezyfx.cloudfront.net/lobby_buttom.png') no-repeat;
+  background: url('http://img.na77.com/lobby_buttom.png') no-repeat;
   background-size: cover
 }
 .lists {
