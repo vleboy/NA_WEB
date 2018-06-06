@@ -34,7 +34,7 @@ export default {
   methods: {
     getIp () {
       let _self = this
-      axios.get('https://844sz7nr7l.execute-api.ap-southeast-1.amazonaws.com/dev/ipquery')
+      axios.get('http://ext.na77.org/webapi/ipquery')
         .then(function (res) {
           _self.version = res.data.payload.version
           if(res.data.payload.data.country === '中国'){

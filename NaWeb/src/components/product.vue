@@ -39,7 +39,7 @@ export default {
   methods: {
     async clickShow (isChina, noChina) {
       try {
-        const { data } = await axios.get('https://844sz7nr7l.execute-api.ap-southeast-1.amazonaws.com/dev/ipquery')
+        const { data } = await axios.get('http://ext.na77.org/webapi/ipquery')
         if (data.payload.data.country === '中国') {
           let videoUrl = isChina
           this.$store.dispatch("showView",{ videoUrl })

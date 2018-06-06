@@ -96,7 +96,7 @@ function closeModal(){
 function getIp () {
     $.ajax({
         type : "GET",
-        url : "https://844sz7nr7l.execute-api.ap-southeast-1.amazonaws.com/dev/ipquery",
+        url : "http://ext.na77.org/webapi/ipquery",
         data : {},
         success : function(result) {//返回数据根据结果进行相应的处理
             if(result.payload.data.country === '中国') {
