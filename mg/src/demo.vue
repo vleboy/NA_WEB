@@ -47,7 +47,7 @@ export default {
       try {
         const { data } = await axios({
           method: 'post',
-          url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
+          url: 'https://dgjmusja39cm2.cloudfront.net/gameList',
           data: {
             gameType: '10300000',
             query: {
@@ -55,8 +55,7 @@ export default {
             }
           },
           headers: {
-            'Content-type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik5BX05BMDEiLCJzdWZmaXgiOiJOQSIsInVzZXJJZCI6ODA5NjM3LCJpYXQiOjE1MTM3NTY5NzJ9.k32MLX0Fy-2TPuv48tNCvze2r1Cfy6XlX7ztucpuddA'
+            'Content-type': 'application/json'
           }
         })
         const result = Array.apply(null, {
@@ -74,7 +73,7 @@ export default {
       let str = a
       str = str.substring(str.lastIndexOf('/') + 1)
       console.log(str, 'str')
-      return 'https://s3-ap-southeast-1.amazonaws.com/image-na-dev/' + str
+      return 'http://s3-ap-southeast-1.amazonaws.com/image-na-dev/' + str
     },
     async toLink (sid, gameType) {
       this.loading = true

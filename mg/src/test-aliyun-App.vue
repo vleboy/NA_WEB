@@ -46,7 +46,7 @@ export default {
       try {
         const { data } = await axios({
           method: 'post',
-          url: 'https://1fjvkx51de.execute-api.ap-southeast-1.amazonaws.com/dev/gameList',
+          url: 'https://dgjmusja39cm2.cloudfront.net/gameList',
           data: {
             gameType: '10300000',
             query: {
@@ -54,8 +54,7 @@ export default {
             }
           },
           headers: {
-            'Content-type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6Ik5BX05BMDEiLCJzdWZmaXgiOiJOQSIsInVzZXJJZCI6ODA5NjM3LCJpYXQiOjE1MTM3NTY5NzJ9.k32MLX0Fy-2TPuv48tNCvze2r1Cfy6XlX7ztucpuddA'
+            'Content-type': 'application/json'
           }
         })
         // 断线重连
