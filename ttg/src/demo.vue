@@ -118,7 +118,8 @@ ul li {
 }
 a {
   text-decoration: none;
-  -webkit-tap-highlight-color:transparent
+  -webkit-tap-highlight-color:transparent;
+  display: block;
 }
 
 img {
@@ -150,7 +151,7 @@ img {
   padding-left: .20834rem;
   overflow-x: auto;
   overflow-y: hidden;
-  position: absolute;
+  position: fixed;
   top: 50%;
 }
 
