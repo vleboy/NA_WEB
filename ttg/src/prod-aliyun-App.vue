@@ -215,6 +215,8 @@ img {
   overflow-y: hidden;
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
+
 }
 
 /* .lists ul li {
