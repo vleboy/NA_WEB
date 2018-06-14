@@ -3,9 +3,9 @@
 import Vue from 'vue'
 // import App from './test-aliyun-App'
 // import App from './test-aws-App'
-import App from './prod-aliyun-App'
+// import App from './prod-aliyun-App'
 // import App from './prod-aws-App'
-// import App from './demo.vue'
+import App from './demo'
 
 import 'amfe-flexible'
 import VueLazyload from 'vue-lazyload'

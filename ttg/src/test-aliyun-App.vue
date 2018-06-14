@@ -154,6 +154,7 @@ body {
   background-size: cover;
   /* display: flex;  */
   overflow: hidden;
+  position: relative;
 }
 ul {
   list-style: none;
@@ -197,7 +198,7 @@ img {
   overflow-y: hidden;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%)
+  transform: translateY(-50%);
 }
 /* .lists ul li {
   width: 360px;

@@ -104,8 +104,9 @@ html, body {
   height: 100%;
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
-  /* display: flex; */
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
 }
 ul {
   list-style: none;
@@ -118,7 +119,8 @@ ul li {
 }
 a {
   text-decoration: none;
-  -webkit-tap-highlight-color:transparent
+  -webkit-tap-highlight-color:transparent;
+  display: block;
 }
 
 img {
@@ -144,15 +146,14 @@ img {
   background-size: cover
 }
 .lists {
-  /* display: flex; */
   box-sizing:border-box;
   width: 100%;
   padding-left: .20834rem;
   overflow-x: auto;
   overflow-y: hidden;
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%)
+	top: 50%;
+  transform: translateY(-50%);
 }
 
 /* .lists ul li {
