@@ -105,8 +105,6 @@ html, body {
   background: url('http://app.risheng3d.com/game/ttggame/lobby_bg.jpg') no-repeat;
   background-size: cover;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
 }
 ul {
   list-style: none;
