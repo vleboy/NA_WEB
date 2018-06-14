@@ -149,9 +149,9 @@ img {
   padding-left: .20834rem;
   overflow-x: auto;
   overflow-y: hidden;
-  position: absolute;
+  /* position: absolute;
 	top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%); */
 }
 
 /* .lists ul li {
