@@ -140,7 +140,7 @@ html, body {
   background-color: rgb(29, 0, 0);
   position:fixed;
   overflow-y:hidden;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
 }
 
