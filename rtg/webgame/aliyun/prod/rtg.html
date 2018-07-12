@@ -138,61 +138,71 @@
     if (r != null) return unescape(r[2]);
     return null;
   }
-  const userId=GetQueryString('userId')
-  const token=GetQueryString('token')
-  const loading=document.querySelector('#loading')
-    window.onload=function(){
-        loading.style.display = 'block'
-        axios({
-          method: "post",
-          url: 'https://n1game.na12345.com/gameList',
-          data: {
-            gameType: "1140000",
-            query: {
-              gameStatus: 1
-            }
-          },
-        //     gameType: "1010000",
-          headers: {
-            "Content-type": "application/json"
-          }
-        }).then(res => {
-          const data = res.data.payload;
-          let len=Math.ceil(data.length/2)
-          const arr1=data.slice(0,len)
-          const arr2 =data.slice(len)
-          let str1 = ``;
-          let str2=``;
-          for (let item of arr1) {
-              let gameurl=item.gameLink
-              let sid=item.kindId
-              let newstr= gameurl.replace(/:userId/,userId)
-              let result= newstr.replace(/:token/,token)
-            str1 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
-          }
-          for (let item of arr2) {
-            let gameurl=item.gameLink
-            let sid=item.kindId
-            let newstr= gameurl.replace(/:userId/,userId)
-            let result= newstr.replace(/:token/,token)
-            str2 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
-          }
-          let ul1 = document.querySelector('#gameList1')
-          let ul2 = document.querySelector('#gameList2')
-          ul1.innerHTML = str1
-          ul2.innerHTML=str2
-          const gameItem=document.querySelectorAll('.game')
-          for (let item of gameItem){
-              item.addEventListener('click',(event)=>{
-                  let url=event.target.getAttribute('data-url')
-                  let sid=event.target.getAttribute('data-sid')
-                  window.location.href=`rtg_detail.html?gameurl=${url}&sid=${sid}&userId=${userId}&token=${token}&fullscreen=true`
-              })
-          }
-        }).finally(()=>{
-          loading.style.display='none'
-        })
+  var userId = GetQueryString('userId')
+  var token = GetQueryString('token')
+  var loading = document.querySelector('#loading')
+  window.onload = function () {
+    loading.style.display = 'block'
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', 'https://dgjmusja39cm2.cloudfront.net/gameList', true)
+    xhr.setRequestHeader('Content-type', 'application/json')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        var res = JSON.parse(xhr.responseText)
+        var data = res.payload
+        var len = Math.ceil(data.length / 2)
+        var arr1 = data.slice(0, len)
+        var arr2 = data.slice(len)
+        var str1 = ''
+        var str2 = ''
+        for (var i = 0; i < arr1.length; i++) {
+          var item = arr1[i]
+          var gameurl = item.gameLink
+          var sid = item.kindId
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
+          str1 +=
+            '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
+            .gameImgAli + ' alt="oops"></a></li>'
+        }
+        for (var i = 0; i < arr2.length; i++) {
+          var item = arr2[i]
+          var gameurl = item.gameLink
+          var sid = item.kindId
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
+          str2 +=
+            '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
+            .gameImgAli + ' alt="oops"></a></li>'
+        }
+        var ul1 = document.getElementById('gameList1')
+        var ul2 = document.getElementById('gameList2')
+        ul1.innerHTML = str1
+        ul2.innerHTML = str2
+        var gameItem = document.getElementsByClassName('game')
+        for (var i = 0; i < gameItem.length; i++) {
+          var item = gameItem[i]
+          item.addEventListener('click', function (event) {
+            var url = event.target.getAttribute('data-url')
+            var sid = event.target.getAttribute('data-sid')
+            window.location.href =
+              'rtg_detail.html?gameurl=' + url + '&sid=' + sid + '&userId=' + userId + '&token=' + token +
+              '&fullscreen=true'
+          })
+        }
+        loading.style.display = 'none'
+
+      }
     }
+    var sendData = {
+      gameType: "1140000",
+      query: {
+        gameStatus: 1
+      }
+    }
+    //将用户输入值序列化成字符串
+    xhr.send(JSON.stringify(sendData));
+  }
 
 </script>
 
