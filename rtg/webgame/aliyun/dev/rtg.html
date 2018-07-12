@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="full-screen" content="yes">
+  <title>game-list</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      height: 1px;
+    }
+
+    html,
+    body {
+      background-color: rgb(29, 0, 0);
+      position: fixed;
+      overflow-y: hidden;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: url("http://app.risheng3d.com/game/ttggame/lobby_bg.jpg") no-repeat;
+      background-size: cover;
+      /* display: flex; */
+      overflow: hidden;
+    }
+
+   ul {
+      list-style: none;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    ul li {
+      width: 3.875rem;
+      padding: 4px;
+    }
+
+    a {
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      width: 100%;
+      /* height: 100%; */
+    }
+
+    .lists {
+      /* display: flex; */
+      box-sizing: border-box;
+      /* width: 100%; */
+      padding-left: 0.20834rem;
+      padding-right: 0.20834rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .animations {
+      animation: bounceRight 1s ease both;
+    }
+
+    @keyframes bounceRight {
+      0% {
+        opacity: 0;
+        transform: translateX(50%) translateY(-50%);
+        -webkit-transform: translateX(50%) translateY(-50%);
+      }
+      20% {
+        opacity: 0;
+        transform: translateX(40%) translateY(-50%);
+        -webkit-transform: translateX(40%) translateY(-50%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%);
+        -webkit-transform: translateX(0) translateY(-50%);
+      }
+    }
+    .loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3)
+  }
+
+  .loading-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+  }
+
+  .loading .loading-img img {
+    width: 100%;
+    height: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="lists animations">
+      <ul id='gameList1'></ul>
+      <ul id='gameList2'></ul>
+    </div>
+    <div id="loading" class="loading">
+      <div class="loading-img">
+        <img src="http://app.risheng3d.com/game/ttggame/TTG_loading.gif">
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+  }
+  const userId=GetQueryString('userId')
+  const token=GetQueryString('token')
+  const loading=document.querySelector('#loading')
+    window.onload=function(){
+        loading.style.display = 'block'
+        axios({
+          method: "post",
+          url: 'https://dgjmusja39cm2.cloudfront.net/gameList',
+          data: {
+            gameType: "1140000",
+            query: {
+              gameStatus: 1
+            }
+          },
+        //     gameType: "1010000",
+          headers: {
+            "Content-type": "application/json"
+          }
+        }).then(res => {
+          const data = res.data.payload;
+          let len=Math.ceil(data.length/2)
+          const arr1=data.slice(0,len)
+          const arr2 =data.slice(len)
+          let str1 = ``;
+          let str2=``;
+          for (let item of arr1) {
+              let gameurl=item.gameLink
+              let sid=item.kindId
+              let newstr= gameurl.replace(/:userId/,userId)
+              let result= newstr.replace(/:token/,token)
+            str1 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
+          }
+          for (let item of arr2) {
+            let gameurl=item.gameLink
+            let sid=item.kindId
+            let newstr= gameurl.replace(/:userId/,userId)
+            let result= newstr.replace(/:token/,token)
+            str2 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
+          }
+          let ul1 = document.querySelector('#gameList1')
+          let ul2 = document.querySelector('#gameList2')
+          ul1.innerHTML = str1
+          ul2.innerHTML=str2
+          const gameItem=document.querySelectorAll('.game')
+          for (let item of gameItem){
+              item.addEventListener('click',(event)=>{
+                  let url=event.target.getAttribute('data-url')
+                  let sid=event.target.getAttribute('data-sid')
+                  this.location=`rtg_detail.html?gameurl=${url}&sid=${sid}&userId=${userId}&token=${token}`
+              })
+          }
+        }).finally(()=>{
+          loading.style.display='none'
+        })
+    }
+
+</script>
+
+</html>

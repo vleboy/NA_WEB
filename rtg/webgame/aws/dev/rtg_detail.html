@@ -1,0 +1,410 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">  
+  <title>RTG</title>
+</head>
+<style type="text/css">
+  * {
+    margin: 0;
+  }
+
+  html {
+    font-size: 20px;
+  }
+
+  @media only screen and (min-width: 401px) {
+    html {
+      font-size: 25px !important;
+    }
+  }
+
+  @media only screen and (min-width: 428px) {
+    html {
+      font-size: 26.75px !important;
+    }
+  }
+
+  @media only screen and (min-width: 481px) {
+    html {
+      font-size: 30px !important;
+    }
+  }
+
+  @media only screen and (min-width: 569px) {
+    html {
+      font-size: 35px !important;
+    }
+  }
+
+  @media only screen and (min-width: 641px) {
+    html {
+      font-size: 40px !important;
+    }
+  }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  div {
+    width: 100%;
+    height: 100%;
+    position: relative
+  }
+
+  iframe {
+    width: 100vw;
+    height: 100vh
+  }
+
+  .my-alert {
+    display: none;
+    text-align: center;
+    width: 8.68rem;
+    height: 4.38rem;
+    background: url(http://img.na77.com/TTG_tanchuangdikuang.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+  }
+
+  .close-icon {
+    display: inline-block;
+    width: 0.47rem;
+    height: 0.48rem;
+    background: url(http://img.na77.com/TTG_guanbi.png) no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    position: absolute;
+    right: 2%;
+    top: 5%;
+  }
+
+  .alert-context {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+  }
+
+  .clearFix:after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both
+  }
+
+  .clearFix {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.82rem;
+  }
+
+  .alert-cancel {
+    float: left;
+    margin-left: 10%;
+    width: 2.03rem;
+    height: 0.66rem;
+    background: url(http://img.na77.com/TTG_anniuheise.png) no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    z-index: 999
+  }
+
+  .alert-confirm {
+    float: right;
+    margin-right: 10%;
+    width: 2.03rem;
+    height: 0.66rem;
+    background: url(http://img.na77.com/TTG_anniuhongse.png) no-repeat;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    z-index: 999
+  }
+
+  span {
+    font-size: 0.3rem
+  }
+
+  .loading {
+    display: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .3)
+  }
+
+  .loading-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+  }
+
+  .loading .loading-img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  i {
+    font-style: normal;
+  }
+</style>
+
+<body>
+  <div>
+    <iframe id="iframe" frameborder="0" scrolling="no" style="display:block;"></iframe>
+    <div class="my-alert" id="my-alert">
+      <i class="close-icon" id="close-icon"></i>
+      <span class="alert-context">确认退出游戏?</span>
+      <div class="clearFix">
+        <i class="alert-cancel" id="alert-cancel" style="position: relative;">
+          <span class="alert-context">取消</span>
+        </i>
+        <i class="alert-confirm" id="alert-confirm" style="position: relative;">
+          <span class="alert-context">确认</span>
+        </i>
+      </div>
+    </div>
+    <div id="loading" class="loading">
+      <div class="loading-img">
+        <img src="http://img.na77.com/TTG_loading.gif">
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+  }
+  const userId = GetQueryString('userId');              // NA玩家ID
+  // 退出需要的参数
+  const sid = GetQueryString('sid');              // sid
+  const token = GetQueryString('token');            // NA玩家TOKEN
+  const gameurl = GetQueryString('gameurl');            // MG的具体游戏链接
+  // console.log(decodeURIComponent(gameurl));
+  // console.log('token',token);
+  // console.log(sid);
+  // console.log(userId);
+  // 打开RTG具体游戏
+  const iframe = document.getElementById('iframe');
+  // console.log(iframe.data)
+  // iframe.data = decodeURIComponent(gameurl);
+  iframe.setAttribute('src', decodeURIComponent(gameurl))
+
+  // 退出游戏链接
+  const logouturl = 'http://ext.na77.org/rtg/logout/' + userId + '/' + sid;
+
+  // 弹框
+  const myAlert = document.getElementById('my-alert')
+  const close = document.getElementById('close-icon')
+  const cancel = document.getElementById('alert-cancel')
+  const confirm = document.getElementById('alert-confirm')
+  const loading = document.getElementById('loading')
+  close.onclick = function () {
+    myAlert.style.display = 'none';
+  }
+  cancel.onclick = function () {
+    myAlert.style.display = 'none';
+  }
+  confirm.onclick = function () {
+    myAlert.style.display = 'none'
+    loading.style.display = 'block'
+    var ajax = new XMLHttpRequest();
+    ajax.open('get', logouturl);
+    ajax.send();
+    ajax.onreadystatechange = function () {
+      if (ajax.status == 200 && ajax.readyState == 4) {
+        if (ajax.responseText) {
+          var result = JSON.parse(ajax.responseText)
+          if (result.code == 0) {
+            // window.location.href = "uniwebview://www.baidu.com?key=value&anotherKey=anotherValue"
+            window.location.href = "rtg.html?userId=" + userId +  "&token=" + token
+            // window.location.href = "http://web.risheng3d.com/rtg.html?userId=" + userId +  "&token=" + token
+            loading.style.display = 'none'
+          } else {
+            loading.style.display = 'none'
+            alert(result.msg)
+          }
+        }
+      } else if (ajax.status != 200) {
+        loading.style.display = 'none'
+        alert('退出失败！请重试')
+      }
+    }
+  }
+
+
+  // 生成按钮
+  var new_element_N = document.createElement("style");
+  new_element_N.innerHTML = '#drager {' +
+    '   position: fixed;' +
+    '   width: 1.3125rem;' +
+    '   height: 0.875rem;' +
+    '   background-color: rgba(0, 0, 0, 0.5);' +
+    '   z-index: 10000;' +
+    '   cursor: pointer;' +
+    '   top: 300px;' +
+    '   left: -300px;' +
+    '   border-radius: 30%;' +
+    '   padding: 6px;' +
+    ' }' +
+    ' ' +
+    ' #drager>div {' +
+    '   border-radius: 50%;' +
+    '   width: 100%;' +
+    '   height: 100%;' +
+    '   background: url(http://img.na77.com/TTG_fanhui.png);' +
+    '   background-size:100% 100%;' +
+    '   transition: all 0.2s;' +
+    '  -webkit-transition: all 0.2s;' +
+    '  -moz-transition: all 0.2s;' +
+    '  -o-transition: all 0.2s;' +
+    ' }' +
+    ' #drager:hover>div{' +
+    '   background-color: rgba(0, 0, 0, 0.8);' +
+    ' } ';
+  document.body.appendChild(new_element_N);
+  new_element_N = document.createElement('div');
+  new_element_N.setAttribute("id", "drager");
+  new_element_N.style.top = "0px";
+  new_element_N.style.left = "20px";
+  new_element_N.innerHTML = ' <div></div>';
+  document.body.appendChild(new_element_N);
+  var posX;
+  var posY;
+  var screenWidth = document.documentElement.clientWidth;
+  var screenHeight = document.documentElement.clientHeight;
+  var fdiv = document.getElementById("drager");
+  fdiv.onmousedown = function (e) {
+    fdiv.style.backgroundColor = "rgba(0, 0, 0, 0.2)"
+    screenWidth = document.documentElement.clientWidth;
+    screenHeight = document.documentElement.clientHeight;
+    if (!e) { e = window.event; } //IE
+    posX = e.clientX - parseInt(fdiv.style.left);
+    posY = e.clientY - parseInt(fdiv.style.top);
+    document.onmousemove = mousemove;
+  }
+  fdiv.touchstart = function () {
+  }
+  fdiv.onclick = function () {
+    myAlert.style.display = 'block';
+  }
+  document.onmouseup = function ()//释放时自动贴到最近位置
+  {
+    document.onmousemove = null;
+    if ((parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight) / 2) <= (screenHeight / 2)) {//在上半部分
+      if ((parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2) <= (screenWidth / 2)) {//在左半部分
+        if ((parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight) / 2) <= (parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2)) {//靠近上方
+          fdiv.style.top = "0px";
+        } else {//靠近左边
+          fdiv.style.left = "0px";
+        }
+      } else {//在右半部分
+        if ((parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight) / 2) <= (screenWidth - (parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2))) {//靠近上方
+          fdiv.style.top = "0px";
+        } else {//靠近右边
+          fdiv.style.left = (screenWidth - parseInt(fdiv.clientWidth)) + "px";
+        }
+      }
+    } else { //下半部分
+      if ((parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2) <= (screenWidth / 2)) {//在左半部分
+        if ((screenHeight - (parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight) / 2)) <= (parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2)) {//靠近下方
+          fdiv.style.top = (screenHeight - parseInt(fdiv.clientHeight)) + "px";
+        } else {//靠近左边
+          fdiv.style.left = "0px";
+        }
+      } else {//在右半部分
+        if ((screenHeight - (parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight) / 2)) <= (screenWidth - (parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth) / 2))) {//靠近上方
+          fdiv.style.top = (screenHeight - parseInt(fdiv.clientHeight)) + "px";
+        } else {//靠近右边
+          fdiv.style.left = (screenWidth - parseInt(fdiv.clientWidth)) + "px";
+        }
+      }
+    }
+    fdiv.style.backgroundColor = "rgba(0, 0, 0, 0.6)"
+  }
+  function mousemove(ev) {
+    if (ev == null) { ev = window.event; }//IE
+    if ((ev.clientY - posY) <= 0) {//超过顶部
+      fdiv.style.top = "0px";
+    } else if ((ev.clientY - posY) > (screenHeight - parseInt(fdiv.clientHeight))) {//超过底部
+      fdiv.style.top = (screenHeight - parseInt(fdiv.clientHeight)) + "px";
+    } else {
+      fdiv.style.top = (ev.clientY - posY) + "px";
+    }
+
+    if ((ev.clientX - posX) <= 0) {//超过左边
+      fdiv.style.left = "0px";
+    } else if ((ev.clientX - posX) > (screenWidth - parseInt(fdiv.clientWidth))) {//超过右边
+      fdiv.style.left = (screenWidth - parseInt(fdiv.clientWidth)) + "px";
+    } else {
+      fdiv.style.left = (ev.clientX - posX) + "px";
+    }
+    // console.log( posX +" "+ fdiv.style.left);
+
+  }
+  window.onload = window.onresize = function () { //窗口大小改变事件
+    screenWidth = document.documentElement.clientWidth;
+    screenHeight = document.documentElement.clientHeight;
+    if ((parseInt(fdiv.style.top) + parseInt(fdiv.clientHeight)) > screenHeight) {//窗口改变适应超出的部分
+      fdiv.style.top = (screenHeight - parseInt(fdiv.clientHeight)) + "px";
+    }
+    if ((parseInt(fdiv.style.left) + parseInt(fdiv.clientWidth)) > screenWidth) {//窗口改变适应超出的部分
+      fdiv.style.left = (screenWidth - parseInt(fdiv.clientWidth)) + "px";
+    }
+    document.onmouseup.apply()
+  };
+  fdiv.addEventListener('touchstart', fdiv.onmousedown, false);
+  fdiv.addEventListener('touchmove', function (event) {
+    // 如果这个元素的位置内只有一个手指的话
+    if (event.targetTouches.length == 1) {
+      event.preventDefault();// 阻止浏览器默认事件，重要 
+      var touch = event.targetTouches[0];
+      if ((touch.pageY) <= 0) {//超过顶部
+        fdiv.style.top = "0px";
+      } else if (touch.pageY > (screenHeight - parseInt(fdiv.clientHeight))) {//超过底部
+        fdiv.style.top = (screenHeight - parseInt(fdiv.clientHeight)) + "px";
+      } else {
+        fdiv.style.top = (touch.pageY - parseInt(fdiv.clientHeight) / 2) + "px";
+      }
+
+      if (touch.pageX <= 0) {//超过左边
+        fdiv.style.left = "0px";
+      } else if (touch.pageX > (screenWidth - parseInt(fdiv.clientWidth))) {//超过右边
+        fdiv.style.left = (screenWidth - parseInt(fdiv.clientWidth)) + "px";
+      } else {
+        fdiv.style.left = (touch.pageX - parseInt(fdiv.clientWidth) / 2) + "px";
+      }
+    }
+  }, false);
+  fdiv.addEventListener('touchend', document.onmouseup, false);    
+</script>
+
+</html>
