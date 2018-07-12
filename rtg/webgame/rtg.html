@@ -44,7 +44,7 @@
     }
 
     ul li {
-      width: 3.875rem;
+      width: 5.875rem;
       padding: 4px;
     }
 
@@ -192,7 +192,7 @@
               item.addEventListener('click',(event)=>{
                   let url=event.target.getAttribute('data-url')
                   let sid=event.target.getAttribute('data-sid')
-                  window.location.href=`rtg_detail.html?gameurl=${url}&sid=${sid}&userId=${userId}&token=${token}`
+                  window.location.href=`rtg_detail.html?gameurl=${url}&sid=${sid}&userId=${userId}&token=${token}&fullscreen=true`
               })
           }
         }).finally(()=>{

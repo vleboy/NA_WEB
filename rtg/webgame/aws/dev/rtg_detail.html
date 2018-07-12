@@ -245,7 +245,7 @@
           var result = JSON.parse(ajax.responseText)
           if (result.code == 0) {
             // window.location.href = "uniwebview://www.baidu.com?key=value&anotherKey=anotherValue"
-            window.location.href = "rtg.html?userId=" + userId +  "&token=" + token
+            window.location.href = "rtg.html?fullscreen=false&userId=" + userId +  "&token=" + token
             // window.location.href = "http://web.risheng3d.com/rtg.html?userId=" + userId +  "&token=" + token
             loading.style.display = 'none'
           } else {
