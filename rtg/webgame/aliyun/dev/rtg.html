@@ -140,7 +140,7 @@
   }
   var userId = GetQueryString('userId')
   var token = GetQueryString('token')
-  var loading = document.querySelector('#loading')
+  var loading = document.getElementById('loading')
   window.onload = function () {
     loading.style.display = 'block'
     var xhr = new XMLHttpRequest();
