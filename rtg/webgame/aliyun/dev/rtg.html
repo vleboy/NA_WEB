@@ -163,17 +163,17 @@
           var result = newstr.replace(/:token/, token)
           str1 +=
             '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
-            .gameImgAli + ' alt="oops"></a></li>'
+              .gameImgAli + ' alt="oops"></a></li>'
         }
         for (var i = 0; i < arr2.length; i++) {
           var item = arr2[i]
           var gameurl = item.gameLink
           var sid = item.kindId
-          // var newstr = gameurl.replace(/:userId/, userId)
-          // var result = newstr.replace(/:token/, token)
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
           str2 +=
             '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
-            .gameImgAli + ' alt="oops"></a></li>'
+              .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
         var ul2 = document.getElementById('gameList2')
@@ -185,9 +185,8 @@
           item.addEventListener('click', function (event) {
             var url = event.target.getAttribute('data-url')
             var sid = event.target.getAttribute('data-sid')
-            window.location.href =
-              'rtg_detail.html?gameurl=' + url + '&sid=' + sid + '&userId=' + userId + '&token=' + token +
-              '&fullscreen=true'
+            // window.location.href = 'rtg_detail.html?gameurl=' + url + '&sid=' + sid + '&userId=' + userId + '&token=' + token + '&fullscreen=true'
+            window.location.href = url
           })
         }
         loading.style.display = 'none'
