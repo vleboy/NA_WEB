@@ -168,14 +168,14 @@
               let sid=item.kindId
               let newstr= gameurl.replace(/:userId/,userId)
               let result= newstr.replace(/:token/,token)
-            str1 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImg} alt='oops'></a></li>`
+            str1 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
           }
           for (let item of arr2) {
             let gameurl=item.gameLink
             let sid=item.kindId
             let newstr= gameurl.replace(/:userId/,userId)
             let result= newstr.replace(/:token/,token)
-            str2 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImg} alt='oops'></a></li>`
+            str2 += `<li><a href="javascript:;"><img data-url=${result} data-sid=${sid} class='game' src=${item.gameImgAli} alt='oops'></a></li>`
           }
           let ul1 = document.querySelector('#gameList1')
           let ul2 = document.querySelector('#gameList2')
