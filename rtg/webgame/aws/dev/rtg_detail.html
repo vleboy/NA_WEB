@@ -203,30 +203,30 @@
     var r = window.location.search.substr(1).match(reg);
     if (r != null) return unescape(r[2]); return null;
   }
-  const userId = GetQueryString('userId');              // NA玩家ID
+  var  userId = GetQueryString('userId');              // NA玩家ID
   // 退出需要的参数
-  const sid = GetQueryString('sid');              // sid
-  const token = GetQueryString('token');            // NA玩家TOKEN
-  const gameurl = GetQueryString('gameurl');            // MG的具体游戏链接
+  var  sid = GetQueryString('sid');              // sid
+  var  token = GetQueryString('token');            // NA玩家TOKEN
+  var  gameurl = GetQueryString('gameurl');            // MG的具体游戏链接
   // console.log(decodeURIComponent(gameurl));
   // console.log('token',token);
   // console.log(sid);
   // console.log(userId);
   // 打开RTG具体游戏
-  const iframe = document.getElementById('iframe');
+  var  iframe = document.getElementById('iframe');
   // console.log(iframe.data)
   // iframe.data = decodeURIComponent(gameurl);
   iframe.setAttribute('src', decodeURIComponent(gameurl))
 
   // 退出游戏链接
-  const logouturl = 'http://ext.na77.org/rtg/logout/' + userId + '/' + sid;
+  var  logouturl = 'http://ext.na77.org/rtg/logout/' + userId + '/' + sid;
 
   // 弹框
-  const myAlert = document.getElementById('my-alert')
-  const close = document.getElementById('close-icon')
-  const cancel = document.getElementById('alert-cancel')
-  const confirm = document.getElementById('alert-confirm')
-  const loading = document.getElementById('loading')
+  var  myAlert = document.getElementById('my-alert')
+  var  close = document.getElementById('close-icon')
+  var  cancel = document.getElementById('alert-cancel')
+  var  confirm = document.getElementById('alert-confirm')
+  var  loading = document.getElementById('loading')
   close.onclick = function () {
     myAlert.style.display = 'none';
   }

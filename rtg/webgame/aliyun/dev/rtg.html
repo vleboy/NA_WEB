@@ -175,11 +175,11 @@
             '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
             .gameImgAli + ' alt="oops"></a></li>'
         }
-        var ul1 = document.querySelector('#gameList1')
-        var ul2 = document.querySelector('#gameList2')
+        var ul1 = document.getElementById('gameList1')
+        var ul2 = document.getElementById('gameList2')
         ul1.innerHTML = str1
         ul2.innerHTML = str2
-        var gameItem = document.querySelectorAll('.game')
+        var gameItem = document.getElementsByClassName('game')
         for (var i = 0; i < gameItem.length; i++) {
           var item = gameItem[i]
           item.addEventListener('click', function (event) {
