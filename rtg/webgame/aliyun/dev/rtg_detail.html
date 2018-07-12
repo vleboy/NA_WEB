@@ -209,6 +209,8 @@
   var sid = GetQueryString('sid'); // sid
   var token = GetQueryString('token'); // NA玩家TOKEN
   var gameurl = GetQueryString('gameurl'); // MG的具体游戏链接
+  var newstr = gameurl.replace(/:userId/, userId)
+  var result = newstr.replace(/:token/, token)
   // console.log(decodeURIComponent(gameurl));
   // console.log('token',token);
   // console.log(sid);
@@ -217,7 +219,7 @@
   var iframe = document.getElementById('iframe');
   // console.log(iframe.data)
   // iframe.data = decodeURIComponent(gameurl);
-  iframe.setAttribute('src', decodeURIComponent(gameurl))
+  iframe.setAttribute('src', decodeURIComponent(result))
 
   // 退出游戏链接
   var logouturl = 'http://ext.na77.org/rtg/logout/' + userId + '/' + sid;
