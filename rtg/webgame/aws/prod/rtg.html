@@ -130,7 +130,6 @@
     </div>
   </div>
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
     function GetQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -144,7 +143,7 @@
   window.onload = function () {
     loading.style.display = 'block'
     var xhr = new XMLHttpRequest();
-    xhr.open('post', 'https://dgjmusja39cm2.cloudfront.net/gameList', true)
+    xhr.open('post', 'https://n1game.na12345.com/gameList', true)
     xhr.setRequestHeader('Content-type', 'application/json')
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
