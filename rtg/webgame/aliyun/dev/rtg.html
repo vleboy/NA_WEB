@@ -162,7 +162,7 @@
           var result = newstr.replace(/:token/, token)
           str1 +=
             '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
-              .gameImgAli + ' alt="oops"></a></li>'
+            .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
         ul1.innerHTML = str1
@@ -173,9 +173,9 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str2 +=
-          '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
             .gameImgAli + ' alt="oops"></a></li>'
-          }
+        }
         // var ul1 = document.getElementById('gameList1')
         var ul2 = document.getElementById('gameList2')
         ul2.innerHTML = str2
@@ -186,8 +186,7 @@
             var url = event.target.getAttribute('data-url')
             // var sid = event.target.getAttribute('data-sid')
             // window.location.href = 'rtg_detail.html?gameurl=' + url + '&sid=' + sid + '&userId=' + userId + '&token=' + token + '&fullscreen=true'
-            var oldurl=locaion.href
-            window.location.href = url+'?returnurl='+oldurl
+            window.location.href = url 
           })
         }
       }
