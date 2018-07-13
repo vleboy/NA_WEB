@@ -44,7 +44,7 @@
     }
 
     ul li {
-      width: 5.875rem;
+      width: 9rem;
       padding: 4px;
     }
 
@@ -158,26 +158,25 @@
         for (var i = 0; i < arr1.length; i++) {
           var item = arr1[i]
           var gameurl = item.gameLink
-          var sid = item.kindId
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str1 +=
-            '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
-              .gameImgAli + ' alt="oops"></a></li>'
-        }
-        for (var i = 0; i < arr2.length; i++) {
-          var item = arr2[i]
-          var gameurl = item.gameLink
-          var sid = item.kindId
-          var newstr = gameurl.replace(/:userId/, userId)
-          var result = newstr.replace(/:token/, token)
-          str2 +=
-            '<li><a href="javascript:;"><img data-url=' + result + ' data-sid=' + sid + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
-        var ul2 = document.getElementById('gameList2')
         ul1.innerHTML = str1
+        loading.style.display = 'none'
+        for (var i = 0; i < arr2.length; i++) {
+          var item = arr2[i]
+          var gameurl = item.gameLink
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
+          str2 +=
+            '<li><a href="javascript:;"><img data-url=' + result +' class="game" src=' + item
+              .gameImgAli + ' alt="oops"></a></li>'
+        }
+        var ul2 = document.getElementById('gameList2')
         ul2.innerHTML = str2
         var gameItem = document.getElementsByClassName('game')
         for (var i = 0; i < gameItem.length; i++) {
@@ -189,7 +188,6 @@
             window.location.href = url
           })
         }
-        loading.style.display = 'none'
 
       }
     }
