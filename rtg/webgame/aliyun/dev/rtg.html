@@ -186,7 +186,8 @@
             var url = event.target.getAttribute('data-url')
             // var sid = event.target.getAttribute('data-sid')
             // window.location.href = 'rtg_detail.html?gameurl=' + url + '&sid=' + sid + '&userId=' + userId + '&token=' + token + '&fullscreen=true'
-            window.location.href = url
+            var oldurl=locaion.href
+            window.location.href = url+'?returnurl='+oldurl
           })
         }
       }
