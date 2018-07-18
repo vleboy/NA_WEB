@@ -173,7 +173,7 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str2 +=
-            '<li><a href="javascript:;"><img data-url=' + result +' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul2 = document.getElementById('gameList2')
@@ -188,7 +188,6 @@
             window.location.href = url
           })
         }
-
       }
     }
     var sendData = {
@@ -198,9 +197,8 @@
       }
     }
     //将用户输入值序列化成字符串
-    xhr.send(JSON.stringify(sendData));
+    xhr.send(JSON.stringify(sendData))
   }
-
 </script>
 
 </html>

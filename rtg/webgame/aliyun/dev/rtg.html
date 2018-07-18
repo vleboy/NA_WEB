@@ -176,7 +176,6 @@
             '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
             .gameImgAli + ' alt="oops"></a></li>'
         }
-        // var ul1 = document.getElementById('gameList1')
         var ul2 = document.getElementById('gameList2')
         ul2.innerHTML = str2
         var gameItem = document.getElementsByClassName('game')
@@ -198,7 +197,7 @@
       }
     }
     //将用户输入值序列化成字符串
-    xhr.send(JSON.stringify(sendData));
+    xhr.send(JSON.stringify(sendData))
   }
 </script>
 
