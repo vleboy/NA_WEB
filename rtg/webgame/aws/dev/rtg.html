@@ -161,7 +161,7 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str1 +=
-            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + ' data-sid=' + item.kindId + ' data-url=' + result + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
@@ -173,7 +173,7 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str2 +=
-            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + ' data-sid=' + item.kindId + ' data-url=' + result + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul2 = document.getElementById('gameList2')
@@ -182,15 +182,8 @@
         for (var i = 0; i < gameItem.length; i++) {
           var item = gameItem[i]
           item.addEventListener('click', function (event) {
-            if (userId) {
-              var url = event.target.getAttribute('data-url')
-              window.location.href = url
-            } else {
-              var gameType = event.target.getAttribute('data-gameType')
-              var sid = event.target.getAttribute('data-sid')
-              var machId = parseInt(sid) - parseInt(gameType)
-              window.location.href = 'https://sandbox04app.rt-services.co:2072/lobby.aspx?cdkModule=gameLauncher&skinid=2&user=&forReal=False&token=&gameId=18&machId=' + machId + '&width=auto&height=auto'
-            }
+            var url = event.target.getAttribute('data-url')
+            window.location.href = url
           })
         }
       }
