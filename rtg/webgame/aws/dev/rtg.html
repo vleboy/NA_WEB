@@ -161,7 +161,7 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str1 +=
-            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + 'data-sid=' + item.kindId + 'data-url=' + result + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + ' data-sid=' + item.kindId + ' data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
@@ -173,7 +173,7 @@
           var newstr = gameurl.replace(/:userId/, userId)
           var result = newstr.replace(/:token/, token)
           str2 +=
-            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + 'data-sid=' + item.kindId + 'data-url=' + result + ' class="game" src=' + item
+            '<li><a href="javascript:;"><img data-gameType=' + item.gameType + ' data-sid=' + item.kindId + ' data-url=' + result + ' class="game" src=' + item
               .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul2 = document.getElementById('gameList2')
