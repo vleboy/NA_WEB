@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="full-screen" content="yes">
+  <title>game-list</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ::-webkit-scrollbar {
+      width: 0px;
+      height: 1px;
+    }
+
+    html,
+    body {
+      background-color: rgb(29, 0, 0);
+      position: fixed;
+      overflow-y: hidden;
+      width: 100%;
+      height: 100vh;
+    }
+
+    .app {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: url("http://img.na77.com/lobby_bg.jpg") no-repeat;
+      background-size: cover;
+      /* display: flex; */
+      overflow: hidden;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      overflow-x: auto;
+    }
+
+    ul li {
+      width: 9rem;
+      padding: 4px;
+    }
+
+    a {
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    img {
+      width: 100%;
+      /* height: 100%; */
+    }
+
+    .lists {
+      /* display: flex; */
+      box-sizing: border-box;
+      /* width: 100%; */
+      padding-left: 0.20834rem;
+      padding-right: 0.20834rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .animations {
+      animation: bounceRight 1s ease both;
+    }
+
+    @keyframes bounceRight {
+      0% {
+        opacity: 0;
+        transform: translateX(50%) translateY(-50%);
+        -webkit-transform: translateX(50%) translateY(-50%);
+      }
+      20% {
+        opacity: 0;
+        transform: translateX(40%) translateY(-50%);
+        -webkit-transform: translateX(40%) translateY(-50%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0) translateY(-50%);
+        -webkit-transform: translateX(0) translateY(-50%);
+      }
+    }
+
+    .loading {
+      display: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, .3)
+    }
+
+    .loading-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 100px;
+    }
+
+    .loading .loading-img img {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="lists animations">
+      <ul id='gameList1'></ul>
+      <ul id='gameList2'></ul>
+    </div>
+    <div id="loading" class="loading">
+      <div class="loading-img">
+        <img src="http://img.na77.com/TTG_loading.gif">
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  function GetQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+  }
+  var userId = GetQueryString('userId')
+  var token = GetQueryString('token')
+  var loading = document.getElementById('loading')
+  window.onload = function () {
+    loading.style.display = 'block'
+    var xhr = new XMLHttpRequest();
+    xhr.open('post', 'https://dgjmusja39cm2.cloudfront.net/gameList', true)
+    xhr.setRequestHeader('Content-type', 'application/json')
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4) {
+        var res = JSON.parse(xhr.responseText)
+        var data = res.payload
+        var len = Math.ceil(data.length / 2)
+        var arr1 = data.slice(0, len)
+        var arr2 = data.slice(len)
+        var str1 = ''
+        var str2 = ''
+        for (var i = 0; i < arr1.length; i++) {
+          var item = arr1[i]
+          var gameurl = item.gameLink
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
+          str1 +=
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
+              .gameImgAli + ' alt="oops"></a></li>'
+        }
+        var ul1 = document.getElementById('gameList1')
+        ul1.innerHTML = str1
+        loading.style.display = 'none'
+        for (var i = 0; i < arr2.length; i++) {
+          var item = arr2[i]
+          var gameurl = item.gameLink
+          var newstr = gameurl.replace(/:userId/, userId)
+          var result = newstr.replace(/:token/, token)
+          str2 +=
+            '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
+              .gameImgAli + ' alt="oops"></a></li>'
+        }
+        var ul2 = document.getElementById('gameList2')
+        ul2.innerHTML = str2
+        var gameItem = document.getElementsByClassName('game')
+        for (var i = 0; i < gameItem.length; i++) {
+          var item = gameItem[i]
+          item.addEventListener('click', function (event) {
+            var url = event.target.getAttribute('data-url')
+            window.location.href = url
+          })
+        }
+      }
+    }
+    var sendData = {
+      gameType: "1080000",
+      query: {
+        gameStatus: 1
+      }
+    }
+    //将用户输入值序列化成字符串
+    xhr.send(JSON.stringify(sendData));
+  }
+</script>
+
+</html>
