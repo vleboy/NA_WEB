@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>game</title>
 </head>
 <style type="text/css">
@@ -203,14 +203,13 @@
         var r = window.location.search.substr(1).match(reg);
         if (r != null) return unescape(r[2]); return null;
     }
-    var userId = GetQueryString('userId');              // NA玩家ID
-    var token = GetQueryString('token');                // NA玩家TOKEN
+    var userId = GetQueryString('userId')   // NA玩家ID
+    var token = GetQueryString('token')     // NA玩家TOKEN
     var gameurl = 'https://ext.na77.org/sb/gameurl/Sunbet_Lobby/1120000/1120001/' + userId + '/' + token
+    var logouturl = 'http://ext.na77.org/sb/logout/' + userId + '/1120001'
     // 打开具体游戏
     var iframe = document.getElementById('iframe')
     iframe.setAttribute('src', decodeURIComponent(gameurl))
-    // 退出游戏链接
-    var logouturl = 'http://ext.na77.org/sb/logout/' + userId + '/1120001'
     // 弹框
     var myAlert = document.getElementById('my-alert')
     var close = document.getElementById('close-icon')
@@ -227,29 +226,7 @@
         myAlert.style.display = 'none'
         loading.style.display = 'block'
         window.location.href = logouturl
-        // var ajax = new XMLHttpRequest();
-        // ajax.open('get', logouturl);
-        // ajax.send();
-        // ajax.onreadystatechange = function () {
-        //     if (ajax.status == 200 && ajax.readyState == 4) {
-        //         if (ajax.responseText) {
-        //             var result = JSON.parse(ajax.responseText)
-        //             if (result.code == 0) {
-        //                 // window.location.href = "uniwebview://www.baidu.com?key=value&anotherKey=anotherValue"
-        //                 window.location.href = "http://web.risheng3d.com/mg.html?parent=" + parent + "&userId=" + userId + "&userName=" + userName + "&msn=" + msn + "&fullscreen=false" + "&token=" + naToken
-        //                 loading.style.display = 'none'
-        //             } else {
-        //                 loading.style.display = 'none'
-        //                 alert(result.msg)
-        //             }
-        //         }
-        //     } else if (ajax.status != 200) {
-        //         loading.style.display = 'none'
-        //         alert('退出失败！请重试')
-        //     }
-        // }
     }
-
 
     // 生成按钮
     var new_element_N = document.createElement("style");

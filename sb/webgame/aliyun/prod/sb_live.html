@@ -205,8 +205,8 @@
     }
     var userId = GetQueryString('userId')   // NA玩家ID
     var token = GetQueryString('token')     // NA玩家TOKEN
-    var gameurl = 'https://ext.na77.org/sb/gameurl/Sunbet_Lobby/1120000/1120001/' + userId + '/' + token
-    var logouturl = 'http://ext.na77.org/sb/logout/' + userId + '/1120001'
+    var gameurl = 'https://webgame.na77.org/sb/gameurl/Sunbet_Lobby/1120000/1120001/' + userId + '/' + token
+    var logouturl = 'http://webgame.na77.org/sb/logout/' + userId + '/1120001'
     // 打开具体游戏
     var iframe = document.getElementById('iframe')
     iframe.setAttribute('src', decodeURIComponent(gameurl))
