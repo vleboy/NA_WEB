@@ -162,7 +162,7 @@
           var result = newstr.replace(/:token/, token)
           str1 +=
             '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
-            .gameImgAli + ' alt="oops"></a></li>'
+              .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul1 = document.getElementById('gameList1')
         ul1.innerHTML = str1
@@ -174,7 +174,7 @@
           var result = newstr.replace(/:token/, token)
           str2 +=
             '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
-            .gameImgAli + ' alt="oops"></a></li>'
+              .gameImgAli + ' alt="oops"></a></li>'
         }
         var ul2 = document.getElementById('gameList2')
         ul2.innerHTML = str2
@@ -183,7 +183,8 @@
           var item = gameItem[i]
           item.addEventListener('click', function (event) {
             var url = event.target.getAttribute('data-url')
-            window.location.href = url
+            // window.location.href = url
+            window.location.href = 'http://web.risheng3d.com/sb_detail.html?gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
           })
         }
       }
