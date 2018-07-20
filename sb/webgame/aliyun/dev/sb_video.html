@@ -184,8 +184,7 @@
           item.addEventListener('click', function (event) {
             var url = event.target.getAttribute('data-url')
             // window.location.href = url
-            alert('http://web.risheng3d.com/sb_detail.html?gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href))
-            window.location.href = 'http://web.risheng3d.com/sb_detail.html?gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
+            window.location.href = 'http://web.risheng3d.com/sb_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
           })
         }
       }
