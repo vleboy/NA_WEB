@@ -145,7 +145,6 @@
     loading.style.display = 'block'
     var xhr = new XMLHttpRequest();
     var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
-    alert(window.location.hostname)
     xhr.open('post', 'https://' + apiurl + '/gameList', true)
     xhr.setRequestHeader('Content-type', 'application/json')
     xhr.onreadystatechange = function () {
