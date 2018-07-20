@@ -188,13 +188,13 @@
                     item.addEventListener('click', function (event) {
                         var url = event.target.getAttribute('data-url')
                         // window.location.href = url
-                        window.location.href = 'http://' + window.location.hostname + '/mg_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
+                        window.location.href = 'http://' + window.location.hostname + '/ttg_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
                     })
                 }
             }
         }
         var sendData = {
-            gameType: "10300000",
+            gameType: "1010000",
             query: {
                 gameStatus: 1
             }

@@ -27,3 +27,9 @@ http://webpage.risheng3d.com/dt.html?fullscreen=false&userId={userId}&token={tok
 http://webpage.na77.org/dt.html?fullscreen=false&userId={userId}&token={token}
 #DT电子例子
 http://web.risheng3d.com/dt.html?userId=268184&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlFKU0hfd3dqMDIiLCJzdWZmaXgiOiJRSlNIIiwidXNlcklkIjoyNjgxODQsImV4cGlyZSI6MTUzMDkzNzQzMTE4NiwiaWF0IjoxNTMwODUxMDMxfQ.50tUvo3l_Flkb4aVHrotoFD8yhKunXoBt4z3lfJDcUk
+
+#MG电子例子
+http://web.risheng3d.com/mg2.html?userId=268184&userName=QJSH_wwj02&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlFKU0hfd3dqMDIiLCJzdWZmaXgiOiJRSlNIIiwidXNlcklkIjoyNjgxODQsImV4cGlyZSI6MTUzMDkzNzQzMTE4NiwiaWF0IjoxNTMwODUxMDMxfQ.50tUvo3l_Flkb4aVHrotoFD8yhKunXoBt4z3lfJDcUk
+
+#TTG电子例子
+http://web.risheng3d.com/ttg2.html?userId=268184&userName=QJSH_wwj02&token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyTmFtZSI6IlFKU0hfd3dqMDIiLCJzdWZmaXgiOiJRSlNIIiwidXNlcklkIjoyNjgxODQsImV4cGlyZSI6MTUzMDkzNzQzMTE4NiwiaWF0IjoxNTMwODUxMDMxfQ.50tUvo3l_Flkb4aVHrotoFD8yhKunXoBt4z3lfJDcUk
