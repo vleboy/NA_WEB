@@ -208,7 +208,6 @@
     var homeurl = GetQueryString('homeurl')                     // 返回大厅链接
     var gameurl = decodeURIComponent(GetQueryString('gameurl')) // 进入游戏链接
     var logouturl = 'http://ext.na77.org/sb/logout/' + userId + '/1080001' + '?homeurl=' + encodeURIComponent(homeurl)
-    alert(logouturl)
     // 打开具体游戏
     var iframe = document.getElementById('iframe')
     iframe.setAttribute('src', decodeURIComponent(gameurl))
