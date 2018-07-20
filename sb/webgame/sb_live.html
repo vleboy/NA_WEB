@@ -204,9 +204,9 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var userId = GetQueryString('userId')                       // NA玩家ID
-    // var token = GetQueryString('token')                         // NA玩家TOKEN
-    var gameurl = decodeURIComponent(GetQueryString('gameurl')) // 进入游戏链接
+    var token = GetQueryString('token')                         // NA玩家TOKEN
     var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'webgame.na77.org' : 'ext.na77.org'
+    var gameurl = 'https://' + apiurl + '/sb/gameurl/Sunbet_Lobby/1120000/1120001/' + userId + '/' + token
     var logouturl = 'http://' + apiurl + '/sb/logout/' + userId + '/1120001'
     // 打开具体游戏
     var iframe = document.getElementById('iframe')
