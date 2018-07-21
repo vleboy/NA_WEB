@@ -204,11 +204,10 @@
         if (r != null) return unescape(r[2]); return null;
     }
     var userId = GetQueryString('userId')                       // NA玩家ID
-    // var token = GetQueryString('token')                         // NA玩家TOKEN
     var homeurl = GetQueryString('homeurl')                     // 返回大厅链接
     var gameurl = decodeURIComponent(GetQueryString('gameurl')) // 进入游戏链接
     var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'webgame.na77.org' : 'ext.na77.org'
-    var logouturl = 'http://' + apiurl + '/mg/logout/' + userId + '/10300001' + '?homeurl=' + encodeURIComponent(homeurl)
+    var logouturl = 'http://' + apiurl + '/sb/logout/' + userId + '/1080001' + '?homeurl=' + encodeURIComponent(homeurl)
     // 打开具体游戏
     var iframe = document.getElementById('iframe')
     iframe.setAttribute('src', decodeURIComponent(gameurl))
@@ -336,8 +335,6 @@
         } else {
             fdiv.style.left = (ev.clientX - posX) + "px";
         }
-        // console.log( posX +" "+ fdiv.style.left);
-
     }
     window.onload = window.onresize = function () { //窗口大小改变事件
         screenWidth = document.documentElement.clientWidth;
