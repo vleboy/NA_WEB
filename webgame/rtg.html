@@ -186,7 +186,7 @@
           var item = gameItem[i]
           item.addEventListener('click', function (event) {
             var url = event.target.getAttribute('data-url')
-            window.location.href = url
+            window.location.href = url + '?homeurl=' + encodeURIComponent(window.location.href)
           })
         }
       }
