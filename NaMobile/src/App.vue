@@ -59,7 +59,7 @@ export default {
     if (!is_weixin() && !is_QQInnerBro()) {
       this.show = false
       if(isAndroid){
-        axios.get(`${url}/dev/ipquery`)
+        axios.get(`http://ext.na77.org/webapi/ipquery`)
           .then(function (res) {
             if(res.data.payload.data.country === '中国'){
               window.location.href = `http://app.risheng3d.com/apk/NAGame${res.data.payload.version}.apk`
@@ -71,7 +71,7 @@ export default {
             console.log(error)
           });
       } else if(isiOS){
-         axios.get(`${url}/dev/ipquery`)
+         axios.get(`http://ext.na77.org/webapi/ipquery`)
          .then(function (res) {
            if(res.data.payload.data.country === '中国'){
              window.location.href = `itms-services://?action=download-manifest&url=https://assetdownload.oss-cn-hangzhou.aliyuncs.com/ios/autoinstall${res.data.payload.version}.plist`
