@@ -138,12 +138,7 @@
         if (r != null) return unescape(r[2]);
         return null;
     }
-    var userId = GetQueryString('userId')
-    var userName = GetQueryString('userName')
-    var token = GetQueryString('token')
-    var loading = document.getElementById('loading')
-    window.onload = function () {
-        loading.style.display = 'block'
+    function xhrSend() {
         var xhr = new XMLHttpRequest();
         var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
         xhr.open('get', 'https://' + apiurl + '/gameList/10300000')
@@ -194,6 +189,7 @@
                     })
                 }
                 xhr = null
+                delete xhr
             }
         }
         // var sendData = {
@@ -204,6 +200,14 @@
         // }
         // //将用户输入值序列化成字符串
         // xhr.send(JSON.stringify(sendData))
+    }
+    var userId = GetQueryString('userId')
+    var userName = GetQueryString('userName')
+    var token = GetQueryString('token')
+    var loading = document.getElementById('loading')
+    window.onload = function () {
+        loading.style.display = 'block'
+        xhrSend()
     }
 </script>
 
