@@ -182,7 +182,7 @@
           var item = gameItem[i]
           item.addEventListener('click', function (event) {
             var url = event.target.getAttribute('data-url')
-            window.location.href = url + '?fullscreen=false&homeurl=' + encodeURIComponent(window.location.href)
+            window.location.href = url + '?homeurl=' + encodeURIComponent(window.location.href)
           })
         }
         xhr = null
