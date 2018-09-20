@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NAGame</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+          list-style: none;
+        }
+        .closeAble{
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+            background-color: #f2dede;
+            color: #a94442
+        }
+        .jump{
+            color: #a94442;
+            padding-left: 10px;
+        }
+        .jumps{
+            color: #000;
+            padding-left: 10px; 
+        }
+        .close{
+            position: absolute;
+            right: 20px;
+            cursor: pointer;
+        }
+        footer,main,header{
+            width: 1140px;
+            margin: 0 auto;
+        }
+        footer{
+            margin-top:50px; 
+            height: 60px;
+            border-top: 1px solid #f2f2f2;
+        }
+        .footer_content{
+            padding: 10px 0;
+            text-align: center;
+            font-size: 12px;
+            overflow: hidden;
+        }
+        .hide{
+            display: none;
+        }
+        .logo img{
+            padding-top: 10px;
+        }
+        .tab li{
+            float: left;
+        }
+        .tab{
+            border-bottom: 1px solid #ddd;
+            overflow: hidden;
+        }
+        .tabitem{
+            color: #337ab7;
+            text-decoration: none;
+            margin-right: 2px;
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+            line-height: 1.42857143;
+            border: 1px solid transparent;
+            border-radius: 4px 4px 0 0;
+        }
+        .tabitem:hover{
+            color: #555;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-bottom-color: transparent;
+        }
+        .current{
+            color: #000;
+            border: 1px solid #ddd;
+            border-bottom: none;
+        }
+        .gameList{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center
+        }
+        .game{
+            width: 175px;
+            padding: 15px;
+        }
+        #games{
+            min-height: 450px
+        }
+    </style>
+</head>
+<body>
+    <section class="closeAble">
+        <p>
+            本网站仅用于展示目的 
+            <a class="jump" href="http://na77.com" target="_blank">欢迎访问我们官网</a> 
+            <span class="close">X</span>
+        </p>
+    </section>
+    <header>
+        <section class="logo">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALYAAABjCAMAAAAB3QqqAAAC91BMVEUAAAD/////////////AAD/////////////////////AAD////////////////////////////ZAAD5AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD/AAD8AAD6AADyAADeAAD/AAD/AAD/AAD8AAD7AAD/AAD/AAD/AAD6AAD9AAD/AAD7AAD/AAD5AAD/AAD/AAD/AAD/AAD/AAD+AAD/AAD/AAD9AAD+qgj/AAD/AAD+AAD9qQb/AAD+AAD/AADmAAD+rwfuLAL/AADFAAD/AAD9qQf/AACnAADOAAD+AADpAACYAADJAAD/AAD5AADcAAD/AADaAADOAAD/AAD/AADmAADIAADrAADbAADvAAD/AAC5AAD/AADWAACoAAD/AADPAADrAADdAADEAADoAADKAADvAAC6AAD/sgj/AAC+AAD/qgjGAADPAADVAADmAAD/AADRAADDAADyAADsAACkAADwAACxAAD4AADoAADCAADSAADiAAC7AAD9qAilAAD9qQbeAACkAAD+qQfZAADeAADOAACrAACnAADhAAD+swj+qQbUAADhAACRAADRAAD9qQigAAC4AACtAADkAADfAADKAACwAAClAACRAADuAAC3AADmAAChAAD/AAD8qAiJAACRAAD5AAC+AAC2AACrAADUAACIAAD8qAjcAADNAAC+AADOAAD1AADvAAD8qAiJAAC0AAB7AAD/wgnjAADVAAD/yQr/qgj/AAD////sAADQAADNAAD9AADjAADJAADDAADWAAC6AADyAADmAADZAADqAADLAAD1AADhAADGAADBAAC8AADuAADTAADwAADfAAD3AACzAADcAAC+AAC2AACxAAD5AADYAADlAADeAADbAAD0AADVAADIAADoAADSAAD7AAD6AADAAAD8AADPAADFAAC5AADpAAC4AACnAACjAACtAACqAAC1AACvAACsAAClAACfAACwAACcAACpAACRAACiAACeAACZAACVAACKAAD8qAdWUXJAAAAAuHRSTlMAgEC/8iBgn9/vZDAQz49wr1AHCvxfSO/bxWYpGREFArSojoQhFZN7VE1FNjAe6+Xg0MK7rKB/d3dxaWRiWi0OCgH159i9sElFOzQiF/n27Ojg1czJyLWz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" alt="">
+        </section>
+    </header>
+    <main>
+        <ul class="tab">
+            <li>
+                <a class="tabitem current" href="#">NA电子游戏</a>
+            </li>
+            <!-- <li>
+                <a  class="tabitem" href="#">1</a>
+            </li>
+            <li>
+                <a class="tabitem" href="#">2</a>
+            </li> -->
+        </ul>
+        <section id="games">
+            <ul id="gameList" class="gameList"></ul>
+            <ul class="gameList"></ul>
+            <ul class="gameList"></ul>
+        </section>
+    </main>
+    <footer>
+        <p class="footer_content">
+           <span> 本网站仅用于展示目的</span>
+            <a class="jumps" href="http://na77.com" target="_blank">欢迎访问我们官网</a> 
+        </p>
+    </footer>
+    <script>
+        //添加
+        function addClass(ele, cls) {
+            if (!this.hasClass(ele, cls)) ele.className += " " + cls;
+        }
+        //判断有无
+        function hasClass(ele, cls) {
+            return ele.className.match(new RegExp("(\\s|^)" + cls + "(\\s|$)"));
+        }
+        //删除
+        function removeClass(ele, cls) {
+            if (hasClass(ele, cls)) {
+                var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+                ele.className = ele.className.replace(reg, " ");
+            }
+        }
+        var close=document.querySelector('.close')
+        close.addEventListener('click',function(e){
+            var notice=document.querySelector('.closeAble')
+            addClass(notice,'hide')
+        }) 
+        var tags=document.getElementsByClassName('tabitem')
+        var lis=document.getElementsByClassName('gameList')
+        for (var i=0,l=tags.length;i<l;i++){
+            var item=tags[i];
+            item.index=i;
+            item.onclick=function(){
+                for(var j=0;j<l;j++){
+                    removeClass(tags[j],'current')
+                }
+                addClass(this,'current')
+                for(var k = 0;k<lis.length;k++){
+                    lis[k].style.display = 'none';
+                }
+                lis[this.index].style.display = 'flex';
+            }
+        }
+        function xhrSend() {
+        var xhr = new XMLHttpRequest();
+        var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
+        xhr.open('get', 'https://' + apiurl + '/gameList/70000')
+        xhr.send()
+        // xhr.open('post', 'https://' + apiurl + '/gameList', true)
+        // xhr.setRequestHeader('Content-type', 'application/json')
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var res = JSON.parse(xhr.responseText)
+                var data = res.payload
+                var str1 = ''
+                for (var i = 0,len=data.length; i < len; i++) {
+                    var item = data[i]
+                    var gameurl = item.gameLink
+                    var result = gameurl.replace(/:userId/, userId)
+                    // var result = newstr.replace(/:token/, token)
+                    str1 +=
+                        '<li><a href="'+ result +'" target="_blank"><img  class="game" src=' + item
+                            .gameImgAli + ' alt="oops"></a></li>'
+                }
+                var ul = document.getElementById('gameList')
+                ul.innerHTML = str1
+                // var gameItem = document.getElementsByClassName('game')
+                // for (var i = 0; i < gameItem.length; i++) {
+                //     var item = gameItem[i]
+                //     item.addEventListener('click', function (event) {
+                //         var url = event.target.getAttribute('data-url')
+                //         window.location.href = url
+                //         // window.location.href = 'http://' + window.location.hostname + '/dt_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
+                //     })
+                // }
+                xhr = null
+                delete xhr
+            }
+        }
+        // var sendData = {
+        //     gameType: "1150000",
+        //     query: {
+        //         gameStatus: 1
+        //     }
+        // }
+        // //将用户输入值序列化成字符串
+        // xhr.send(JSON.stringify(sendData))
+    }
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]);
+        return null;
+    }
+    var userId = GetQueryString('userId')||0
+    window.onload = function () {
+        xhrSend()
+    }
+    </script>
+</body>
+</html>
