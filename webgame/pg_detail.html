@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <title>game</title>
+    <script defer src="//sdk.pgasia-cdn.com/main.min.js"></script>
 </head>
 <style type="text/css">
     * {
@@ -209,8 +210,9 @@
     var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') ? 'webgame.na77.org' : 'ext.na77.org'
     var logouturl = 'http://' + apiurl + '/pg/logout/' + userId + '/1090001' + '?homeurl=' + encodeURIComponent(homeurl)
     // 打开具体游戏
-    var iframe = document.getElementById('iframe')
-    iframe.setAttribute('src', decodeURIComponent(gameurl))
+    // var iframe = document.getElementById('iframe')
+    // iframe.setAttribute('src', decodeURIComponent(gameurl))
+    PGSDK.launchGame(gameurl)
     // 弹框
     var myAlert = document.getElementById('my-alert')
     var close = document.getElementById('close-icon')
