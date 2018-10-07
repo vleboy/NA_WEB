@@ -212,7 +212,10 @@
     // 打开具体游戏
     // var iframe = document.getElementById('iframe')
     // iframe.setAttribute('src', decodeURIComponent(gameurl))
-    PGSDK.launchGame(gameurl)
+    
+    window.onload=function (){
+        PGSDK.launchGame(gameurl)
+    }
     // 弹框
     var myAlert = document.getElementById('my-alert')
     var close = document.getElementById('close-icon')
