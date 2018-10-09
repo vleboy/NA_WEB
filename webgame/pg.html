@@ -40,15 +40,15 @@
             list-style: none;
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             position: absolute;
-            top: 10px;
+            top: 0;
         }
 
         ul li {
-            width: 10rem;
-            padding: 20px;
-            /* justify-content: center;
-            align-items: center; */
+            width: 8rem;
+            padding-left: 1rem;
+            padding-top: 1rem;
         }
 
         a {
@@ -111,7 +111,7 @@
 
 <body>
     <div id="app">
-        <div class="lists animations">
+        <div class="animations">
             <ul id='gameList'></ul>
         </div>
         <div id="loading" class="loading">
@@ -139,18 +139,22 @@
             if (xhr.readyState == 4 && xhr.status == 200) {
                 var res = JSON.parse(xhr.responseText)
                 var data = res.payload
-                var str1 = ''
-                for (var i = 0; i < data.length; i++) {
+                var len=data.length
+                var str = ''
+                for (var i = 0; i < len; i++) {
                     var item = data[i]
                     var gameurl = item.gameLink
                     var newstr = gameurl.replace(/:userId/, userId)
                     var result = newstr.replace(/:token/, token)
-                    str1 +=
+                    str +=
                         '<li><a href="javascript:;"><img data-url=' + result + ' class="game" src=' + item
                             .gameImgAli + ' alt="oops"></a></li>'
                 }
-                var ul1 = document.getElementById('gameList')
-                ul1.innerHTML = str1
+                if((len % 2) != 0){
+                    str += '<li></li>'
+                }
+                var ul = document.getElementById('gameList')
+                ul.innerHTML = str
                 loading.style.display = 'none'
                 var gameItem = document.getElementsByClassName('game')
                 for (var i = 0; i < gameItem.length; i++) {
