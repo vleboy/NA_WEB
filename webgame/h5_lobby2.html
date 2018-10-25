@@ -100,8 +100,11 @@
         }
         #login{
             position: fixed;
-            right: 20px;
-            top: 80px;
+            right: 50px;
+            top: 120px;
+        }
+        #login p{
+            line-height: 38px;
         }
         .input{
             height: 24px;
@@ -147,8 +150,9 @@
             </li> -->
         </ul>
         <section id="login">
-            <input class="input" id="userCount" type="text" placeholder="玩家账号">
-            <input class="input" id="password" type="password" placeholder="密码">
+            <p><input class="input" id="userId" type="text" placeholder="商户ID（代理无需输入）"></p>
+            <p><input class="input" id="userCount" type="text" placeholder="玩家账号"></p>
+            <p><input class="input" id="password" type="password" placeholder="密码"></p>
             <p>
                 <button id="loginBtn">登录</button>
             </p>
@@ -243,7 +247,7 @@
             }
         }
 
-        function login(userName, password) {
+        function login(userName, password, userId) {
             var xhr = new XMLHttpRequest();
             var apiurl = 'https://xbbw2jfb58.execute-api.ap-southeast-1.amazonaws.com/dev/game/login'
             xhr.open('post', apiurl, true)
@@ -251,7 +255,7 @@
             var sendData = {
                 userName: userName,
                 userPwd: password,
-                userId: 0
+                userId: userId
             }
             xhr.setRequestHeader('Content-type', 'application/json')
             //将用户输入值序列化成字符串
@@ -263,10 +267,10 @@
                     if (res.code == 0) {
                         var loginSec = document.querySelector('#login')
                         addClass(loginSec, 'hide')
-                        var loginStatus=document.getElementById('acount')
-                        var userEl=document.getElementById('userName')
-                        userEl.innerText=data.username
-                        removeClass(loginStatus,'hide')
+                        var loginStatus = document.getElementById('acount')
+                        var userEl = document.getElementById('userName')
+                        userEl.innerText = data.username
+                        removeClass(loginStatus, 'hide')
                         xhrSend(data.userId, data.token)
                     }
                     console.log(res)
@@ -289,8 +293,9 @@
             loginBtn.addEventListener('click', function (e) {
                 var user = document.getElementById('userCount').value;
                 var password = document.getElementById('password').value;
+                var userId = document.getElementById('userId').value||0;
                 if (password && user) {
-                    login(user, password)
+                    login(user, password, userId)
                 }
             })
         }
