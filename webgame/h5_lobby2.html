@@ -289,7 +289,7 @@
             return null;
         }
         window.onload = function () {
-            var userId = GetQueryString('userId') || 0
+            // var userId = GetQueryString('userId') || 0
             xhrSend(userId, '0');
             var loginBtn = document.getElementById('loginBtn')
             loginBtn.addEventListener('click', function (e) {
