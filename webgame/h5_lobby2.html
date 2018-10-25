@@ -101,7 +101,7 @@
         #login{
             position: fixed;
             right: 50px;
-            top: 120px;
+            top: 60px;
         }
         #login p{
             line-height: 38px;
@@ -272,6 +272,8 @@
                         userEl.innerText = data.username
                         removeClass(loginStatus, 'hide')
                         xhrSend(data.userId, data.token)
+                    }else{
+                        alert(res.msg)
                     }
                     console.log(res)
                     xhr = null
