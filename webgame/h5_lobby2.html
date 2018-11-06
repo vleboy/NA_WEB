@@ -224,39 +224,39 @@
         //删除
         function removeClass(ele, cls) {
             if (hasClass(ele, cls)) {
-                var reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
+                let reg = new RegExp("(\\s|^)" + cls + "(\\s|$)");
                 ele.className = ele.className.replace(reg, " ");
             }
         }
-        var close = document.querySelector('.close')
+        let close = document.querySelector('.close')
         close.addEventListener('click', function (e) {
-            var notice = document.querySelector('.closeAble')
+            let notice = document.querySelector('.closeAble')
             addClass(notice, 'hide')
         })
-        var tags = document.getElementsByClassName('tabitem')
-        var lis = document.getElementsByClassName('gameList')
-        for (var i = 0, l = tags.length; i < l; i++) {
-            var item = tags[i];
+        let tags = document.getElementsByClassName('tabitem')
+        let lis = document.getElementsByClassName('gameList')
+        for (let i = 0, l = tags.length; i < l; i++) {
+            let item = tags[i];
             item.index = i;
             item.onclick = function () {
-                for (var j = 0; j < l; j++) {
+                for (let j = 0; j < l; j++) {
                     removeClass(tags[j], 'current')
                 }
                 addClass(this, 'current')
-                for (var k = 0; k < lis.length; k++) {
+                for (let k = 0; k < lis.length; k++) {
                     lis[k].style.display = 'none';
                 }
                 lis[this.index].style.display = 'flex';
             }
         }
         // function GetQueryString(name) {
-        //     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
-        //     var r = window.location.search.substr(1).match(reg);
+        //     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        //     let r = window.location.search.substr(1).match(reg);
         //     if (r != null) return unescape(r[2]);
         //     return null;
         // }
 
-        var app = new Vue({
+        let app = new Vue({
             el: '#app',
             data: {
                 gameList: [],
@@ -300,42 +300,43 @@
                     return list
                 },
                 userlogin(e) {
-                    var user = document.getElementById('userCount').value;
-                    var password = document.getElementById('password').value;
-                    var userId = document.getElementById('userId').value || 0;
+                    let user = document.getElementById('userCount').value;
+                    let password = document.getElementById('password').value;
+                    let userId = document.getElementById('userId').value || 0;
                     if (password && user) {
                         this.login(user, password, userId)
                     }
                 },
                 getList() {
                     let self = this;
-                    var xhr = new XMLHttpRequest();
-                    var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
-                        'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
+                    let xhr = new XMLHttpRequest();
+                    let apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname =='webpage.na77.org') 
+                        ? 'n1game.na12345.com' 
+                        : 'dgjmusja39cm2.cloudfront.net'
                     xhr.open('get', 'https://' + apiurl + '/gameList/70000')
                     xhr.send()
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
-                            var res = JSON.parse(xhr.responseText)
+                            let res = JSON.parse(xhr.responseText)
                             self.gameList = res.payload;
-                            // var str1 = '' 
-                            // for (var i = 0, len = data.length; i < len; i++) {
-                            //     var item = data[i]
-                            //     var gameurl = item.gameLink
-                            //     var result = gameurl.replace(/:userId/, userId)
+                            // let str1 = '' 
+                            // for (let i = 0, len = data.length; i < len; i++) {
+                            //     let item = data[i]
+                            //     let gameurl = item.gameLink
+                            //     let result = gameurl.replace(/:userId/, userId)
                             //     result = result.replace(/:token/, token)
                             //     str1 +=
                             //         '<li><a href="' + result + '" target="_blank"><img  class="game" src=' +
                             //         item
                             //         .gameImgAli + ' alt="oops"></a></li>'
                             // }
-                            // var ul = document.getElementById('gameList')
+                            // let ul = document.getElementById('gameList')
                             // ul.innerHTML = str1
-                            // var gameItem = document.getElementsByClassName('game')
-                            // for (var i = 0; i < gameItem.length; i++) {
-                            //     var item = gameItem[i]
+                            // let gameItem = document.getElementsByClassName('game')
+                            // for (let i = 0; i < gameItem.length; i++) {
+                            //     let item = gameItem[i]
                             //     item.addEventListener('click', function (event) {
-                            //         var url = event.target.getAttribute('data-url')
+                            //         let url = event.target.getAttribute('data-url')
                             //         window.location.href = url
                             //         // window.location.href = 'http://' + window.location.hostname + '/dt_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
                             //     })
@@ -347,14 +348,14 @@
                 },
                 login(userName, password, userId) {
                     let self = this
-                    var xhr = new XMLHttpRequest();
-                    var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') 
+                    let xhr = new XMLHttpRequest();
+                    let apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') 
                         ?'n1admin.na12345.com' 
                         :'xbbw2jfb58.execute-api.ap-southeast-1.amazonaws.com'
                     apiurl = 'https://' + apiurl + '/dev/game/login'
                     xhr.open('post', apiurl, true)
                     // xhr.open('post', 'https://' + apiurl + '/gameList', true)
-                    var sendData = {
+                    let sendData = {
                         userName: userName,
                         userPwd: password,
                         buId: userId
@@ -364,8 +365,8 @@
                     xhr.send(JSON.stringify(sendData))
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
-                            var res = JSON.parse(xhr.responseText)
-                            var data = res.data
+                            let res = JSON.parse(xhr.responseText)
+                            let data = res.data
                             if (res.code == 0) {
                                 self.username = data.username;
                                 self.isLogin = true;
