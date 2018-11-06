@@ -183,7 +183,7 @@
                     <li v-for="(item,index) in list1">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
                         <p class="play">
-                                <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
+                            <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
                         </p>
                     </li>
                 </ul>
@@ -262,25 +262,25 @@
                 gameList: [],
                 userId: '0',
                 token: '0',
-                username:'',
-                isLogin:false,
+                username: '',
+                isLogin: false,
             },
             computed: {
                 replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token)
                 },
                 list1() {
-                    let arr=['70001','70002','70003','70004','70005','70006']
-                    let result=this.replaced.filter(item=>{
-                        return arr.includes(item.kindId) 
+                    let arr = ['70001', '70002', '70003', '70004', '70005', '70006']
+                    let result = this.replaced.filter(item => {
+                        return arr.includes(item.kindId)
                     })
                     return result
                     // this.replaced.slice(0, 6)
                 },
                 list2() {
-                    let arr=['70007','70010']
-                    let result=this.replaced.filter(item=>{
-                        return arr.includes(item.kindId) 
+                    let arr = ['70007', '70010']
+                    let result = this.replaced.filter(item => {
+                        return arr.includes(item.kindId)
                     })
                     return result
                     //this.replaced.slice(6)
@@ -311,7 +311,7 @@
                     let self = this;
                     var xhr = new XMLHttpRequest();
                     console.log(window.location.hostname);
-                    var apiurl = (window.location.hostname == 'web.risheng3d.com' || window.location.hostname ==
+                    var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
                         'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
                     xhr.open('get', 'https://' + apiurl + '/gameList/70000')
                     xhr.send()
@@ -347,9 +347,12 @@
                     }
                 },
                 login(userName, password, userId) {
-                    let self=this
+                    let self = this
                     var xhr = new XMLHttpRequest();
-                    var apiurl = 'https://xbbw2jfb58.execute-api.ap-southeast-1.amazonaws.com/dev/game/login'
+                    var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname == 'webpage.na77.org') 
+                        ?'n1admin.na12345.com' 
+                        :'xbbw2jfb58.execute-api.ap-southeast-1.amazonaws.com'
+                    apiurl = 'https://' + apiurl + '/dev/game/login'
                     xhr.open('post', apiurl, true)
                     // xhr.open('post', 'https://' + apiurl + '/gameList', true)
                     var sendData = {
@@ -366,9 +369,9 @@
                             var data = res.data
                             if (res.code == 0) {
                                 self.username = data.username;
-                                self.isLogin=true;
-                                self.userId=data.userId;
-                                self.token=data.token;
+                                self.isLogin = true;
+                                self.userId = data.userId;
+                                self.token = data.token;
                                 self.getList()
                             } else {
                                 alert(res.msg)
