@@ -310,7 +310,8 @@
                 getList() {
                     let self = this;
                     var xhr = new XMLHttpRequest();
-                    var apiurl = (window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
+                    console.log(window.location.hostname);
+                    var apiurl = (window.location.hostname == 'web.risheng3d.com' || window.location.hostname ==
                         'webpage.na77.org') ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net'
                     xhr.open('get', 'https://' + apiurl + '/gameList/70000')
                     xhr.send()
