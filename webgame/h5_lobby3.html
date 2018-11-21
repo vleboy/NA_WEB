@@ -366,6 +366,7 @@
                             //     })
                             // }
                             xhr = null;
+                            delete xhr;
                         }
                     };
                 },
@@ -401,20 +402,12 @@
                             }
                             console.log(res);
                             xhr = null;
+                            delete xhr;
                         }
                     };
                 }
             }
         });
-
-        (function () {
-            var script = document.createElement('script');
-            script.src = "http://eruda.liriliri.io/eruda.min.js";
-            document.body.appendChild(script);
-            script.onload = function () {
-                eruda.init()
-            }
-        })()
     </script>
 </body>
 
