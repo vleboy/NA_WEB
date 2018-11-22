@@ -98,6 +98,7 @@
         }
         .banner{
             height: 40px;
+            line-height: 40px;
         }
         #games{
             min-height: 450px
@@ -210,6 +211,17 @@
                     </li>
                 </ul>
             </div>
+            <div class="item">
+                <div class="banner">真人系列</div>
+                <ul class="gameList">
+                    <li v-for="(item,index) in list3">
+                        <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
             <!-- <div class="item">
                 <div class="banner">摇钱树系列</div>
                 <ul class="gameList"></ul>
@@ -271,6 +283,7 @@
             el: '#app',
             data: {
                 gameList: [],
+                realList:[],
                 userId: '0',
                 token: '0',
                 username: '',
@@ -279,6 +292,9 @@
             computed: {
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
+                },
+                repalceReal:function repalceReal() {
+                    return this.replaceUrl(this.realList, this.userId, this.token);
                 },
                 list1: function list1() {
                     var arr = ['70001', '70002', '70003', '70004', '70005', '70006'];
@@ -295,10 +311,18 @@
                     });
                     return result;
                     //this.replaced.slice(6)
+                },
+                list3:function list3(){
+                    var arr = ['80001'];
+                    var result = this.repalceReal.filter(function (item) {
+                        return arr.includes(item.kindId);
+                    });
+                    return result;
                 }
             },
             created: function created() {
                 this.getList();
+                this.getReal()
             },
 
             methods: {
@@ -353,28 +377,22 @@
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             var res = JSON.parse(xhr.responseText);
                             self.gameList = res.payload;
-                            // var str1 = '' 
-                            // for (var i = 0, len = data.length; i < len; i++) {
-                            //     var item = data[i]
-                            //     var gameurl = item.gameLink
-                            //     var result = gameurl.replace(/:userId/, userId)
-                            //     result = result.replace(/:token/, token)
-                            //     str1 +=
-                            //         '<li><a href="' + result + '" target="_blank"><img  class="game" src=' +
-                            //         item
-                            //         .gameImgAli + ' alt="oops"></a></li>'
-                            // }
-                            // var ul = document.getElementById('gameList')
-                            // ul.innerHTML = str1
-                            // var gameItem = document.getElementsByClassName('game')
-                            // for (var i = 0; i < gameItem.length; i++) {
-                            //     var item = gameItem[i]
-                            //     item.addEventListener('click', function (event) {
-                            //         var url = event.target.getAttribute('data-url')
-                            //         window.location.href = url
-                            //         // window.location.href = 'http://' + window.location.hostname + '/dt_detail.html?userId=' + userId + '&gameurl=' + encodeURIComponent(url) + '&homeurl=' + encodeURIComponent(window.location.href)
-                            //     })
-                            // }
+                            xhr = null;
+                            delete xhr;
+                        }
+                    };
+                },
+                getReal: function getReal() {
+                    var self = this;
+                    var xhr = new XMLHttpRequest();
+                    var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
+                        'webpage.na77.org' ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net';
+                    xhr.open('get', 'https://' + apiurl + '/gameList/80000');
+                    xhr.send();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var res = JSON.parse(xhr.responseText);
+                            self.realList = res.payload;
                             xhr = null;
                             delete xhr;
                         }
