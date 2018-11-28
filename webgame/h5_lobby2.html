@@ -33,7 +33,7 @@
         }
         .close{
             position: absolute;
-            right: 20px;
+            right: 15px;
             cursor: pointer;
         }
         footer,main,header{
@@ -96,10 +96,6 @@
             width: 160px;
             padding: 15px;
         }
-        .banner{
-            height: 40px;
-            line-height: 40px;
-        }
         #games{
             min-height: 450px
         }
@@ -144,6 +140,9 @@
             footer,main,header{
             width: 100%;
             margin: 0 auto;
+          }
+          .banner{
+              width: 100vw;
           }
           .game{
             width: 160px;
@@ -195,7 +194,7 @@
             <div class="item">
                 <p class="title">经典243线</p>
                 <div>
-                    <img :src="classicImg" alt="">
+                    <img class="banner" :src="classicImg" alt="">
                 </div>
                 <ul id="gameList" class="gameList">
                     <li v-for="(item,index) in list1">
@@ -209,7 +208,7 @@
             <div class="item">
                 <p class="title">聚宝系列</p>
                 <div>
-                    <img :src="treasureImg" alt="">
+                    <img class="banner" :src="treasureImg" alt="">
                 </div>
                 <ul class="gameList">
                     <li v-for="(item,index) in list2">
@@ -356,7 +355,6 @@
                             break;
                         }
                     }
-                    console.log(flag);
                 return flag;
                 },
                 replaceUrl: function replaceUrl(list, userId, token) {
