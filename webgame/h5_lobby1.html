@@ -180,6 +180,9 @@
         <section id="games">
             <div class="item">
                 <div class="banner">经典243线</div>
+                <div class="banner">
+                    <img src="" alt="">
+                </div>
                 <ul id="gameList" class="gameList">
                     <li v-for="(item,index) in list1">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
@@ -256,7 +259,18 @@
         //     if (r != null) return unescape(r[2]);
         //     return null;
         // }
-
+        function IsPC(){
+            var ua=navigator.userAgent;
+            var Agents= ["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];
+            var flag=true;
+            for(var v=0,len=Agents.length;v<len;v++){
+                if(ua.indexOf(Agents[v]) >0) {
+                    flag=false;
+                    break;
+                }
+            }
+        return flag;
+        } 
         let app = new Vue({
             el: '#app',
             data: {
@@ -265,8 +279,21 @@
                 token: '0',
                 username: '',
                 isLogin: false,
+                isPc:IsPC,
+                bannerImg:{
+                    classic_phone:'./imgs/classic_phone.jpg',
+                    classic:'./imgs/classic.jpg',
+                    treasure:'./imgs/treasure.jpg',
+                    treasure_phone:'./imgs/treasure_phone.jpg'
+                }
             },
             computed: {
+                classicImg(){
+                    return this.isPc?this.bannerImg.classic:this.bannerImg.classic_phone
+                },
+                treasureImg(){
+                    return this.isPc?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                },
                 replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token)
                 },

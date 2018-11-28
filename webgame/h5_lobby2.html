@@ -127,6 +127,9 @@
         .play{
             text-align: center;
         }
+        .title{
+            line-height: 28px;
+        }
         .play button{
             width: 60px;
             height: 30px;
@@ -190,7 +193,10 @@
         </section>
         <section id="games">
             <div class="item">
-                <div class="banner">经典243线</div>
+                <p class="title">经典243线</p>
+                <div>
+                    <img :src="classicImg" alt="">
+                </div>
                 <ul id="gameList" class="gameList">
                     <li v-for="(item,index) in list1">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
@@ -201,7 +207,10 @@
                 </ul>
             </div>
             <div class="item">
-                <div class="banner">聚宝系列</div>
+                <p class="title">聚宝系列</p>
+                <div>
+                    <img :src="treasureImg" alt="">
+                </div>
                 <ul class="gameList">
                     <li v-for="(item,index) in list2">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
@@ -212,7 +221,7 @@
                 </ul>
             </div>
             <div class="item">
-                <div class="banner">真人系列</div>
+                <p class="title">真人系列</p>
                 <ul class="gameList">
                     <li v-for="(item,index) in list3">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
@@ -278,7 +287,6 @@
         //     if (r != null) return unescape(r[2]);
         //     return null;
         // }
-
         var app = new Vue({
             el: '#app',
             data: {
@@ -287,9 +295,21 @@
                 userId: '0',
                 token: '0',
                 username: '',
-                isLogin: false
+                isLogin: false,
+                bannerImg:{
+                    classic_phone:'./imgs/classic_phone.jpg',
+                    classic:'./imgs/classic.jpg',
+                    treasure:'./imgs/treasure.jpg',
+                    treasure_phone:'./imgs/treasure_phone.jpg'
+                }
             },
             computed: {
+                classicImg(){
+                    return this.isPc()?this.bannerImg.classic:this.bannerImg.classic_phone
+                },
+                treasureImg(){
+                    return this.isPc()?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                },
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
                 },
@@ -322,10 +342,23 @@
             },
             created: function created() {
                 this.getList();
-                this.getReal()
+                this.getReal();
             },
 
             methods: {
+                isPc:function isPc(){
+                    var ua=navigator.userAgent;
+                    var Agents= ["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];
+                    var flag=true;
+                    for(var v=0,len=Agents.length;v<len;v++){
+                        if(ua.indexOf(Agents[v]) >0) {
+                            flag=false;
+                            break;
+                        }
+                    }
+                    console.log(flag);
+                return flag;
+                },
                 replaceUrl: function replaceUrl(list, userId, token) {
                     var _iteratorNormalCompletion = true;
                     var _didIteratorError = false;
