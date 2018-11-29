@@ -102,19 +102,6 @@
         #games{
             min-height: 450px
         }
-        .input{
-            height: 24px;
-        }
-        #loginBtn{
-            height: 24px;
-            width: 60px;
-            margin-top: 10px;
-        }
-        #acount{
-            position: fixed;
-            right: 20px;
-            top: 80px;
-        }
         .play{
             text-align: center;
         }
@@ -175,9 +162,6 @@
                 <a class="tabitem" href="#">2</a>
             </li> -->
         </ul>
-        <section v-if='isLogin' id="acount">
-            <p id="userName">{{username}} </p>
-        </section>
         <section id="games">
             <div class="item">
                 <p class="title">经典系列</p>
@@ -187,6 +171,9 @@
                 <ul id="gameList" class="gameList">
                     <li v-for="(item,index) in list1">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{Trial?'开始':'试玩'}}</button></a>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -198,6 +185,9 @@
                 <ul class="gameList">
                     <li v-for="(item,index) in list2">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{Trial?'开始':'试玩'}}</button></a>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -206,6 +196,9 @@
                 <ul class="gameList">
                     <li v-for="(item,index) in list3">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{Trial?'开始':'试玩'}}</button></a>
+                        </p>
                     </li>
                 </ul>
             </div>
@@ -269,11 +262,8 @@
             el: '#app',
             data: {
                 gameList: [],
-                realList:[],
-                userId: GetQueryString('userId'),
-                token: GetQueryString('token'),
-                username: '',
-                isLogin: false,
+                userId: GetQueryString('userId')||769756,
+                token: GetQueryString('token')||0,
                 bannerImg:{
                     classic_phone:'./imgs/classic_phone.jpg',
                     classic:'./imgs/classic.jpg',
@@ -282,6 +272,9 @@
                 }
             },
             computed: {
+                Trial(){
+                    return this.token=='0'?false:true
+                },
                 classicImg(){
                     return this.isPc()?this.bannerImg.classic:this.bannerImg.classic_phone
                 },
@@ -291,16 +284,12 @@
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
                 },
-                repalceReal:function repalceReal() {
-                    return this.replaceUrl(this.realList, this.userId, this.token);
-                },
                 list1: function list1() {
                     var arr = ['70001', '70002', '70003', '70004', '70005', '70006'];
                     var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
                     });
                     return result;
-                    // this.replaced.slice(0, 6)
                 },
                 list2: function list2() {
                     var arr = ['70007', '70010', '70011', '70012','70013','70014'];
@@ -308,19 +297,17 @@
                         return arr.includes(item.kindId);
                     });
                     return result;
-                    //this.replaced.slice(6)
                 },
                 list3:function list3(){
                     var arr = ['80001'];
-                    var result = this.repalceReal.filter(function (item) {
+                    var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
                     });
                     return result;
                 }
             },
             created: function created() {
-                this.getList();
-                this.getReal();
+                this.getList(this.userId);
             },
 
             methods: {
@@ -337,64 +324,26 @@
                 return flag;
                 },
                 replaceUrl: function replaceUrl(list, userId, token) {
-                    var _iteratorNormalCompletion = true;
-                    var _didIteratorError = false;
-                    var _iteratorError = undefined;
-
-                    try {
-                        for (var _iterator = list[Symbol.iterator](), _step; !(_iteratorNormalCompletion =
-                                (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                            var item = _step.value;
-
-                            var gameUrl = item.gameLink;
-                            gameUrl = gameUrl.replace(/:userId/, userId);
-                            gameUrl = gameUrl.replace(/:token/, token);
-                            item.gameLink = gameUrl;
-                        }
-                    } catch (err) {
-                        _didIteratorError = true;
-                        _iteratorError = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion && _iterator.return) {
-                                _iterator.return();
-                            }
-                        } finally {
-                            if (_didIteratorError) {
-                                throw _iteratorError;
-                            }
-                        }
-                    }
-
-                    return list;
+                   for(var i=0,len=list.length;i<len;i++){
+                       var item=list[i];
+                        var gameUrl = item.gameLink;
+                        gameUrl = gameUrl.replace(/:userId/, userId);
+                        gameUrl = gameUrl.replace(/:token/, token)
+                        item.gameLink = gameUrl
+                   }
+                   return list
                 },
-                getList: function getList() {
+                getList: function getList(userId) {
                     var self = this;
                     var xhr = new XMLHttpRequest();
                     var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
-                        'webpage.na77.org' ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net';
-                    xhr.open('get', 'https://' + apiurl + '/gameList/70000');
+                        'webpage.na77.org' ? 'n1admin.na12345.com' : 'd3rqtlfdd4m9wd.cloudfront.net';
+                    xhr.open('get', 'https://' + apiurl + '/player/gameList/'+ userId);
                     xhr.send();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             var res = JSON.parse(xhr.responseText);
-                            self.gameList = res.payload;
-                            xhr = null;
-                            delete xhr;
-                        }
-                    };
-                },
-                getReal: function getReal() {
-                    var self = this;
-                    var xhr = new XMLHttpRequest();
-                    var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
-                        'webpage.na77.org' ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net';
-                    xhr.open('get', 'https://' + apiurl + '/gameList/80000');
-                    xhr.send();
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            var res = JSON.parse(xhr.responseText);
-                            self.realList = res.payload;
+                            self.gameList = res;
                             xhr = null;
                             delete xhr;
                         }
