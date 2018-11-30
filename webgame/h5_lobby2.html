@@ -377,7 +377,7 @@
                         var gameUrl = item.gameLink;
                         gameUrl = gameUrl.replace(/:userId/, userId);
                         gameUrl = gameUrl.replace(/:token/, token)
-                        item.gameLink = gameUrl
+                        item.gameLink = gameUrl+'&from=develop'
                    }
                    return list
                 },
