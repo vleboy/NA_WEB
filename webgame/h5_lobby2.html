@@ -398,7 +398,7 @@
                     var xhr = new XMLHttpRequest();
                     var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
                         'webpage.na77.org' ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net';
-                    xhr.open('get', 'https://' + apiurl + '/gameList/70000');
+                    xhr.open('get', 'https://' + apiurl + '/gameList/70000?isAll=true');
                     xhr.send();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -414,7 +414,7 @@
                     var xhr = new XMLHttpRequest();
                     var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
                         'webpage.na77.org' ? 'n1game.na12345.com' : 'dgjmusja39cm2.cloudfront.net';
-                    xhr.open('get', 'https://' + apiurl + '/gameList/80000');
+                    xhr.open('get', 'https://' + apiurl + '/gameList/80000?isAll=true');
                     xhr.send();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
