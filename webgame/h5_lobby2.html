@@ -93,7 +93,16 @@
         .gameList{
             display: flex;
             flex-wrap: wrap;
-            align-items: center
+            align-items: center;
+        }
+        
+@media screen and (orientation: portrait) {
+            .gameList{
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: center;
+                }
         }
         .game{
             width: 160px;
@@ -126,6 +135,7 @@
         .title{
             line-height: 36px;
             font-weight: bold;
+            padding-left: 5px;
         }
         .play button{
             width: 60px;
@@ -263,6 +273,15 @@
                 ele.className = ele.className.replace(reg, " ");
             }
         }
+        var hengping=false
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {  
+            if (window.orientation === 180 || window.orientation === 0) {   
+                hengping=true
+            }   
+            if (window.orientation === 90 || window.orientation === -90 ){   
+                hengping=false
+            }    
+        }, false);   
         var close = document.querySelector('.close')
         close.addEventListener('click', function (e) {
             var notice = document.querySelector('.closeAble')
@@ -315,10 +334,10 @@
             },
             computed: {
                 classicImg(){
-                    return this.isPc()?this.bannerImg.classic:this.bannerImg.classic_phone
+                    return this.isPc()||hengping ?this.bannerImg.classic:this.bannerImg.classic_phone
                 },
                 treasureImg(){
-                    return this.isPc()?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                    return this.isPc()||hengping ?this.bannerImg.treasure:this.bannerImg.treasure_phone
                 },
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
