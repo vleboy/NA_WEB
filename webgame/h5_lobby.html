@@ -288,17 +288,14 @@
                 },
                 {
                     title:'真人系列'
-                }]
+                }],
+                landscape:false,
+                classicImg:'',
+                treasureImg:''
             },
             computed: {
                 Trial(){
                     return this.token=='0'?false:true
-                },
-                classicImg(){
-                    return this.isPc()?this.bannerImg.classic:this.bannerImg.classic_phone
-                },
-                treasureImg(){
-                    return this.isPc()?this.bannerImg.treasure:this.bannerImg.treasure_phone
                 },
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
@@ -326,10 +323,26 @@
                 }
             },
             created: function created() {
+                this.getImg()
                 this.getList(this.userId);
             },
-
+            beforeMount:function beforeMount(){
+                var self=this
+                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {  
+                    if (window.orientation === 180 || window.orientation === 0) {   
+                        self.landscape=false
+                    }   
+                    if (window.orientation === 90 || window.orientation === -90 ){   
+                        self.landscape=true
+                    } 
+                    self.getImg()
+                }, false);   
+            },
             methods: {
+                getImg(){
+                    this.classicImg= this.isPc()||this.landscape ?this.bannerImg.classic:this.bannerImg.classic_phone
+                    this.treasureImg= this.isPc()||this.landscape ?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                },
                 changeTab:function(index){
                     this.selected=index
                 },
