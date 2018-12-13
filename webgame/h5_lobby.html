@@ -372,8 +372,8 @@
                     var self = this;
                     var xhr = new XMLHttpRequest();
                     var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
-                        'webpage.na77.org' ? 'n1admin.na12345.com' : 'd3rqtlfdd4m9wd.cloudfront.net';
-                    xhr.open('get', 'https://' + apiurl + '/player/gameList/'+ userId);
+                        'webpage.na77.org' ? 'a1.na12345.com:3000' : '47.88.170.136:3000';
+                    xhr.open('get', 'http://' + apiurl + '/player/gameList/'+ userId);
                     xhr.send();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
