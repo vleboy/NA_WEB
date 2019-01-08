@@ -180,10 +180,9 @@
     </header>
     <main id="app">
         <ul class="tab">
-            <li class="tabitem" :class="{current:selected==index}"
-            v-for="(item, index) of tabList" :key='index' @click='changeTab(index)'>
-               {{item.title}}
-           </li>
+            <li class="tabitem" :class="{current:selected==index}" v-for="(item, index) of tabList" :key='index' @click='changeTab(index)'>
+                {{item.title}}
+            </li>
             <!-- <li>
                 <a  class="tabitem" href="#">1</a>
             </li>
@@ -203,6 +202,20 @@
             <p id="userName">{{username}} </p>
         </section>
         <section id="games" v-show='selected==0'>
+            <div class="item">
+                <p class="title">摇钱树系列</p>
+                <div>
+                    <img class="banner" :src="classicImg" alt="">
+                </div>
+                <ul id="gameList" class="gameList">
+                    <li v-for="(item,index) in list0">
+                        <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
             <div class="item">
                 <p class="title">经典系列</p>
                 <div>
@@ -231,10 +244,6 @@
                     </li>
                 </ul>
             </div>
-            <!-- <div class="item">
-                <div class="banner">摇钱树系列</div>
-                <ul class="gameList"></ul>
-            </div> -->
         </section>
         <section class="games" v-show='selected==1'>
             <div class="item">
@@ -304,34 +313,42 @@
             el: '#app',
             data: {
                 gameList: [],
-                realList:[],
+                realList: [],
                 userId: '0',
                 token: '0',
                 username: '',
                 isLogin: false,
-                bannerImg:{
-                    classic_phone:'./imgs/classic_phone.jpg',
-                    classic:'./imgs/classic.jpg',
-                    treasure:'./imgs/treasure.jpg',
-                    treasure_phone:'./imgs/treasure_phone.jpg'
+                bannerImg: {
+                    classic_phone: './imgs/classic_phone.jpg',
+                    classic: './imgs/classic.jpg',
+                    treasure: './imgs/treasure.jpg',
+                    treasure_phone: './imgs/treasure_phone.jpg'
                 },
-                selected:0,
-                tabList:[{
-                    title:'NA电子游戏',
+                selected: 0,
+                tabList: [{
+                    title: 'NA电子游戏',
                 },
                 {
-                    title:'真人系列'
+                    title: '真人系列'
                 }],
-                landscape:false,
-                classicImg:'',
-                treasureImg:''
+                landscape: false,
+                classicImg: '',
+                treasureImg: ''
             },
             computed: {
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
                 },
-                repalceReal:function repalceReal() {
+                repalceReal: function repalceReal() {
                     return this.replaceUrl(this.realList, this.userId, this.token);
+                },
+                list0: function list1() {
+                    var arr = ['70022', '70024'];
+                    var result = this.replaced.filter(function (item) {
+                        return arr.includes(item.kindId);
+                    });
+                    return result;
+                    // this.replaced.slice(0, 6)
                 },
                 list1: function list1() {
                     var arr = ['70001', '70002', '70003', '70004', '70005', '70006'];
@@ -342,14 +359,14 @@
                     // this.replaced.slice(0, 6)
                 },
                 list2: function list2() {
-                    var arr = ['70007', '70010', '70011', '70012','70013','70014'];
+                    var arr = ['70007', '70010', '70011', '70012', '70013', '70014'];
                     var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
                     });
                     return result;
                     //this.replaced.slice(6)
                 },
-                list3:function list3(){
+                list3: function list3() {
                     var arr = ['80001'];
                     var result = this.repalceReal.filter(function (item) {
                         return arr.includes(item.kindId);
@@ -362,51 +379,51 @@
                 this.getReal();
                 this.getImg()
             },
-            beforeMount:function beforeMount(){
-                var self=this
-                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {  
-                    if (window.orientation === 180 || window.orientation === 0) {   
-                        self.landscape=false
-                    }   
-                    if (window.orientation === 90 || window.orientation === -90 ){   
-                        self.landscape=true
-                    } 
+            beforeMount: function beforeMount() {
+                var self = this
+                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+                    if (window.orientation === 180 || window.orientation === 0) {
+                        self.landscape = false
+                    }
+                    if (window.orientation === 90 || window.orientation === -90) {
+                        self.landscape = true
+                    }
                     self.getImg()
-                }, false);   
+                }, false);
             },
             methods: {
-                getImg(){
-                    this.classicImg= this.isPc()||this.landscape ?this.bannerImg.classic:this.bannerImg.classic_phone
-                    this.treasureImg= this.isPc()||this.landscape ?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                getImg() {
+                    this.classicImg = this.isPc() || this.landscape ? this.bannerImg.classic : this.bannerImg.classic_phone
+                    this.treasureImg = this.isPc() || this.landscape ? this.bannerImg.treasure : this.bannerImg.treasure_phone
                 },
-                changeTab:function(index){
-                    this.selected=index
+                changeTab: function (index) {
+                    this.selected = index
                 },
-                isPc:function isPc(){
-                    var ua=navigator.userAgent;
-                    var Agents= ["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];
-                    var flag=true;
-                    for(var v=0,len=Agents.length;v<len;v++){
-                        if(ua.indexOf(Agents[v]) >0) {
-                            flag=false;
+                isPc: function isPc() {
+                    var ua = navigator.userAgent;
+                    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+                    var flag = true;
+                    for (var v = 0, len = Agents.length; v < len; v++) {
+                        if (ua.indexOf(Agents[v]) > 0) {
+                            flag = false;
                             break;
                         }
                     }
-                return flag;
+                    return flag;
                 },
                 replaceUrl: function replaceUrl(list, userId, token) {
-                    for(var i=0,len=list.length;i<len;i++){
-                        var item=list[i];
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        var item = list[i];
                         var gameUrl = item.gameLink;
                         gameUrl = gameUrl.replace(/:userId/, userId);
                         gameUrl = gameUrl.replace(/:token/, token)
-                        if(gameUrl.indexOf('?')!=-1){
-                        item.gameLink = gameUrl+'&from=develop'
-                        }else{
-                        item.gameLink = gameUrl+'?from=develop'
+                        if (gameUrl.indexOf('?') != -1) {
+                            item.gameLink = gameUrl + '&from=develop'
+                        } else {
+                            item.gameLink = gameUrl + '?from=develop'
                         }
-                   }
-                   return list
+                    }
+                    return list
                 },
                 userlogin: function userlogin(e) {
                     var user = document.getElementById('userCount').value;
