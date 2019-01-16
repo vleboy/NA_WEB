@@ -212,7 +212,7 @@
                     <li v-for="(item,index) in list0">
                         <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
                         <p class="play">
-                            <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
+                            <a :href="item.gameLink" target="_blank"><button>{{Trial?'开始':'试玩'}}</button></a>
                         </p>
                     </li>
                 </ul>
