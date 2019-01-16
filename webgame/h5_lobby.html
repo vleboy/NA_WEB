@@ -141,7 +141,10 @@
             font-weight: bold;
             padding-left: 5px;
         }
-
+        .mysPrize{
+            color: #f00;
+            font-size: 18px;
+        }
         .play button {
             width: 60px;
             height: 30px;
@@ -204,7 +207,7 @@
 
         <section class="games" v-show='selected==0'>
             <div class="item">
-                <p class="title">摇钱树系列</p>
+                <p class="title">摇钱树系列  <span>神秘大奖:  <span class="mysPrize"> {{animatedNumber}}</span></span></p>
                 <div>
                     <img class="banner" :src="classicImg" alt="">
                 </div>
@@ -271,6 +274,7 @@
         </p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script>
         //添加
         function addClass(ele, cls) {
@@ -319,6 +323,8 @@
             data: {
                 gameList: [],
                 selected: 0,
+                mysPrize:0,
+                tweenedNumber:0,
                 userId: GetQueryString('userId') || 0,
                 token: GetQueryString('token') || 0,
                 bannerImg: {
@@ -371,6 +377,9 @@
                         return arr.includes(item.kindId);
                     });
                     return result;
+                },
+                animatedNumber: function() {
+                    return this.tweenedNumber.toFixed(2)
                 }
             },
             created: function created() {
@@ -388,8 +397,39 @@
                     }
                     self.getImg()
                 }, false);
+                self.getConfig()
+                self.timer= window.setInterval(function(){
+                    self.getConfig()
+                },5000)
+            },
+            beforeDestroy:function beforeDestroy (){
+                window.clearInterval(this.timer)
+            },
+            watch:{
+                mysPrize:function(newVal){
+                    TweenLite.to(this.$data, 0.8, { tweenedNumber: newVal });
+                }
             },
             methods: {
+                getConfig:function getConfig(){
+                    var self = this;
+                    var xhr = new XMLHttpRequest();
+                    var apiurl = 'http://game.risheng3d.com:45557/getBonusConfig'
+                    xhr.open('post', apiurl,true);
+                    var sendData = {
+                        gameType: 'moneytree',
+                    };
+                    xhr.setRequestHeader('Content-type', 'application/json');
+                    xhr.send(JSON.stringify(sendData));
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4 && xhr.status == 200) {
+                            var res = JSON.parse(xhr.responseText);
+                            self.mysPrize=res.config[0].bonusPool
+                            xhr = null;
+                            delete xhr;
+                        }
+                    };
+                },
                 getImg() {
                     this.classicImg = this.isPc() || this.landscape ? this.bannerImg.classic : this.bannerImg.classic_phone
                     this.treasureImg = this.isPc() || this.landscape ? this.bannerImg.treasure : this.bannerImg.treasure_phone
