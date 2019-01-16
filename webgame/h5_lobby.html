@@ -8,14 +8,16 @@
     <meta name=”renderer” content=”webkit” />
     <title>NAGame</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        ul{
-          list-style: none;
+
+        ul {
+            list-style: none;
         }
-        .closeAble{
+
+        .closeAble {
             height: 50px;
             width: 100%;
             text-align: center;
@@ -23,48 +25,61 @@
             background-color: #f2dede;
             color: #a94442
         }
-        .jump{
+
+        .jump {
             color: #a94442;
             padding-left: 10px;
         }
-        .jumps{
+
+        .jumps {
             color: #000;
-            padding-left: 10px; 
+            padding-left: 10px;
         }
-        .close{
+
+        .close {
             position: absolute;
             right: 15px;
             cursor: pointer;
         }
-        footer,main,header{
+
+        footer,
+        main,
+        header {
             width: 1140px;
             margin: 0 auto;
         }
-        footer{
-            margin-top:50px; 
+
+        footer {
+            margin-top: 50px;
             height: 60px;
             border-top: 1px solid #f2f2f2;
         }
-        .footer_content{
+
+        .footer_content {
             padding: 10px 0;
             text-align: center;
             font-size: 12px;
             overflow: hidden;
         }
-        .hide{
+
+        .hide {
             display: none;
         }
-        .logo img{
+
+        .logo img {
             padding-top: 10px;
         }
-        .tab li{
+
+        .tab li {
             float: left;
         }
-        .tab{
+
+        .tab {
             border-bottom: 1px solid #ddd;
             overflow: hidden;
         }
-        .tabitem{
+
+        .tabitem {
             color: #555;
             text-decoration: none;
             margin-right: 2px;
@@ -75,71 +90,86 @@
             border: 1px solid transparent;
             border-radius: 4px 4px 0 0;
         }
-        .tabitem:hover{
+
+        .tabitem:hover {
             color: #337ab7;
             cursor: default;
             background-color: #fff;
             border: 1px solid #ddd;
             border-bottom-color: transparent;
         }
-        .current{
+
+        .current {
             color: #f00;
             border: 1px solid #ddd;
             border-bottom: none;
         }
-        .item{
+
+        .item {
             padding-bottom: 55px;
         }
-        .gameList{
+
+        .gameList {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
         }
+
         @media screen and (orientation: portrait) {
-            .gameList{
-                    display: flex;
-                    flex-wrap: wrap;
-                    align-items: center;
-                    justify-content: center;
-                }
+            .gameList {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+            }
         }
-        .game{
+
+        .game {
             width: 160px;
             padding: 15px;
         }
+
         /* .games{
             min-height: 450px
         } */
-        .play{
+        .play {
             text-align: center;
         }
-        .title{
+
+        .title {
             line-height: 36px;
             font-weight: bold;
             padding-left: 5px;
         }
-        .play button{
+
+        .play button {
             width: 60px;
             height: 30px;
             line-height: 30px;
             background-color: #169BD5;
-            color:#fff;
+            color: #fff;
             cursor: pointer;
             border: none;
             border-radius: 10px;
         }
-        @media screen and (max-width: 750px) {  
-            footer,main,header{
-            width: 100%;
-            margin: 0 auto;
-          }
-          .banner{
-              width: 100vw;
-          }
-          .game{
-            width: 160px;
-            padding: 10px;
-         }
+
+        @media screen and (max-width: 750px) {
+
+            footer,
+            main,
+            header {
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .banner {
+                width: 100vw;
+            }
+
+            .game {
+                width: 160px;
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -161,8 +191,7 @@
     </header>
     <main id="app">
         <ul class="tab">
-            <li class="tabitem" :class="{current:selected==index}"
-             v-for="(item, index) of tabList" :key='index' @click='changeTab(index)'>
+            <li class="tabitem" :class="{current:selected==index}" v-for="(item, index) of tabList" :key='index' @click='changeTab(index)'>
                 {{item.title}}
             </li>
             <!-- <li>
@@ -172,7 +201,22 @@
                 <a class="tabitem" href="#">2</a>
             </li> -->
         </ul>
+
         <section class="games" v-show='selected==0'>
+            <div class="item">
+                <p class="title">摇钱树系列</p>
+                <div>
+                    <img class="banner" :src="classicImg" alt="">
+                </div>
+                <ul id="gameList" class="gameList">
+                    <li v-for="(item,index) in list0">
+                        <a :href="item.gameLink" target="_blank"><img class="game" :src='item.gameImgAli' alt="oops"></a>
+                        <p class="play">
+                            <a :href="item.gameLink" target="_blank"><button>{{isLogin?'开始':'试玩'}}</button></a>
+                        </p>
+                    </li>
+                </ul>
+            </div>
             <div class="item">
                 <p class="title">经典系列</p>
                 <div>
@@ -274,31 +318,38 @@
             el: '#app',
             data: {
                 gameList: [],
-                selected:0,
-                userId: GetQueryString('userId')||0,
-                token: GetQueryString('token')||0,
-                bannerImg:{
-                    classic_phone:'./imgs/classic_phone.jpg',
-                    classic:'./imgs/classic.jpg',
-                    treasure:'./imgs/treasure.jpg',
-                    treasure_phone:'./imgs/treasure_phone.jpg'
+                selected: 0,
+                userId: GetQueryString('userId') || 0,
+                token: GetQueryString('token') || 0,
+                bannerImg: {
+                    classic_phone: './imgs/classic_phone.jpg',
+                    classic: './imgs/classic.jpg',
+                    treasure: './imgs/treasure.jpg',
+                    treasure_phone: './imgs/treasure_phone.jpg'
                 },
-                tabList:[{
-                    title:'NA电子游戏',
+                tabList: [{
+                    title: 'NA电子游戏',
                 },
                 {
-                    title:'真人系列'
+                    title: '真人系列'
                 }],
-                landscape:false,
-                classicImg:'',
-                treasureImg:''
+                landscape: false,
+                classicImg: '',
+                treasureImg: ''
             },
             computed: {
-                Trial(){
-                    return this.token=='0'?false:true
+                Trial() {
+                    return this.token == '0' ? false : true
                 },
                 replaced: function replaced() {
                     return this.replaceUrl(this.gameList, this.userId, this.token);
+                },
+                list0: function list0() {
+                    var arr = ['70022', '70024'];
+                    var result = this.replaced.filter(function (item) {
+                        return arr.includes(item.kindId);
+                    });
+                    return result;
                 },
                 list1: function list1() {
                     var arr = ['70001', '70002', '70003', '70004', '70005', '70006'];
@@ -308,13 +359,13 @@
                     return result;
                 },
                 list2: function list2() {
-                    var arr = ['70007', '70010', '70011', '70012','70013','70014'];
+                    var arr = ['70007', '70010', '70011', '70012', '70013', '70014'];
                     var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
                     });
                     return result;
                 },
-                list3:function list3(){
+                list3: function list3() {
                     var arr = ['80001'];
                     var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
@@ -326,54 +377,54 @@
                 this.getImg()
                 this.getList(this.userId);
             },
-            beforeMount:function beforeMount(){
-                var self=this
-                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {  
-                    if (window.orientation === 180 || window.orientation === 0) {   
-                        self.landscape=false
-                    }   
-                    if (window.orientation === 90 || window.orientation === -90 ){   
-                        self.landscape=true
-                    } 
+            beforeMount: function beforeMount() {
+                var self = this
+                window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+                    if (window.orientation === 180 || window.orientation === 0) {
+                        self.landscape = false
+                    }
+                    if (window.orientation === 90 || window.orientation === -90) {
+                        self.landscape = true
+                    }
                     self.getImg()
-                }, false);   
+                }, false);
             },
             methods: {
-                getImg(){
-                    this.classicImg= this.isPc()||this.landscape ?this.bannerImg.classic:this.bannerImg.classic_phone
-                    this.treasureImg= this.isPc()||this.landscape ?this.bannerImg.treasure:this.bannerImg.treasure_phone
+                getImg() {
+                    this.classicImg = this.isPc() || this.landscape ? this.bannerImg.classic : this.bannerImg.classic_phone
+                    this.treasureImg = this.isPc() || this.landscape ? this.bannerImg.treasure : this.bannerImg.treasure_phone
                 },
-                changeTab:function(index){
-                    this.selected=index
+                changeTab: function (index) {
+                    this.selected = index
                 },
-                isPc:function isPc(){
-                    var ua=navigator.userAgent;
-                    var Agents= ["Android","iPhone","SymbianOS","Windows Phone","iPad","iPod"];
-                    var flag=true;
-                    for(var v=0,len=Agents.length;v<len;v++){
-                        if(ua.indexOf(Agents[v]) >0) {
-                            flag=false;
+                isPc: function isPc() {
+                    var ua = navigator.userAgent;
+                    var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+                    var flag = true;
+                    for (var v = 0, len = Agents.length; v < len; v++) {
+                        if (ua.indexOf(Agents[v]) > 0) {
+                            flag = false;
                             break;
                         }
                     }
-                return flag;
+                    return flag;
                 },
                 replaceUrl: function replaceUrl(list, userId, token) {
-                   for(var i=0,len=list.length;i<len;i++){
-                       var item=list[i];
+                    for (var i = 0, len = list.length; i < len; i++) {
+                        var item = list[i];
                         var gameUrl = item.gameLink;
                         gameUrl = gameUrl.replace(/:userId/, userId);
                         gameUrl = gameUrl.replace(/:token/, token)
                         item.gameLink = gameUrl
-                   }
-                   return list
+                    }
+                    return list
                 },
                 getList: function getList(userId) {
                     var self = this;
                     var xhr = new XMLHttpRequest();
                     var apiurl = window.location.hostname == 'webpage.risheng3d.com' || window.location.hostname ==
                         'webpage.na77.org' ? 'a1.na12345.com:3000' : '47.88.170.136:3000';
-                    xhr.open('get', 'http://' + apiurl + '/player/gameList/'+ userId);
+                    xhr.open('get', 'http://' + apiurl + '/player/gameList/' + userId);
                     xhr.send();
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
@@ -383,7 +434,7 @@
                             delete xhr;
                         }
                     };
-                },
+                }
             }
         });
     </script>
