@@ -141,10 +141,12 @@
             font-weight: bold;
             padding-left: 5px;
         }
-        .mysPrize{
+
+        .mysPrize {
             color: #f00;
             font-size: 18px;
         }
+
         .play button {
             width: 60px;
             height: 30px;
@@ -207,7 +209,7 @@
 
         <section class="games" v-show='selected==0'>
             <div class="item">
-                <p class="title">摇钱树系列  <span>神秘大奖:  <span class="mysPrize"> {{animatedNumber}}</span></span></p>
+                <p class="title">摇钱树系列 <span>神秘大奖: <span class="mysPrize"> {{animatedNumber}}</span></span></p>
                 <div>
                     <img class="banner" :src="classicImg" alt="">
                 </div>
@@ -323,8 +325,8 @@
             data: {
                 gameList: [],
                 selected: 0,
-                mysPrize:0,
-                tweenedNumber:0,
+                mysPrize: 0,
+                tweenedNumber: 0,
                 userId: GetQueryString('userId') || 0,
                 token: GetQueryString('token') || 0,
                 bannerImg: {
@@ -351,7 +353,7 @@
                     return this.replaceUrl(this.gameList, this.userId, this.token);
                 },
                 list0: function list0() {
-                    var arr = ['70022', '70024'];
+                    var arr = ['70022', '70024', '70026', '70028', '70030', '70032'];
                     var result = this.replaced.filter(function (item) {
                         return arr.includes(item.kindId);
                     });
@@ -378,7 +380,7 @@
                     });
                     return result;
                 },
-                animatedNumber: function() {
+                animatedNumber: function () {
                     return this.tweenedNumber.toFixed(2)
                 }
             },
@@ -398,24 +400,24 @@
                     self.getImg()
                 }, false);
                 self.getConfig()
-                self.timer= window.setInterval(function(){
+                self.timer = window.setInterval(function () {
                     self.getConfig()
-                },5000)
+                }, 5000)
             },
-            beforeDestroy:function beforeDestroy (){
+            beforeDestroy: function beforeDestroy() {
                 window.clearInterval(this.timer)
             },
-            watch:{
-                mysPrize:function(newVal){
+            watch: {
+                mysPrize: function (newVal) {
                     TweenLite.to(this.$data, 0.8, { tweenedNumber: newVal });
                 }
             },
             methods: {
-                getConfig:function getConfig(){
+                getConfig: function getConfig() {
                     var self = this;
                     var xhr = new XMLHttpRequest();
                     var apiurl = 'http://game.risheng3d.com:45557/getBonusConfig'
-                    xhr.open('post', apiurl,true);
+                    xhr.open('post', apiurl, true);
                     var sendData = {
                         gameType: 'moneytree',
                     };
@@ -424,7 +426,7 @@
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState == 4 && xhr.status == 200) {
                             var res = JSON.parse(xhr.responseText);
-                            self.mysPrize=res.config[0].bonusPool
+                            self.mysPrize = res.config[0].bonusPool
                             xhr = null;
                             delete xhr;
                         }
