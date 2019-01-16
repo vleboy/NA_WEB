@@ -207,7 +207,7 @@
         </section>
         <section id="games" v-show='selected==0'>
             <div class="item">
-                <p class="title">摇钱树系列 <span>神秘大奖: <span class="mysPrize"> </span></span></p>
+                <p class="title">摇钱树系列 <span>神秘大奖: <span class="mysPrize"> {{animatedNumber}}</span></span></p>
                 <div>
                     <img class="banner" :src="classicImg" alt="">
                 </div>
@@ -269,8 +269,8 @@
             <a class="jumps" href="http://na77.com" target="_blank">欢迎访问我们官网</a>
         </p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
     <script>
         //添加
         function addClass(ele, cls) {
@@ -381,8 +381,7 @@
                     return result;
                 },
                 animatedNumber: function () {
-                    return 0
-                    // return this.tweenedNumber.toFixed(2)
+                    return this.tweenedNumber.toFixed(2)
                 }
             },
             created: function created() {
@@ -409,11 +408,11 @@
             beforeDestroy: function beforeDestroy() {
                 window.clearInterval(this.timer)
             },
-            // watch: {
-            //     mysPrize: function (newVal) {
-            //         TweenLite.to(this.$data, 0.8, { tweenedNumber: newVal });
-            //     }
-            // },
+            watch:{
+                mysPrize:function(newVal){
+                    TweenLite.to(this.$data, 0.8, { tweenedNumber: newVal });
+                }
+            },
             methods: {
                 getConfig: function getConfig() {
                     var self = this;
